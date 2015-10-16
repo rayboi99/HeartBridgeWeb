@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="SE452EclipseLink2" transaction-type="RESOURCE_LOCAL">
+
+		<class>com.se452.model.AppUser</class>
+		<class>com.se452.model.Friendship</class>
+		<class>com.se452.model.FriendRequest</class>
+		<class>com.se452.model.University</class>
+		<class>com.se452.model.UserUniversity</class>
+		<class>com.se452.model.Profile</class>
+		<class>com.se452.model.UserGift</class>
+		<class>com.se452.model.Gift</class>
+		<class>com.se452.model.Message</class>
+		<class>com.se452.model.MessageId</class>
+		<class>com.se452.model.MatchRequest</class>
+		<class>com.se452.model.DateInfor</class>
+		
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+			<property name="javax.persistence.jdbc.user" value="rey"/>
+			<property name="javax.persistence.jdbc.password" value="bjmdfx"/>
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+			
+			<!-- EclipseLink should create the database schema automatically -->
+      		<property name="eclipselink.ddl-generation" value="create-tables" />
+      		<property name="eclipselink.ddl-generation.output-mode" value="database" />
+		</properties>
+		
+	</persistence-unit>
+</persistence>
