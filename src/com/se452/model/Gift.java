@@ -41,6 +41,7 @@ import org.eclipse.persistence.internal.jpa.parsing.TemporalLiteralNode.Temporal
 			@Lob
 			@Column(name="PICTURE")
 			private byte[] giftPicture;
+			
 			@Column(name="Gift_Name",unique=true,length=30)
 			private String giftName;
 			

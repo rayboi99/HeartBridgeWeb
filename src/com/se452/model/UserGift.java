@@ -17,8 +17,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import org.eclipse.persistence.internal.jpa.parsing.TemporalLiteralNode.TemporalType;
 
 @Entity
 public class UserGift {
@@ -40,6 +40,7 @@ public class UserGift {
 	//@JoinColumn(name="USERSENTID", table = "AppUser", referencedColumnName = "APPUSERID")
 	//@Temporal(TemporalType.DATE)
 	//@Column(name = "DATES")
+	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date modifiedTimestamp;
 	public Gift getGiftId() {
 		return giftId;

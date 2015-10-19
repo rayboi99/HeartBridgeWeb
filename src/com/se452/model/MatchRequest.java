@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity 
 public class MatchRequest {
@@ -13,8 +15,13 @@ public class MatchRequest {
 	@Id private AppUser MatchMaker_Id;
 	@Id private AppUser User1_Id;
 	@Id private AppUser User2_Id;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date Request_Time;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date Request_Accept_Time;
+	
 	private String Request_Status;
 	private String Request_Type;
 	
@@ -61,7 +68,4 @@ public class MatchRequest {
 	public void setRequest_Type(String request_Type) {
 		Request_Type = request_Type;
 	}
-
-
-	
 }

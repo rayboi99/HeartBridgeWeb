@@ -34,9 +34,7 @@ public class UserService implements UserServiceInterface{
 	    au.setPassword(userPassword);
 	    au.setAge(age);
 	    entityManager.persist(au);
-	    entityManager.flush();
-	  
-	   
+	    
 	}
 	
 	public boolean verifyExistingUser(String userName, String userPassword) throws NoSuchAlgorithmException

@@ -21,7 +21,6 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(name="User_seq", initialValue=1,allocationSize=100)
 public class AppUser{
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="User_seq")
 	@Column(name="USERID",nullable=false)
@@ -40,26 +39,26 @@ public class AppUser{
 	private String gender;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="au")
 	private List<FriendRequest> friendrequest;
-	
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
 	private List<Friendship> friendship;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="userSend")
-	private List<UserGift> usergift ;
+	private List<UserGift> usergift;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="userId")
     private List<UserUniversity> userUniversity;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="User_Id_To")
-    private List<Message> userMessages;
+    private List<Message> message;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="MatchMaker_Id")
 	private List<MatchRequest> matchRequest;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="MatchMakerId")
-	private List<DateInfor> dateInfor;
+	private List<DateInfo> dateInfo;
+
 	
 	
-	public List<DateInfor> getDate() {
-		return dateInfor;
+	public List<DateInfo> getDate() {
+		return dateInfo;
 	}
-	public void setDate(List<DateInfor> dateInfor) {
-		this.dateInfor = dateInfor;
+	public void setDate(List<DateInfo> dateInfor) {
+		this.dateInfo = dateInfor;
 	}
 	public int getAge() {
 		return age;

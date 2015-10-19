@@ -14,6 +14,5 @@ public interface UserServiceInterface {
 	AppUser getUser(String userName);
 	void uppdateExistingUserInformation(String userName,String para, String value) throws NoSuchAlgorithmException;
 	void commitTransaction();
-	//search functionality
 	
 }

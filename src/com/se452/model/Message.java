@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import java.io.Serializable;
 import java.util.*;
@@ -15,7 +17,9 @@ public class Message implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id private Date Date_Sent;
+	@Id
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date Date_Sent;
 	@Id private AppUser User_Id_To;
 	@Id private AppUser User_Id_From;
 	private String Subject;
