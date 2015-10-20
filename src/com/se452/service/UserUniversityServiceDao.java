@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.se452.appUser.AppUser;
+import com.se452.model.*;
 
 public class UserUniversityServiceDao implements UserUniversityServiceDaoInterface {
 	private EntityManager em;

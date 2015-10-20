@@ -8,6 +8,7 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity 
+@IdClass(MatchRequestId.class)
 public class MatchRequest {
 
 	@Id private AppUser MatchMaker_Id;
@@ -17,7 +18,8 @@ public class MatchRequest {
 	private Date Request_Accept_Time;
 	private String Request_Status;
 	private String Request_Type;
-	
+	private String User1_Request_Status;	
+	private String User2_Request_Status;	
 	
 	public AppUser getMatchMaker_Id() {
 		return MatchMaker_Id;
@@ -61,7 +63,16 @@ public class MatchRequest {
 	public void setRequest_Type(String request_Type) {
 		Request_Type = request_Type;
 	}
-
-
-	
+	public String getUser1_Request_Status() {
+		return User1_Request_Status;
+	}
+	public void setUser1_Request_Status(String user1_Request_Status) {
+		User1_Request_Status = user1_Request_Status;
+	}
+	public String getUser2_Request_Status() {
+		return User2_Request_Status;
+	}
+	public void setUser2_Request_Status(String user2_Request_Status) {
+		User2_Request_Status = user2_Request_Status;
+	}
 }

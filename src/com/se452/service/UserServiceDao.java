@@ -1,5 +1,7 @@
 package com.se452.service;
 
+import com.se452.model.*;
+
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 

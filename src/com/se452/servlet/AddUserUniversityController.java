@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.se452.University.UserUniversityServiceDao;
+import com.se452.service.*;
 
 /**
  * Servlet implementation class AddUserUniversity

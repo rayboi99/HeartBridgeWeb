@@ -3,6 +3,7 @@ package com.se452.service;
 import java.security.NoSuchAlgorithmException;
 
 import javax.persistence.EntityManager;
+import com.se452.model.*;
 
 public interface UserServiceDaoInterface {
 

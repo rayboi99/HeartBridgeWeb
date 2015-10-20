@@ -21,18 +21,14 @@ public class MatchRequestService {
 		em = emFactory.createEntityManager();
 	}
 
-	public void addMatchRequest(int match_Maker_Id, int userId1, int userId2, Date requestTime, Date requestAcceptTime, String requestStatus, String requestType) throws NoSuchAlgorithmException
+	public void addMatchRequest(int match_Maker_Id, int userId1, int userId2, Date requestTime, Date requestAcceptTime, String requestStatus, String requestType, String user1_Request_Status, String user2_Request_Status) throws NoSuchAlgorithmException
 	{
 	    MatchRequest matchRequest = new MatchRequest();
 	    
-	    AppUser appUser_MatchMaker = new AppUser();
-	    AppUser appUser_User1 = new AppUser();
-	    AppUser appUser_User2 = new AppUser();
-	    
-	    appUser_MatchMaker.setApp_user_id(match_Maker_Id);
-	    appUser_User1.setApp_user_id(userId1); 
-	    appUser_User2.setApp_user_id(userId2);
-	    
+	    AppUser appUser_MatchMaker = em.find(AppUser.class, match_Maker_Id);
+	    AppUser appUser_User1 = em.find(AppUser.class, userId1);
+	    AppUser appUser_User2 = em.find(AppUser.class, userId2);
+	   
 	    matchRequest.setMatchMaker_Id(appUser_MatchMaker);
 	    matchRequest.setUser1_Id(appUser_User1);
 	    matchRequest.setUser2_Id(appUser_User2);
@@ -40,6 +36,9 @@ public class MatchRequestService {
 	    matchRequest.setRequest_Accept_Time(requestAcceptTime);
 	    matchRequest.setRequest_Status(requestStatus);
 	    matchRequest.setRequest_Type(requestType);
+	    
+	    matchRequest.setUser1_Request_Status(user1_Request_Status);
+	    matchRequest.setUser2_Request_Status(user2_Request_Status);
 	    
 	    em.getTransaction().begin();
 	    em.persist(matchRequest);
@@ -71,24 +70,29 @@ public class MatchRequestService {
 	    return matchRequestList;	
 	}
 	
-	public void updateMatchRequestStatus(int match_Maker_Id, int userId1, int userId2, String request_Status)
+	public void updateMatchRequestStatus(int match_Maker_Id, int userId1, int userId2, Status user1_Request_Status, Status user2_Request_Status)
 	{
 	    em.getTransaction().begin();
-	    MatchRequest matchRequest = new MatchRequest();
 	    
-	    AppUser appUser_MatchMaker = new AppUser();
-	    AppUser appUser_User1 = new AppUser();
-	    AppUser appUser_User2 = new AppUser();
+	    MatchRequestId matchRequestId = new MatchRequestId();
+	    matchRequestId.setMatchMaker_Id(match_Maker_Id);
+	    matchRequestId.setUser1_Id(userId1);
+	    matchRequestId.setUser2_Id(userId2);
+
+        MatchRequest matchRequest = em.find(MatchRequest.class, matchRequestId);
 	    
-	    appUser_MatchMaker.setApp_user_id(match_Maker_Id);
-	    appUser_User1.setApp_user_id(userId1); 
-	    appUser_User2.setApp_user_id(userId2);
+	    Status request_Status = Status.PENDING;
+	    if (user1_Request_Status == Status.ACCEPT && user2_Request_Status == Status.ACCEPT)
+	    	request_Status = Status.COMPLETE;
+	    else if (user1_Request_Status == Status.REJECT || user2_Request_Status == Status.REJECT)
+	    	request_Status = Status.REJECT;
+	    else
+	    	request_Status = Status.PENDING;
 	    
-	    matchRequest.setMatchMaker_Id(appUser_MatchMaker);
-	    matchRequest.setUser1_Id(appUser_User1);
-	    matchRequest.setUser2_Id(appUser_User2);
+	    matchRequest.setRequest_Status(request_Status.toString());
+	    matchRequest.setUser1_Request_Status(user1_Request_Status.toString());
+	    matchRequest.setUser2_Request_Status(user2_Request_Status.toString());
 	    
-	    matchRequest.setRequest_Status(request_Status);
 	    em.merge(matchRequest);
 	    em.getTransaction().commit();
 	}

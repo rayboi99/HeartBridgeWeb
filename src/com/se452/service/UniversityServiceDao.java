@@ -1,5 +1,6 @@
 package com.se452.service;
 
+import com.se452.model.*;
 import java.util.List;
 
 import javax.persistence.EntityManager;

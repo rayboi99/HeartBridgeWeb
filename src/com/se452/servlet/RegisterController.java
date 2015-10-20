@@ -14,18 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.se452.appUser.UserServiceDao;
-
-
-
-
-
-
-
-
-
-
-
+import com.se452.service.*;
 
 /**
  * Servlet implementation class RegisterController

@@ -28,11 +28,8 @@ public class MessageService {
 	    msg.setMessage(message);
 	    msg.setSubject(subject);
 	    
-	    AppUser userTo = new AppUser();
-	    userTo.setApp_user_id(userId_To);
-	    
-	    AppUser userFrom = new AppUser();
-	    userFrom.setApp_user_id(userId_From); 
+	    AppUser userTo = em.find(AppUser.class, userId_To);
+	    AppUser userFrom = em.find(AppUser.class, userId_From);
 	    
 	    msg.setUser_Id_From(userFrom);
 	    msg.setUser_Id_To(userTo);
@@ -47,8 +44,7 @@ public class MessageService {
 	{
 		List<Message> messageList = null;
 		
-		AppUser userFrom = new AppUser();
-	    userFrom.setApp_user_id(userId_From); 
+		AppUser userFrom = em.find(AppUser.class, userId_From);
 		
 	    Query q = em.createQuery("select t from Message t where t.User_Id_From = ?1")
 	    		.setParameter(1, userFrom);
