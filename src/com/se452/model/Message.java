@@ -11,12 +11,9 @@ import java.io.Serializable;
 import java.util.*;
 
 @Entity 
-public class Message implements Serializable {
+@IdClass(MessageId.class)
+public class Message {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@Id
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date Date_Sent;
@@ -43,7 +40,6 @@ public class Message implements Serializable {
 	public void setDate_Sent(Date date_Sent) {
 		Date_Sent = date_Sent;
 	}
-	
 	public String getSubject() {
 		return Subject;
 	}
@@ -56,6 +52,5 @@ public class Message implements Serializable {
 	public void setMessage(String message) {
 		Message = message;
 	}
-	
 	
 }
