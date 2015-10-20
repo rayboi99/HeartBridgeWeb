@@ -1,11 +1,15 @@
 package com.se452.servlet;
 
+import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.se452.model.AppUser;
+import com.se452.model.DateInfo;
 import com.se452.service.DateInfoService;
 
 /**
@@ -34,8 +39,17 @@ public class DateInfoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		if (request.getParameter("create") != null){
+			goToPage("/CreateDate.html",request,response);
+			}
+		else{
+			DateInfoService dateService = new DateInfoService();
+			List<DateInfo> listOfDates = new ArrayList <DateInfo>();
+			listOfDates=dateService.ViewDateAsMatchMaker(1);
+			request.setAttribute("listOfDates", listOfDates);
+			goToPage("/ViewAsMatchMaker.jsp",request,response);
+			}
 	}
 
 	/**
@@ -46,39 +60,60 @@ public class DateInfoServlet extends HttpServlet {
 		String usr2 = request.getParameter("user2");
 		String location = request.getParameter("location");
 		String date = request.getParameter("date");
-		String time = request.getParameter("time");
+		String month = request.getParameter("month");
+		String year = request.getParameter("year");
+		String hour = request.getParameter("hour");
+		String minute = request.getParameter("minute");
 		String description = request.getParameter ("description");
 		
-		SimpleDateFormat format = new SimpleDateFormat ("MMMM dd, yyyy hh:mm");
 		
-		java.util.Date dateTime = null;
+		StringBuilder sb = new StringBuilder ();
+		sb.append(date);
+		sb.append("-");
+		sb.append(month);
+		sb.append("-");
+		sb.append(year);
+		sb.append(" ");
+		sb.append(hour);
+		sb.append(":");
+		sb.append(minute);
+		sb.append(":00");
+		
+		
+		SimpleDateFormat format = new SimpleDateFormat ("dd-MM-yyyy HH:mm:ss");
+		
+		java.util.Date dateTime = new Date();
 		try {
-			dateTime = format.parse(date+" "+time);
+			dateTime = format.parse(sb.toString());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		AppUser user1 = new AppUser ();
-		user1.setApp_user_id(3);
+		user1.setApp_user_id(2);
 		user1.setApp_user_name(usr1);
 		
 		AppUser user2 = new AppUser();
-		user2.setApp_user_id(2);
+		user2.setApp_user_id(3);
 		user2.setApp_user_name(usr2);
 		
 		AppUser mm = new AppUser();
-		mm.setApp_user_id(4);
+		mm.setApp_user_id(1);
 		user2.setApp_user_name("Rey");
 		
 		DateInfoService dateInfo = new DateInfoService ();
 		dateInfo.createDate(mm,user1, user2, dateTime, location, description);
 		
-		PrintWriter out = response.getWriter();
-		
-		out.println ("<html>");
-		out.println("Hello, success!");
-		out.println ("</html>");
+		goToPage("/SuccessCreatingADate.html",request,response);
 
 	}
+	
+	private void goToPage (String address, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(address);
+		dispatcher.forward(request, response);
+	}
+	
+	
+	
 }

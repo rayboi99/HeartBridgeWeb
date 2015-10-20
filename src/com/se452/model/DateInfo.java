@@ -21,7 +21,7 @@ public class DateInfo {
 	@Id
 	private AppUser User2Id;
 	
-	@Temporal (TemporalType.DATE)
+	@Temporal (TemporalType.TIMESTAMP)
 	private java.util.Date dateTime;
 	private String location;
 	private String description;

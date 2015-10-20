@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Create a date</title>
+</head>
+<body>
+<h3>Creating A Date</h3>
+	<form action="dateInfo.do" method="post">
+		<table>
+			<tr>
+				<td>user 1:</td>
+				<td><input type="text" name="user1" /></td>
+			</tr>
+			
+			<tr>
+				<td>user 2:</td>
+				<td><input type="text" name="user2" /></td>
+			</tr>
+
+			<tr>
+				<td>location:</td>
+				<td><input type="text" name="location" /></td>
+			</tr>
+			</table>
+			<table>
+				<tr>
+					<td>Date:</td>
+					<td><select name="date">
+							<option value="01">1</option>
+							<option value="02">2</option>
+							<option value="03">3</option>
+							<option value="04">4</option>
+							<option value="05">5</option>
+							<option value="06">6</option>
+							<option value="07">7</option>
+							<option value="08">8</option>
+							<option value="09">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+					</select></td>
+
+					<td>Month:</td>
+					<td><select name="month">
+							<option value="01">1</option>
+							<option value="02">2</option>
+							<option value="03">3</option>
+							<option value="04">4</option>
+							<option value="05">5</option>
+							<option value="06">6</option>
+							<option value="07">7</option>
+							<option value="08">8</option>
+							<option value="09">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+					</select></td>
+
+					<td>Year:</td>
+					<td><input type="text" name="year"></td>
+				</tr>
+
+				<tr>
+					<td>Time:</td>
+					<td><select name="hour">
+							<option value="01">1</option>
+							<option value="02">2</option>
+							<option value="03">3</option>
+							<option value="04">4</option>
+							<option value="05">5</option>
+							<option value="06">6</option>
+							<option value="07">7</option>
+							<option value="08">8</option>
+							<option value="09">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+					</select></td>
+
+					<td>:</td>
+					<td><select name="minute">
+							<option value="00">00</option>
+							<option value="15">15</option>
+							<option value="30">30</option>
+							<option value="45">45</option>
+					</select></td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td>Comment:</td>
+					<td><textArea rows="4" cols="50" name="description"></textArea></td>
+				</tr>
+
+				<tr>
+					<td><br> <br> <input type="submit" name="create"
+						value="set them up!"></td>
+					<td></td>
+				</tr>
+			</table>
+	</form>
+</body>
+</html>

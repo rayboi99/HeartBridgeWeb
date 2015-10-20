@@ -80,7 +80,7 @@ public class AppUser{
 	public void setUserUniversity(List<UserUniversity> userUniversity) {
 		this.userUniversity = userUniversity;
 	}
-	public int getApp_user_id() {
+	public int getAppUserId() {
 		return appUserId;
 	}
 	public List<FriendRequest> getFriendrequest() {
@@ -89,7 +89,7 @@ public class AppUser{
 	public void setFriendrequest(List<FriendRequest> friendrequest) {
 		this.friendrequest = friendrequest;
 	}
-	public void setApp_user_id(int app_user_id) {
+	public void setAppUserId(int app_user_id) {
 		appUserId = app_user_id;
 	}
 	

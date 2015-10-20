@@ -29,9 +29,9 @@ public class MatchRequestService {
 	    AppUser appUser_User1 = new AppUser();
 	    AppUser appUser_User2 = new AppUser();
 	    
-	    appUser_MatchMaker.setApp_user_id(match_Maker_Id);
-	    appUser_User1.setApp_user_id(userId1); 
-	    appUser_User2.setApp_user_id(userId2);
+	    appUser_MatchMaker.setAppUserId(match_Maker_Id);
+	    appUser_User1.setAppUserId(userId1); 
+	    appUser_User2.setAppUserId(userId2);
 	    
 	    matchRequest.setMatchMaker_Id(appUser_MatchMaker);
 	    matchRequest.setUser1_Id(appUser_User1);

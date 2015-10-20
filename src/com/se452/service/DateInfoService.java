@@ -45,17 +45,14 @@ public class DateInfoService implements DateInfoServiceInterface{
 	}
 
 	@Override
-	public void ViewDateAsMatchMaker(int user) {
-		List <DateInfo> listOfDates= new ArrayList<>();
-		Query query = manager.createQuery("select d from dateInfo d where d.MatchMakerId=?1");
-		query.setParameter(1, user);
+	public List<DateInfo> ViewDateAsMatchMaker(int userId) {
+		AppUser mm = new AppUser();
+		mm.setAppUserId(userId);
+		Query query = manager.createQuery("select e from dateinfo e where e.MatchMakerId=?1");
+		query.setParameter(1, mm);
 		
-		listOfDates = query.getResultList();
-		
-		Iterator it = listOfDates.iterator();
-		while (it.hasNext()){
-			System.out.println(it.next());
-		}
+		List <DateInfo> listOfDates = (List <DateInfo>)query.getResultList();
+		return listOfDates;
 	}
 
 	@Override

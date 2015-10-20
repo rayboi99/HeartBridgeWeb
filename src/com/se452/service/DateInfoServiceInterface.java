@@ -1,6 +1,7 @@
 package com.se452.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Id;
 
@@ -17,5 +18,5 @@ public interface DateInfoServiceInterface {
 	void rejectDate ();
 	void viewDateAsUser();
 	void updateDate(DateInfoId id, Date dateTime, String location, String description);
-	void ViewDateAsMatchMaker(int user);
+	List<DateInfo> ViewDateAsMatchMaker(int user);
 }
