@@ -50,8 +50,10 @@ public class MatchRequestService {
 	{
 		List<MatchRequest> matchRequestList = null;
 		
-	    Query q = em.createQuery("select t from MatchRequest t where t.MatchMaker_Id_UserId = ?1")
-	    		.setParameter(1, match_Maker_Id);
+		AppUser appUser_MatchMaker = em.find(AppUser.class, match_Maker_Id);
+		
+	    Query q = em.createQuery("select t from MatchRequest t where t.MatchMaker_Id = ?1")
+	    		.setParameter(1, appUser_MatchMaker);
 	    
 	    matchRequestList = q.getResultList();
 	   	    
