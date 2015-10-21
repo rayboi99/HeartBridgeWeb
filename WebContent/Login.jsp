@@ -15,5 +15,8 @@ Password:<input type="password" name="password" />
 <form action="ForgetPasswordController" method="post">
 <input type="submit" value="Forget Password" />
 </form>
+<form action="Register.jsp" method="post">
+<input type="submit" value="Register" />
+</form>
 </body>
 </html>

@@ -1,11 +1,12 @@
 package com.se452.service;
 
-import com.se452.model.*;
-
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
+import com.se452.model.AppUser;
+import com.se452.model.PasswordEncryption;
 
 
 public class UserServiceDao implements UserServiceDaoInterface {
@@ -113,6 +114,12 @@ boolean ifValid=false;
 	@Override
 	public void setEntityManager(EntityManager em) {
 		this.em=em;
+	}
+
+	@Override
+	public List<AppUser> getAllUser() {
+		List<AppUser> result = em.createQuery("select au from AppUser au").getResultList();
+		return result;
 	}
 
 }

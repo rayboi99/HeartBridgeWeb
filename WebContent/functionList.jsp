@@ -17,5 +17,27 @@
 <form action="ViewUniversityListController" method="post">
 <input type="submit" value="Delete Your University" />
 </form>
+</form>
+<form action="ViewAllUserController" method="post">
+<input type="submit" value="View Other User" />
+</form>
+<form action="ViewPendingFriendRequestController" method="post">
+<input type="submit" value="View Pending Friend Request Received" />
+</form>
+<form action="ViewCompleteFriendRequestController" method="post">
+<input type="submit" value="View Complete Friend Request Received" />
+</form>
+<form action="ViewFriendRequestSentController" method="post">
+<input type="submit" value="View Friend Request Sent not done" />
+</form>
+<form action="ViewFriendRequestSentPendingController" method="post">
+<input type="submit" value="View Friend Request send pending not done" />
+</form>
+<form action="ViewFriendListController" method="post">
+<input type="submit" value="View Friend List" />
+</form>
+<form action="ViewFriendRequestSentPendingController" method="post">
+<input type="submit" value="Cancel Pending Friend Request Reveived Not Done" />
+</form>
 </body>
 </html>

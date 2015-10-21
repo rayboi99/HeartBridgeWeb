@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.se452.service.*;
-import com.se452.model.*;
+import com.se452.model.University;
+import com.se452.service.UserUniversityServiceDao;
+
+
 
 /**
  * Servlet implementation class ViewUniversityListController

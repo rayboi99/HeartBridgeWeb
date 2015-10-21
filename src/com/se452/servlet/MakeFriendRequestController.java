@@ -1,7 +1,6 @@
 package com.se452.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,29 +12,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.se452.service.UserUniversityServiceDao;
-
+import com.se452.service.FriendRequestServiceDao;
 
 /**
- * Servlet implementation class DeleteUserUniversity
+ * Servlet implementation class MakeFriendRequestController
  */
-@WebServlet("/DeleteUniversityController")
-public class DeleteUserUniversityController extends HttpServlet {
+@WebServlet("/MakeFriendRequestController")
+public class MakeFriendRequestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager ;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUserUniversityController() {
+    public MakeFriendRequestController() {
         super();
         entityManagerFactory = Persistence.createEntityManagerFactory("SE452EclipseLink2");
-     		entityManager = entityManagerFactory.createEntityManager();
-     		entityManager.getTransaction().begin();
+		entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();  
     }
 
-
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -43,11 +41,12 @@ public class DeleteUserUniversityController extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		String uis=session.getAttribute("userIdKey").toString();
 		int uid=Integer.parseInt(uis);
-		int unid=Integer.parseInt(request.getParameter("chosenUniversity"));
-		UserUniversityServiceDao uusd=new UserUniversityServiceDao();
-		uusd.setEntityManager(entityManager); 
-		uusd.deleteUserUniversity(uid, unid);
+		int userId=Integer.parseInt(request.getParameter("chosenUser"));
+		FriendRequestServiceDao frsd=new FriendRequestServiceDao();
+		frsd.setEntityManager(entityManager);
+		frsd.sendFriendRequest(uid, userId);
 		response.sendRedirect("functionList.jsp");
+		
 	}
 
 }

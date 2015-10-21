@@ -4,4 +4,5 @@ public enum MatchType {
 	
 	UMU,
 	MUU;
+
 }

@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.se452.service.*;
+import com.se452.service.UserUniversityServiceDao;
+
+
 
 /**
  * Servlet implementation class AddUserUniversity
@@ -42,9 +44,14 @@ public class AddUserUniversityController extends HttpServlet {
 		String uniName = request.getParameter("uni_name");
 		UserUniversityServiceDao uusd=new UserUniversityServiceDao();
 		uusd.setEntityManager(entityManager);
-		uusd.addUserUniversity(uid, uniName);
-		entityManager.close();
-		entityManagerFactory.close();
+		try{
+		uusd.addUserUniversity(uid, uniName);}
+		catch(Exception e)
+		{
+			 response.sendRedirect("AddUniversity.jsp");	
+		}
+		//entityManager.close();
+		//entityManagerFactory.close();
 		 response.sendRedirect("functionList.jsp");
 	}
 

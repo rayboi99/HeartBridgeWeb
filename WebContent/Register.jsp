@@ -124,5 +124,8 @@ Age:
     
  </select>
 <input type="submit" value="Register" /></form>
+<form action="Login.jsp" method="post">
+<input type="submit" value="Login" />
+</form>
 </body>
 </html>

@@ -14,7 +14,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.se452.service.*;
+import com.se452.service.UserServiceDao;
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Servlet implementation class RegisterController
@@ -68,7 +80,7 @@ public class RegisterController extends HttpServlet {
 			response.sendRedirect("TechniqueIssue.jsp");
 		}
 		
-		entityManager.close();
+		//entityManager.close();
 
 	}
 

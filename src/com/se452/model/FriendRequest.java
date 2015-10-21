@@ -1,6 +1,7 @@
 package com.se452.model;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,23 +15,42 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
+
+
 @Entity
+@Table(name="FRIENDREQUEST")
 public class FriendRequest {
 	
+
+	 @EmbeddedId
+	    private FriendRequestPK friendRequestPK;
 	
-	@Id
+	@MapsId("auId")
+	//@Id
 	//@ManyToOne
     //@JoinColumn(name="USER_ID", nullable=false)
-	private AppUser au;
-	@Id
+	private AppUser au;	
+	public FriendRequestPK getFriendRequestPK() {
+		return friendRequestPK;
+	}
+
+	public void setFriendRequestPK(FriendRequestPK friendRequestPK) {
+		this.friendRequestPK = friendRequestPK;
+	}
+
+	@MapsId("friendId")
+	//@Id
 	//@OneToOne
 	//@JoinColumn(name="Friend_ID",nullable=false)
 	private AppUser friend;
-	@Id
-	@Column(name="request_send_time",nullable=false,length=100)
+	
+	//@MapsId("requestSendTime")
+	//@Id
+	@Column(name="request_send_time",nullable=false,length=320)
 	private String requestSendTime;
 	
-	@Column(name="request_update_time",nullable=false,length=100)
+	@Column(name="request_update_time",nullable=false,length=320)
 	private String requestUpdateTime;
 	
 	@Column(name="request_status",nullable=false)

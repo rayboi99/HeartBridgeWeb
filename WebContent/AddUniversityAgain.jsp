@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add University</title>
+<title>Add University Again</title>
 </head>
 <body>
+<h>The uniersity name is already added.</h>
 <form action="AddUniversityController" method="post">
 University Name:<input type="text" name="uni_name" />
 <input type="submit" value="Add" />

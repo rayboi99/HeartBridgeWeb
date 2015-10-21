@@ -1,5 +1,7 @@
 package com.se452.model;
 
+
+
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
@@ -18,9 +20,29 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+
+
+
+//import com.se452.model.DateInfor;
+import com.se452.model.Friendship;
+import com.se452.model.FriendRequest;
+//import com.se452.model.MatchRequest;
+//import com.se452.model.Message;
+//import com.se452.model.Profile;
+//import com.se452.model.UMUURequest;
+import com.se452.model.UserUniversity;
+//import com.se452.model.UserGift;
+
+
+
+
+
+
 @Entity
-@SequenceGenerator(name="User_seq", initialValue=1,allocationSize=100)
+@Table(name="APPUSER")
+@SequenceGenerator(name="User_seq", initialValue=1,allocationSize=1)
 public class AppUser{
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="User_seq")
 	@Column(name="USERID",nullable=false)
@@ -31,35 +53,38 @@ public class AppUser{
 	private String emailAddress;
 	@Column(name="age",nullable=false)
 	private int age;
-	@Embedded
-	private Profile profile;
+	/*@Embedded
+	private Profile profile;*/
 	@Column(name="PASSWORD",nullable=false,length=40)
 	private String password;
 	@Column(name="GENDER",length=10)
 	private String gender;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="au")
-	private List<FriendRequest> friendrequest;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
-	private List<Friendship> friendship;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="userSend")
-	private List<UserGift> usergift;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="userId")
-    private List<UserUniversity> userUniversity;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="User_Id_To")
-    private List<Message> message;
+	//@OneToMany(cascade=CascadeType.ALL, mappedBy="au")
+	//private List<FriendRequest> friendrequest;
+	
+	/*@OneToMany(cascade=CascadeType.ALL, mappedBy="matchMaker")
+	private List<UMUURequest> umuuRequest;
+	*/
+	//@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	//private List<Friendship> friendship;
+	//@OneToMany(cascade=CascadeType.ALL, mappedBy="userSend")
+	/*private List<UserGift> usergift ;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="userId")*/
+   // private List<UserUniversity> userUniversity;
+	//@OneToMany(cascade=CascadeType.ALL, mappedBy="User_Id_To")
+   /* private List<Message> userMessages;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="MatchMaker_Id")
 	private List<MatchRequest> matchRequest;
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="MatchMakerId")
-	private List<DateInfo> dateInfo;
-
+	private List<DateInfor> dateInfor;
 	
 	
-	public List<DateInfo> getDate() {
-		return dateInfo;
+	public List<DateInfor> getDate() {
+		return dateInfor;
 	}
-	public void setDate(List<DateInfo> dateInfor) {
-		this.dateInfo = dateInfor;
-	}
+	public void setDate(List<DateInfor> dateInfor) {
+		this.dateInfor = dateInfor;
+	}*/
 	public int getAge() {
 		return age;
 	}
@@ -67,7 +92,7 @@ public class AppUser{
 		this.age = age;
 	}
 	
-	public List<Friendship> getFriendship() {
+	/*public List<Friendship> getFriendship() {
 		return friendship;
 	}
 	public void setFriendship(List<Friendship> friendship) {
@@ -80,16 +105,17 @@ public class AppUser{
 	public void setUserUniversity(List<UserUniversity> userUniversity) {
 		this.userUniversity = userUniversity;
 	}
-	public int getAppUserId() {
-		return appUserId;
-	}
+	
 	public List<FriendRequest> getFriendrequest() {
 		return friendrequest;
 	}
 	public void setFriendrequest(List<FriendRequest> friendrequest) {
 		this.friendrequest = friendrequest;
+	}*/
+	public int getApp_user_id() {
+		return appUserId;
 	}
-	public void setAppUserId(int app_user_id) {
+	public void setApp_user_id(int app_user_id) {
 		appUserId = app_user_id;
 	}
 	

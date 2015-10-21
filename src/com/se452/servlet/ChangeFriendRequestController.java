@@ -1,7 +1,6 @@
 package com.se452.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,41 +12,46 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.se452.service.UserUniversityServiceDao;
-
+import com.se452.model.FriendRequestPK;
+import com.se452.model.Status;
+import com.se452.service.FriendRequestServiceDao;
 
 /**
- * Servlet implementation class DeleteUserUniversity
+ * Servlet implementation class ChangeFriendRequestController
  */
-@WebServlet("/DeleteUniversityController")
-public class DeleteUserUniversityController extends HttpServlet {
+@WebServlet("/ChangeFriendRequestController")
+public class ChangeFriendRequestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager ;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteUserUniversityController() {
+    public ChangeFriendRequestController() {
         super();
         entityManagerFactory = Persistence.createEntityManagerFactory("SE452EclipseLink2");
-     		entityManager = entityManagerFactory.createEntityManager();
-     		entityManager.getTransaction().begin();
+		entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
     }
 
-
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(true);
-		String uis=session.getAttribute("userIdKey").toString();
-		int uid=Integer.parseInt(uis);
-		int unid=Integer.parseInt(request.getParameter("chosenUniversity"));
-		UserUniversityServiceDao uusd=new UserUniversityServiceDao();
-		uusd.setEntityManager(entityManager); 
-		uusd.deleteUserUniversity(uid, unid);
-		response.sendRedirect("functionList.jsp");
+		int uid=Integer.parseInt(session.getAttribute("userIdKey").toString());
+		FriendRequestServiceDao frsd=new FriendRequestServiceDao();
+		frsd.setEntityManager(entityManager);
+		String pkHashCode=request.getParameter("pkHashCode");
+		String status=request.getParameter("newStatus");
+		frsd.changeFriendReqestStatus(pkHashCode, Status.valueOf(status));
+		//entityManager.getTransaction().commit();
+		 response.sendRedirect("functionList.jsp");
+	
+		
+		
 	}
 
 }

@@ -1,9 +1,11 @@
 package com.se452.service;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
-import com.se452.model.*;
+
+import com.se452.model.AppUser;
 
 public interface UserServiceDaoInterface {
 
@@ -14,4 +16,5 @@ public interface UserServiceDaoInterface {
 	AppUser getUser(String userName);
 	void uppdateExistingUserInformation(String userName,String para, String value) throws NoSuchAlgorithmException;
 	void setEntityManager(EntityManager em);
+	List<AppUser> getAllUser();
 }

@@ -5,7 +5,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
+
+
+
 @Entity
+@Table(name="USERUNIVERSITY")
 public class UserUniversity {
 
 	public University getUniId() {

@@ -1,9 +1,10 @@
 package com.se452.service;
 
-import com.se452.model.*;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
+import com.se452.model.University;
 
 public class UniversityServiceDao implements UniversityServiceDaoInterface {
 	private EntityManager em;
@@ -13,6 +14,7 @@ public class UniversityServiceDao implements UniversityServiceDaoInterface {
 		un.setUniversityName(unName);
 		em.persist(un);
 		em.getTransaction().commit();
+		em.getTransaction().begin();
 	}
 
 	@Override

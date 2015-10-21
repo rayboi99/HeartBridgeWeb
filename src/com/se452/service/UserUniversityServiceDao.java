@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.se452.model.*;
+import com.se452.model.AppUser;
+import com.se452.model.University;
+import com.se452.model.UserUniversity;
 
 public class UserUniversityServiceDao implements UserUniversityServiceDaoInterface {
 	private EntityManager em;
@@ -29,6 +31,7 @@ public class UserUniversityServiceDao implements UserUniversityServiceDaoInterfa
 		 userUni.setUniId(unObject); 
 		 em.persist(userUni);
 		 em.getTransaction().commit();
+	//	 em.getTransaction().begin();
 		 }
 		
 		 
@@ -46,6 +49,7 @@ public class UserUniversityServiceDao implements UserUniversityServiceDaoInterfa
 			 UserUniversity uu=(UserUniversity)result.get(0);
 			 em.remove(uu);
 			 em.getTransaction().commit();
+		//	 em.getTransaction().begin();
 		 }
 	}
 

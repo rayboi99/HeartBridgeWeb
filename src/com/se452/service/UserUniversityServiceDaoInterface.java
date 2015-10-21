@@ -1,8 +1,10 @@
 package com.se452.service;
 
 import java.util.List;
-import com.se452.model.*;
+
 import javax.persistence.EntityManager;
+
+import com.se452.model.University;
 
 public interface UserUniversityServiceDaoInterface {
 
