@@ -1,11 +1,11 @@
 package com.se452.model;
 
-import com.se452.service.UserService;
+import com.se452.service.UserServiceDao;
 
 public class Maintest {
 	
 	 public static void main(String[] args) throws Exception {
-		  UserService us=new UserService();
+		  UserServiceDao us=new UserServiceDao();
 		  
 	us.addUser("Rey11","rey@gmail.com", "M", "passwordRey",28);
 	us.addUser("Rebecca11","Rebecca@gmail.com","F","passwordRebecca",24);
@@ -25,7 +25,7 @@ public class Maintest {
 			us.uppdateExistingUserInformation("Tutue2", "gender", "M");
 			us.uppdateExistingUserInformation("Tutue2", "age", "11");
 			*/
-			us.commitTransaction();
+			//us.commitTransaction();
 }
 	 
 }

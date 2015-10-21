@@ -55,7 +55,7 @@ public class GiftService implements GiftServiceInterface {
 		List<Gift> giftList = null;
 
 		AppUser userSent = new AppUser();
-		userSent.setAppUserId(userSent_Id);
+		userSent.setApp_user_id(userSent_Id);
 		
 		String q = "SELECT i FROM Gift i INNER JOIN UserGift j ON i.giftId = j.giftId WHERE j.userSent_Id = ?1";
 		

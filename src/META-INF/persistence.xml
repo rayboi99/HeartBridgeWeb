@@ -14,6 +14,20 @@
 		<class>com.se452.model.MatchRequest</class>
 		<class>com.se452.model.DateInfo</class>
 		
+		<!-- Rey's setup -->
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+			<property name="javax.persistence.jdbc.user" value="rey"/>
+			<property name="javax.persistence.jdbc.password" value="bjmdfx"/>
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+			
+			<!-- EclipseLink should create the database schema automatically -->
+    		<property name="eclipselink.ddl-generation" value="create-tables" />
+     		<property name="eclipselink.ddl-generation.output-mode" value="database" />
+		</properties>
+		
+		<!--  
+		Naga's setup
 		<properties>
          <property name = "javax.persistence.jdbc.url" value = "jdbc:mysql://localhost:3306/se452"/>
          <property name = "javax.persistence.jdbc.user" value = "root"/>
@@ -21,7 +35,7 @@
          <property name = "javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
          <property name = "eclipselink.logging.level" value = "FINE"/>
          <property name = "eclipselink.ddl-generation" value = "create-tables"/>
-		</properties>
+		</properties>-->
 		
 	</persistence-unit>
 </persistence>

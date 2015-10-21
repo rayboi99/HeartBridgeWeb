@@ -9,15 +9,12 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <servlet>
-  	<servlet-name>dateInfo</servlet-name>
-  	<servlet-class>com.se452.servlet.DateInfoServlet</servlet-class>
+    <servlet-name>dateInfo</servlet-name>
+    <servlet-class>com.se452.servlet.DateInfoServlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-  	<servlet-name>dateInfo</servlet-name>
-  	<url-pattern>/dateInfo.do</url-pattern>
+    <servlet-name>dateInfo</servlet-name>
+    <url-pattern>/dateInfo.do</url-pattern>
   </servlet-mapping>
-  
 </web-app>

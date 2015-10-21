@@ -25,14 +25,6 @@ public class MatchRequestService {
 	{
 	    MatchRequest matchRequest = new MatchRequest();
 	    
-	    AppUser appUser_MatchMaker = new AppUser();
-	    AppUser appUser_User1 = new AppUser();
-	    AppUser appUser_User2 = new AppUser();
-	    
-	    appUser_MatchMaker.setAppUserId(match_Maker_Id);
-	    appUser_User1.setAppUserId(userId1); 
-	    appUser_User2.setAppUserId(userId2);
-	    
 	    AppUser appUser_MatchMaker = em.find(AppUser.class, match_Maker_Id);
 	    AppUser appUser_User1 = em.find(AppUser.class, userId1);
 	    AppUser appUser_User2 = em.find(AppUser.class, userId2);
