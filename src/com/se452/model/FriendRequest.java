@@ -15,22 +15,19 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
-
-
 @Entity
-@Table(name="FRIENDREQUEST")
+@Table(name = "FRIENDREQUEST")
 public class FriendRequest {
-	
 
-	 @EmbeddedId
-	    private FriendRequestPK friendRequestPK;
-	
+	@EmbeddedId
+	private FriendRequestPK friendRequestPK;
+
 	@MapsId("auId")
-	//@Id
-	//@ManyToOne
-    //@JoinColumn(name="USER_ID", nullable=false)
-	private AppUser au;	
+	// @Id
+	// @ManyToOne
+	// @JoinColumn(name="USER_ID", nullable=false)
+	private AppUser au;
+
 	public FriendRequestPK getFriendRequestPK() {
 		return friendRequestPK;
 	}
@@ -40,23 +37,21 @@ public class FriendRequest {
 	}
 
 	@MapsId("friendId")
-	//@Id
-	//@OneToOne
-	//@JoinColumn(name="Friend_ID",nullable=false)
+	// @Id
+	// @OneToOne
+	// @JoinColumn(name="Friend_ID",nullable=false)
 	private AppUser friend;
-	
-	//@MapsId("requestSendTime")
-	//@Id
-	@Column(name="request_send_time",nullable=false,length=320)
-	private String requestSendTime;
-	
-	@Column(name="request_update_time",nullable=false,length=320)
-	private String requestUpdateTime;
-	
-	@Column(name="request_status",nullable=false)
-	private String requestStatus;
 
-	
+	// @MapsId("requestSendTime")
+	// @Id
+	@Column(name = "request_send_time", nullable = false, length = 320)
+	private String requestSendTime;
+
+	@Column(name = "request_update_time", nullable = false, length = 320)
+	private String requestUpdateTime;
+
+	@Column(name = "request_status", nullable = false)
+	private String requestStatus;
 
 	public AppUser getAu() {
 		return au;
@@ -98,9 +93,4 @@ public class FriendRequest {
 		this.requestStatus = s;
 	}
 
-	
-	
 }
-
-
-

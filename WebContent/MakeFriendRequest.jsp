@@ -12,7 +12,7 @@
 <%List<AppUser> aul=(List<AppUser>)session.getAttribute("AllUserList"); %>
 <form action="MakeFriendRequestController" method="post">
  <%for(AppUser au : aul) { %>
-<input type="checkbox" name=chosenUser value=<%=au.getApp_user_id()%>><tr>User Name:<%=au.getApp_user_name()%></tr><BR>
+<input type="checkbox" name=chosenUser value=<%=au.getUserId()%>><tr>User Name:<%=au.getUserName()%></tr><BR>
  <%} %>
  <input type="submit" value="Make Friend Request">
  </form>

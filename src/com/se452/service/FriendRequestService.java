@@ -54,11 +54,11 @@ public class FriendRequestService implements FriendRequestServiceInterface{
 		List result = entityManager.createQuery("select au from AppUser au where au.appUserName=:userName")
 		          .setParameter("userName", userName).getResultList();
 		AppUser user=(AppUser) result.get(0);
-		int userId=user.getApp_user_id();
+		int userId=user.getUserId();
 		List result2 = entityManager.createQuery("select au from AppUser au where au.appUserName=:userName")
 		          .setParameter("userName", friendName).getResultList();
 		AppUser friend=(AppUser) result2.get(0);
-		int friendId=friend.getApp_user_id();
+		int friendId=friend.getUserId();
 		Query qy=entityManager.createQuery("select fr from FriendRequest fr where fr.au.appUserId=:userID and"
 				+ " fr.friend.app_user_id=:friendID and fr.requestSendTime=:t");
 		qy.setParameter("userID", userId);
@@ -93,7 +93,7 @@ public class FriendRequestService implements FriendRequestServiceInterface{
 		List result = entityManager.createQuery("select au from AppUser au where au.appUserName=:userName")
 		          .setParameter("userName", userName).getResultList();
 		AppUser user=(AppUser) result.get(0);
-		int userId=user.getApp_user_id();
+		int userId=user.getUserId();
 		List list = entityManager.createQuery("select fr from FriendRequest fr where fr.au.appUserId=:userID")
 		          .setParameter("userID", userId).getResultList();
 		return list;
@@ -106,11 +106,11 @@ public class FriendRequestService implements FriendRequestServiceInterface{
 		List result = entityManager.createQuery("select au from AppUser au where au.appUserName=:userName")
 		          .setParameter("userName", userName).getResultList();
 		AppUser user=(AppUser) result.get(0);
-		int userId=user.getApp_user_id();
+		int userId=user.getUserId();
 		List result2 = entityManager.createQuery("select au from AppUser au where au.appUserName=:userName")
 		          .setParameter("userName", friendName).getResultList();
 		AppUser friend=(AppUser) result2.get(0);
-		int friendId=friend.getApp_user_id();
+		int friendId=friend.getUserId();
 		Query qy=entityManager.createQuery("select fr from FriendRequest fr where fr.au.appUserId=:userID and"
 				+ " fr.friend.app_user_id=:friendID and fr.requestSendTime=:t");
 		qy.setParameter("userID", userId);

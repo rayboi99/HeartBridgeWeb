@@ -91,16 +91,16 @@ public class DateInfoServlet extends HttpServlet {
 		}
 		
 		AppUser user1 = new AppUser ();
-		user1.setApp_user_id(2);
-		user1.setApp_user_name(usr1);
+		user1.setUserId(2);
+		user1.setUserName(usr1);
 		
 		AppUser user2 = new AppUser();
-		user2.setApp_user_id(3);
-		user2.setApp_user_name(usr2);
+		user2.setUserId(3);
+		user2.setUserName(usr2);
 		
 		AppUser mm = new AppUser();
-		mm.setApp_user_id(1);
-		user2.setApp_user_name("Rey");
+		mm.setUserId(1);
+		user2.setUserName("Rey");
 		
 		DateInfoService dateInfo = new DateInfoService ();
 		dateInfo.createDate(mm,user1, user2, dateTime, location, description);

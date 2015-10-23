@@ -14,7 +14,7 @@
 <form action="ChangeFriendRequestController" method="post">
  <%for(FriendRequest fr : frl) { %>
 <input type="radio" name="pkHashCode" value=<%=fr.getFriendRequestPK().hashCode()%>>
-<tr>Send From:<%=fr.getAu().getApp_user_name()%></tr>
+<tr>Send From:<%=fr.getAu().getUserName()%></tr>
 <tr>Send Time:<%=fr.getRequestSendTime()%></tr>
 <tr>Primary Key:<%=fr.getFriendRequestPK().hashCode()%></tr><BR>
 <input type="radio" name=newStatus value="ACCEPT"/>

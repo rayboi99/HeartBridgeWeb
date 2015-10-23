@@ -48,10 +48,10 @@ public class ListMatchRequestbyMatchMaker extends HttpServlet {
 		{
 			out.println("</br></br>");
 			out.println("Date: " + matchRequest.getRequest_Time() + "</br>");
-			out.println("MatchMaker: " + matchRequest.getMatchMaker_Id().getApp_user_name() + "</br>");
-			out.println("User1: " + matchRequest.getUser1_Id().getApp_user_name() + "</br>");
+			out.println("MatchMaker: " + matchRequest.getMatchMaker_Id().getUserName() + "</br>");
+			out.println("User1: " + matchRequest.getUser1_Id().getUserName() + "</br>");
 			out.println("User1Status: " + matchRequest.getUser1_Request_Status() + "</br>");
-			out.println("User2: " + matchRequest.getUser2_Id().getApp_user_name() + "</br>");
+			out.println("User2: " + matchRequest.getUser2_Id().getUserName() + "</br>");
 			out.println("User2Status: " + matchRequest.getUser2_Request_Status() + "</br>");
 			out.println("MatchRequestStatus: " + matchRequest.getRequest_Status() + "</br>");
 			out.println("</br></br>");

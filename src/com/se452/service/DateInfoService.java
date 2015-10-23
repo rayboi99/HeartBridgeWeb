@@ -47,7 +47,7 @@ public class DateInfoService implements DateInfoServiceInterface{
 	@Override
 	public List<DateInfo> ViewDateAsMatchMaker(int userId) {
 		AppUser mm = new AppUser();
-		mm.setApp_user_id(userId);
+		mm.setUserId(userId);
 		Query query = manager.createQuery("select e from dateinfo e where e.MatchMakerId=?1");
 		query.setParameter(1, mm);
 		

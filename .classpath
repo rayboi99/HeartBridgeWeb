@@ -9,32 +9,37 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/eclipselink">
+	<classpathentry kind="lib" path="E:/download/mysql-connector-java-5.1.36-bin.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/OracleJDBC/ojdbc7.jar">
+	<classpathentry kind="lib" path="E:/download/MYJARS/eclipselink.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/eclipselink/jlib/jpa/javax.persistence_2.1.0.v201304241213.jar">
+	<classpathentry kind="lib" path="E:/download/MYJARS/javax.persistence_2.1.0.v201304241213.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/eclipselink/jlib/eclipselink.jar">
+	<classpathentry kind="lib" path="E:/download/MYJARS/javax.servlet_2.4.0.v200806031604.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Rey/Downloads/jstl-api-1.2.jar">
+	<classpathentry kind="lib" path="E:/download/MYJARS/jstl-api-1.2.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Rey/Downloads/taglibs-standard-impl-1.2.5.jar">
+	<classpathentry kind="lib" path="E:/download/MYJARS/jstl-impl-1.2.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="E:/download/MYJARS/ojdbc7.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

@@ -13,8 +13,8 @@
 <% if(fsl!=null){%>
 <form action="HandleFrienshipController" method="post">
  <%for(Friendship fs : fsl) { %>
-<input type="radio" name="frId" value=<%=fs.getFriend().getApp_user_id()%>>
-<tr>Friend Name:<%=fs.getFriend().getApp_user_name()%></tr>
+<input type="radio" name="frId" value=<%=fs.getFriend().getUserId()%>>
+<tr>Friend Name:<%=fs.getFriend().getUserName()%></tr>
 <tr>Friend Add Time:<%=fs.getFriendshipAddTime()%></tr><BR>
 <input type="Radio" name="action" value="Delete"/>
 <tr>Delete</tr><BR>

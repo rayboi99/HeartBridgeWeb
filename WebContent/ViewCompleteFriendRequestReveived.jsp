@@ -13,7 +13,7 @@
 <% if(frl!=null){%>
 <form >
  <%for(FriendRequest fr : frl) { %>
-<tr>Send From:<%=fr.getAu().getApp_user_name()%></tr>
+<tr>Send From:<%=fr.getAu().getUserName()%></tr>
 <tr>Send Time:<%=fr.getRequestSendTime()%></tr>
 <tr>Status:<%=fr.getRequestStatus()%></tr><BR>
  <%} %>

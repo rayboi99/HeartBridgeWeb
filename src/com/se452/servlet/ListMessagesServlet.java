@@ -47,8 +47,8 @@ public class ListMessagesServlet extends HttpServlet {
 		{
 			out.println("</br></br>");
 			out.println("Date: " + message.getDate_Sent() + "</br>");
-			out.println("To: " + message.getUser_Id_To().getApp_user_name() + "</br>");
-			out.println("From: " + message.getUser_Id_From().getApp_user_name() + "</br>");
+			out.println("To: " + message.getUser_Id_To().getUserName() + "</br>");
+			out.println("From: " + message.getUser_Id_From().getUserName() + "</br>");
 			out.println("Subject: " + message.getSubject() + "</br>");
 			out.println("Body: " + message.getMessage() + "</br>");
 			out.println("</br></br>");
