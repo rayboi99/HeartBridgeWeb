@@ -12,7 +12,7 @@ import java.util.*;
 
 @Entity 
 @IdClass(MessageId.class)
-public class Message {
+public class Message implements Serializable{
 
 	@Id
 	@Temporal(TemporalType.TIMESTAMP)

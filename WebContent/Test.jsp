@@ -8,5 +8,10 @@
 </head>
 <body>
 <h>Hello,tomcat!</h>
+
+<form action=AddDataToDBServlet method="get">
+		<input type="submit" />
+	</form>
+	
 </body>
 </html>

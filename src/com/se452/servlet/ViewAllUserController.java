@@ -41,9 +41,9 @@ public class ViewAllUserController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(true);
 			UserServiceDao usd=new UserServiceDao();
-			usd.setEntityManager(entityManager);
-			List<AppUser> list=(List<AppUser>)usd.getAllUser();
-			session.setAttribute("AllUserList", list);
+			//usd.setEntityManager(entityManager);
+			//List<AppUser> list=(List<AppUser>)usd.getAllUser();
+			//session.setAttribute("AllUserList", list);
 			response.sendRedirect("MakeFriendRequest.jsp");
 			
 		

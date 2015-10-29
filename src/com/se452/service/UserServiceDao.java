@@ -41,6 +41,7 @@ public class UserServiceDao implements UserServiceDaoInterface {
 			au.setPassword(userPassword);
 			au.setAge(age);
 			em.persist(au);
+			em.flush();
 			em.getTransaction().commit();
 	}
 
