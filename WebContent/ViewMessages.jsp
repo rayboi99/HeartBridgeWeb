@@ -10,8 +10,8 @@
 </head>
 <body>
 
-<%List<Message> msgListSent = (List<Message>)session.getAttribute("messageListSent"); %>
-<%List<Message> msgListReceived = (List<Message>)session.getAttribute("messageListReceived"); %>
+<%List<Message> msgListSent = (List<Message>)request.getAttribute("messageListSent"); %>
+<%List<Message> msgListReceived = (List<Message>)request.getAttribute("messageListReceived"); %>
 
 <h1>Messages Sent</h1>
 <%for(Message msg : msgListSent) { %>
@@ -38,5 +38,6 @@ Body:  <% msg.getMessage(); %><br>
  <form action="AddMessage.jsp">
  <input type="submit" value="Create Message">
  </form>
+ 
 </body>
 </html>

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,10 +43,10 @@ public class ListMessagesServlet extends HttpServlet {
 		List<Message> messageListSent = msg.listMessagesSentByUserId(uid);
 		List<Message> messageListReceived = msg.listMessagesReceivedByUserId(uid);
 		
-		session.setAttribute("messageListSent", messageListSent);
-		session.setAttribute("messageListReceived", messageListReceived);
-		
-		response.sendRedirect("ViewMessages.jsp");
+		request.setAttribute("messageListSent", messageListSent);
+		request.setAttribute("messageListReceived", messageListReceived);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ViewMessages.jsp");
+		dispatcher.forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	

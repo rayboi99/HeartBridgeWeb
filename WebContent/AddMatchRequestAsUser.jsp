@@ -4,28 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create Message</title>
+<title>Add MatchRequest As User</title>
 </head>
 <body>
 
-	<form action="AddMessageServlet" method="post">
+	<form action="AddMatchRequestAsUserServlet" method="get">
 		<table>
 			<tr>
-				<!-- I need to make this a dropdown list -->
-				<td>To</td>
-				<td><input name="userIdTo" /></td>
-			</tr>
-			<tr>
-				<td>From</td>
+				<td>User1</td>
 				<td><%String userName = (String)session.getAttribute("name"); %></td>
 			</tr>
+			<!-- TO DO MAKE THIS DROP DOWN BOXES -->
 			<tr>
-				<td>Subject</td>
-				<td><input name="subject" /></td>
+				<td>User1Id</td>
+				<td><input name="MatchMakerId" /></td>
 			</tr>
 			<tr>
-				<td>Body</td>
-				<td><input name="body" /></td>
+				<td>User2Id</td>
+				<td><input name="User2Id" /></td>
 			</tr>
 		</table>
 		<input type="submit" />

@@ -64,8 +64,10 @@ public class MatchRequestService {
 	{
 		List<MatchRequest> matchRequestList = null;
 		
-	    Query q = em.createQuery("select t from MatchRequest t where (t.User1_Id_UserId = ?1 OR User2_Id_UserId = ?1)")
-	    		.setParameter(1, userId);
+		AppUser appUser_User = em.find(AppUser.class, userId);
+		
+	    Query q = em.createQuery("select t from MatchRequest t where (t.User1_Id = ?1 OR t.User2_Id = ?1)")
+	    		.setParameter(1, appUser_User);
 	    
 	    matchRequestList = q.getResultList();
 	    
