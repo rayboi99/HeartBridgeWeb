@@ -13,7 +13,7 @@
 
 <%List<MatchRequest> matchRequestList = (List<MatchRequest>)request.getAttribute("matchRequestList"); %>
 
-<h1>Match Requests By MatchMaker</h1>h1>
+<h1>Match Requests By MatchMaker</h1>
 <%for(MatchRequest matchRequest : matchRequestList) { %>
 <br><br>
 Date: <%=matchRequest.getRequest_Time()%><br>
