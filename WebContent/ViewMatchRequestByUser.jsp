@@ -16,13 +16,13 @@
 <h1>Match Requests By User</h1>
 <%for(MatchRequest matchRequest : matchRequestList) { %>
 <br><br>
-Date: <% matchRequest.getRequest_Time(); %><br>
-MatchMaker: <% matchRequest.getMatchMaker_Id().getUserName(); %><br>
-User1: <% matchRequest.getUser1_Id().getUserName(); %><br>
-User1Status: <% matchRequest.getUser1_Request_Status(); %><br>
-User2: <% matchRequest.getUser2_Id().getUserName(); %><br>
-User2Status: <% matchRequest.getUser2_Request_Status(); %><br>
-MatchRequestStatus: <% matchRequest.getRequest_Status(); %><br>
+Date: <%=matchRequest.getRequest_Time()%><br>
+MatchMaker: <%=matchRequest.getMatchMaker_Id().getUserName()%><br>
+User1: <%=matchRequest.getUser1_Id().getUserName()%><br>
+User1Status: <%=matchRequest.getUser1_Request_Status()%><br>
+User2: <%=matchRequest.getUser2_Id().getUserName()%><br>
+User2Status: <%=matchRequest.getUser2_Request_Status()%><br>
+MatchRequestStatus: <%=matchRequest.getRequest_Status()%><br>
 <br><br>
 <%} %>
  

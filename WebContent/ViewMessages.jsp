@@ -10,28 +10,28 @@
 </head>
 <body>
 
-<%List<Message> msgListSent = (List<Message>)request.getAttribute("messageListSent"); %>
-<%List<Message> msgListReceived = (List<Message>)request.getAttribute("messageListReceived"); %>
+<%List<Message> msgListSent = (List<Message>)request.getAttribute("messageListSent");%>
+<%List<Message> msgListReceived = (List<Message>)request.getAttribute("messageListReceived");%>
 
 <h1>Messages Sent</h1>
 <%for(Message msg : msgListSent) { %>
 <br><br>
-Date:  <% msg.getDate_Sent(); %><br>
-To:  <% msg.getUser_Id_To().getUserName(); %><br>
-From:  <% msg.getUser_Id_From().getUserName(); %><br>
-Subject:  <% msg.getSubject(); %><br>
-Body:  <% msg.getMessage(); %><br>
+Date:  <%=msg.getDate_Sent()%><br>
+To:  <%=msg.getUser_Id_To().getUserName()%><br>
+From:  <%=msg.getUser_Id_From().getUserName()%><br>
+Subject:  <%=msg.getSubject()%><br>
+Body:  <%=msg.getMessage()%><br>
 <br><br>
 <%} %>
  
 <h1>Messages Received</h1>
 <%for(Message msg : msgListReceived) { %>
 <br><br>
-Date:  <% msg.getDate_Sent(); %><br>
-To:  <% msg.getUser_Id_To().getUserName(); %><br>
-From:  <% msg.getUser_Id_From().getUserName(); %><br>
-Subject:  <% msg.getSubject(); %><br>
-Body:  <% msg.getMessage(); %><br>
+Date:  <%=msg.getDate_Sent()%><br>
+To:  <%=msg.getUser_Id_To().getUserName()%><br>
+From:  <%=msg.getUser_Id_From().getUserName()%><br>
+Subject:  <%=msg.getSubject()%><br>
+Body:  <%=msg.getMessage()%><br>
 <br><br>
 <%} %>
  

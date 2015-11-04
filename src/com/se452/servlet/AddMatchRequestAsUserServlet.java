@@ -41,8 +41,8 @@ public class AddMatchRequestAsUserServlet extends HttpServlet {
 		String matchMakerId = request.getParameter("MatchMakerId");
 		String user1Id = session.getAttribute("userIdKey").toString();
 		String user2Id = request.getParameter("User2Id");
-		String RequestType = request.getParameter("RequestType");
-		String RequestStatus = request.getParameter("RequestStatus");
+		String RequestType = MatchType.UMU.toString();
+		String RequestStatus = Status.PENDING.toString();
 
 		MatchRequestService msg = new MatchRequestService();
 		try {

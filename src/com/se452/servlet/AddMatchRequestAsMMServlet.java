@@ -41,8 +41,8 @@ public class AddMatchRequestAsMMServlet extends HttpServlet {
 		String matchMakerId = session.getAttribute("userIdKey").toString();
 		String user1Id = request.getParameter("User1Id");
 		String user2Id = request.getParameter("User2Id");
-		String RequestType = request.getParameter("RequestType");
-		String RequestStatus = request.getParameter("RequestStatus");
+		String RequestType = MatchType.MUU.toString();
+		String RequestStatus = Status.PENDING.toString();
 
 		MatchRequestService msg = new MatchRequestService();
 		try {

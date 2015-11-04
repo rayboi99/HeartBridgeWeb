@@ -8,6 +8,14 @@
 </head>
 <body>
 
+	<%
+		String userName = (String)request.getSession(true).getAttribute("name").toString();
+
+		if (userName == null) {
+			userName = "N/A";
+		}
+	%>
+	
 	<form action="AddMessageServlet" method="post">
 		<table>
 			<tr>
@@ -17,7 +25,7 @@
 			</tr>
 			<tr>
 				<td>From</td>
-				<td><%String userName = (String)session.getAttribute("name"); %></td>
+				<td><%=userName%></td>
 			</tr>
 			<tr>
 				<td>Subject</td>
