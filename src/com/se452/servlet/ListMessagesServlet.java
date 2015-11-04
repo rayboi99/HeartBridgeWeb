@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.se452.model.*;
 import com.se452.service.*;
@@ -32,39 +33,22 @@ public class ListMessagesServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-		String userId = request.getParameter("userId");
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		
+		HttpSession session = request.getSession(true);
+		int uid = Integer.parseInt(session.getAttribute("userIdKey").toString());
+		
 		MessageService msg = new MessageService();
-		List<Message> messageList = msg.listMessagesByUserId(Integer.parseInt(userId));
+		List<Message> messageListSent = msg.listMessagesSentByUserId(uid);
+		List<Message> messageListReceived = msg.listMessagesReceivedByUserId(uid);
 		
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-
-		for (Message message : messageList)
-		{
-			out.println("</br></br>");
-			out.println("Date: " + message.getDate_Sent() + "</br>");
-			out.println("To: " + message.getUser_Id_To().getUserName() + "</br>");
-			out.println("From: " + message.getUser_Id_From().getUserName() + "</br>");
-			out.println("Subject: " + message.getSubject() + "</br>");
-			out.println("Body: " + message.getMessage() + "</br>");
-			out.println("</br></br>");
-		}		
+		session.setAttribute("messageListSent", messageListSent);
+		session.setAttribute("messageListReceived", messageListReceived);
 		
-		out.println("</body>");
-		out.println("</html>");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.sendRedirect("ViewMessages.jsp");
 	}
 	
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		doGet(request, response);
+	}
 }

@@ -43,7 +43,7 @@ public class MessageService {
 		em.getTransaction().commit();
 	}
 	
-	public List<Message> listMessagesByUserId(int userId_From)
+	public List<Message> listMessagesSentByUserId(int userId_From)
 	{
 		List<Message> messageList = null;
 		
@@ -52,6 +52,21 @@ public class MessageService {
 		
 	    Query q = em.createQuery("select t from Message t where t.User_Id_From = ?1")
 	    		.setParameter(1, userFrom);
+	    
+	    messageList = q.getResultList();
+	   	    
+	    return messageList;	
+	}
+	
+	public List<Message> listMessagesReceivedByUserId(int userId_To)
+	{
+		List<Message> messageList = null;
+		
+		AppUser userTo = new AppUser();
+		userTo.setUserId(userId_To); 
+		
+	    Query q = em.createQuery("select t from Message t where t.User_Id_To = ?1")
+	    		.setParameter(1, userTo);
 	    
 	    messageList = q.getResultList();
 	   	    
