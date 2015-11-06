@@ -55,39 +55,44 @@ public class AppUser {
 	@Embedded
 	private Profile profile;
 
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "MatchMakerId")
 	private List<DateInfo> dateInfo;
-	/*
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="au")
-	private List<FriendRequest> friendrequest;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="user")
-	private List<Friendship> friendship;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="userSend")
-	
-	private List<UserGift> usergift ;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="userId")
-	 
-	private List<UserUniversity> userUniversity;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="User_Id_To")
-	
-	private List<Message> userMessages;
-	 
-	 @OneToMany(cascade=CascadeType.ALL, mappedBy="MatchMaker_Id") private
-	 List<MatchRequest> matchRequest;
-	 
 
-	
-	 public List<Friendship> getFriendship() { return friendship; } public
-	 void setFriendship(List<Friendship> friendship) { this.friendship =friendship; }
-	 
-	 public List<UserUniversity> getUserUniversity() { return userUniversity;} 
-	 public void setUserUniversity(List<UserUniversity> userUniversity) {this.userUniversity = userUniversity; }
-	 
-	 public List<FriendRequest> getFriendrequest() { return friendrequest; }
-	 public void setFriendrequest(List<FriendRequest> friendrequest) {this.friendrequest = friendrequest; }
+	// @OneToMany(cascade=CascadeType.ALL, mappedBy="au")
+	// private List<FriendRequest> friendrequest;
+	/*
+	 * @OneToMany(cascade=CascadeType.ALL, mappedBy="matchMaker") private
+	 * List<UMUURequest> umuuRequest;
+	 */
+	// @OneToMany(cascade=CascadeType.ALL, mappedBy="user")
+	// private List<Friendship> friendship;
+	// @OneToMany(cascade=CascadeType.ALL, mappedBy="userSend")
+	/*
+	 * private List<UserGift> usergift ;
+	 * 
+	 * @OneToMany(cascade=CascadeType.ALL, mappedBy="userId")
+	 */
+	// private List<UserUniversity> userUniversity;
+	// @OneToMany(cascade=CascadeType.ALL, mappedBy="User_Id_To")
+	/*
+	 * private List<Message> userMessages;
+	 * 
+	 * @OneToMany(cascade=CascadeType.ALL, mappedBy="MatchMaker_Id") private
+	 * List<MatchRequest> matchRequest;
+	 */
+
+	/*
+	 * public List<Friendship> getFriendship() { return friendship; } public
+	 * void setFriendship(List<Friendship> friendship) { this.friendship =
+	 * friendship; }
+	 * 
+	 * public List<UserUniversity> getUserUniversity() { return userUniversity;
+	 * } public void setUserUniversity(List<UserUniversity> userUniversity) {
+	 * this.userUniversity = userUniversity; }
+	 * 
+	 * public List<FriendRequest> getFriendrequest() { return friendrequest; }
+	 * public void setFriendrequest(List<FriendRequest> friendrequest) {
+	 * this.friendrequest = friendrequest; }
 	 */
 
 	public void setPassword(String password) throws NoSuchAlgorithmException {

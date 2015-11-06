@@ -35,7 +35,7 @@ Body:  <%=msg.getMessage()%><br>
 <br><br>
 <%} %>
  
- <form action="AddMessage.jsp">
+ <form action="ListFriendsServlet" method="post">
  <input type="submit" value="Create Message">
  </form>
  

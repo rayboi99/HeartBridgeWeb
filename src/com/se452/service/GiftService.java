@@ -26,7 +26,7 @@ public class GiftService implements GiftServiceInterface {
 		entityManager.getTransaction().begin();
 	}
 	@Override
-	public void addGift( String giftName, String giftDescription, byte[] giftPicture) {
+	public void createGift( String giftName, String giftDescription, byte[] giftPicture) {
 		// TODO Auto-generated method stub
 		Gift gift = new Gift();
 		gift.setGiftName(giftName);
@@ -39,15 +39,13 @@ public class GiftService implements GiftServiceInterface {
 	}
 
 	@Override
-	public void sendGift(int giftId, int userSend, int userReceived)
+	public void sendGift(Gift gift, int userSend, int userReceived)
 			throws NoSuchAlgorithmException {
-		// TODO Auto-generated method stub
 		 UserGift usergift = new UserGift();
-		 
+		 usergift.setGiftId(gift);
+		 //usergift.setUserSend(userSend);
 		 
 		 entityManager.persist(usergift);
-		 entityManager.flush();
-		
 	}
 	@Override
 	public List<Gift> reviewGiftUserSend( int userSent_Id) {
@@ -95,7 +93,7 @@ public class GiftService implements GiftServiceInterface {
 
 	
 
-	@Override
+
 	public void commitTransaction() {
 		// TODO Auto-generated method stub
 		entityManager.getTransaction().commit();
@@ -103,8 +101,4 @@ public class GiftService implements GiftServiceInterface {
 	    entityManagerFactory.close();
 		
 	}
-	
-	
-	
-
 }

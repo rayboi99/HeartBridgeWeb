@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import com.se452.model.AppUser;
 import com.se452.model.PasswordEncryption;
+import com.se452.model.Profile;
 
 public class UserServiceDao implements UserServiceDaoInterface {
 
@@ -32,17 +33,19 @@ public class UserServiceDao implements UserServiceDaoInterface {
 	}
 
 	@Override
-	public void addUser(String userName, String userEmail, String userGender, String userPassword, int age)throws NoSuchAlgorithmException {
-			em.getTransaction().begin();
-			AppUser au = new AppUser();
-			au.setUserName(userName);
-			au.setEmailAddress(userEmail);
-			au.setGender(userGender);
-			au.setPassword(userPassword);
-			au.setAge(age);
-			em.persist(au);
-			em.flush();
-			em.getTransaction().commit();
+	public void addUser(String userName, String userEmail, String userGender, String userPassword, int age)
+			throws NoSuchAlgorithmException {
+		em.getTransaction().begin();
+		AppUser au = new AppUser();
+		Profile p = new Profile();
+		au.setUserName(userName);
+		au.setEmailAddress(userEmail);
+		au.setGender(userGender);
+		au.setPassword(userPassword);
+		au.setAge(age);
+		au.setProfile(p);
+		em.persist(au);
+		em.getTransaction().commit();
 	}
 
 	@Override
@@ -102,12 +105,11 @@ public class UserServiceDao implements UserServiceDaoInterface {
 		em.getTransaction().commit();
 	}
 
-
-	/*@Override
-	public List<AppUser> getAllUser() {
-		List<AppUser> result = em.createQuery("select au from AppUser au").getResultList();
-		return result;
-	}*/
+	/*
+	 * @Override public List<AppUser> getAllUser() { List<AppUser> result =
+	 * em.createQuery("select au from AppUser au").getResultList(); return
+	 * result; }
+	 */
 
 	public void closeConnection() {
 		em.close();

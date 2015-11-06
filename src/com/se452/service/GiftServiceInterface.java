@@ -9,15 +9,19 @@ import java.util.List;
 
 public interface GiftServiceInterface {
 	//add all the gifts
-	void addGift( String giftName, String giftDescription, byte[] giftPicture );
+	void createGift( String giftName, String giftDescription, byte[] giftPicture );
+	
 	//review the gifts I sent
 	List<Gift> reviewGiftUserSend( int userSent_Id );
+	
 	//review the gifts I received
 	List<Gift> reviewGiftUserReveived( int userReceived_Id);
+	
 	//delete the gifts I received
 	void deleteGIftUserReceived(int giftId, int userReceived_Id);
+	
 	//send gift to friend
-	void sendGift(int giftId, int userSend, int userReceived) throws NoSuchAlgorithmException;
-	void commitTransaction();
+	void sendGift(Gift gift, int userSend, int userReceived) throws NoSuchAlgorithmException;
+
 
 }

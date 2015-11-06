@@ -1,17 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Login</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 <style>
-	h5 {
-    color: blue;
-	}
+p {
+	color: blue;
+}
+
+p.error {
+	color: red;
+}
 </style>
+
+
 </head>
+
 <body>
 	<%
 		String message = (String) request.getAttribute("message");
@@ -21,29 +35,32 @@
 		}
 	%>
 
-	<h4>Login</h4>
-	<h5><%=message%></h5>
-	<form action="LoginController" method="post">
-	<table>
-		<tr>
-			<td>User Name:</td>
-			<td><input type="text" name="user_name" /></td>
-		</tr>
-		
-		<tr>
-			<td>Password:</td>
-			<td><input type="password" name="password" /></td>
-		</tr>
-		
-	</table>
-		 <input type="submit" value="Login" />
+	<p><%=message%></p>
+	<form role="form" action="LoginController" method="post">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="form-group">
+					<label for="email">User Name:</label>
+					<input type="text" class="form-control" name="user_name">
+				</div>
+				
+				<div class="form-group">
+					<label for="pwd">Password:</label>
+					<input type="password" class="form-control" name="password">
+					<a href="Register.jsp"> don't have an account?</a>
+				</div>
+				
+				<div class="checkbox">
+					<label><input type="checkbox"> Remember me!</label>
+				</div>
+				
+				<button type="submit">Log in</button>
+ 
+			</div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"></div>
+		</div>
 	</form>
-	<br/>
-	<form action="ForgetPasswordController" method="post">
-		<input type="submit" value="Forget Password" />
-	</form>
-	<form action="Register.jsp" method="post">
-		<input type="submit" value="Register" />
-	</form>
+
 </body>
 </html>

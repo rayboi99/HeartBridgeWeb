@@ -23,7 +23,6 @@ import javax.persistence.TemporalType;
 @Entity
 public class UserGift {
 	
-	
 	@Id
 	@JoinColumn(name="GIFTID",nullable=false)
 	private Gift giftId;
@@ -42,6 +41,7 @@ public class UserGift {
 	//@Column(name = "DATES")
 	@Temporal(TemporalType.TIMESTAMP)
 	private java.util.Date modifiedTimestamp;
+	
 	public Gift getGiftId() {
 		return giftId;
 	}
@@ -60,10 +60,11 @@ public class UserGift {
 	public void setUserReceived(AppUser userReceived) {
 		this.userReceived = userReceived;
 	}
-
-
 	
-
-	
-
+	public java.util.Date getModifiedTimestamp() {
+		return modifiedTimestamp;
+	}
+	public void setModifiedTimestamp(java.util.Date modifiedTimestamp) {
+		this.modifiedTimestamp = modifiedTimestamp;
+	}
 }

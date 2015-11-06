@@ -9,12 +9,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.se452.model.Profile;
+import com.se452.service.ProfileService;
 import com.se452.service.UserServiceDao;
 
 /**
@@ -37,7 +40,8 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String name = request.getParameter("user_name");
 		String password = request.getParameter("password");
@@ -45,16 +49,26 @@ public class LoginController extends HttpServlet {
 		int userId = us.getUser(name).getUserId();
 		session.setAttribute("userIdKey", userId);
 		session.setAttribute("name", name);
-		String url ="";
-		String message ="";
+		String url = "";
+		String message = "";
 		try {
 			boolean ifRight = us.verifyExistingUser(name, password);
 			if (ifRight == true) {
-				url = "/functionList.jsp";
-				message = "Welcome "+name+"!";
+				ProfileService ps = new ProfileService();
+				Profile p = ps.getProfile(userId);
+				if (p == null) {
+					url = "/UpdateProfile.jsp";
+				} else {
+					request.setAttribute("aboutMe", p.getAboutMe());
+					request.setAttribute("hobby", p.getHobby());
+					request.setAttribute("idealPartner", p.getIdealPartner());
+
+					url = "/MyProfile.jsp";
+					message = "Welcome " + name + "!";
+				}
 
 			} else if (ifRight == false) {
-				url = "/LoginAgain.jsp";
+				url = "/Login.jsp";
 				message = "Invalid username or password, please try again.";
 			}
 		} catch (NoSuchAlgorithmException e) {

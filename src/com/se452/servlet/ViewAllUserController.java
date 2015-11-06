@@ -44,7 +44,7 @@ public class ViewAllUserController extends HttpServlet {
 			//usd.setEntityManager(entityManager);
 			//List<AppUser> list=(List<AppUser>)usd.getAllUser();
 			//session.setAttribute("AllUserList", list);
-			response.sendRedirect("MakeFriendRequest.jsp");
+			//response.sendRedirect("MakeFriendRequest.jsp");
 			
 		
 	}

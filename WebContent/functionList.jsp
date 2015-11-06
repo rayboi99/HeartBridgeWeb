@@ -39,7 +39,7 @@
 <form action="ViewFriendRequestSentPendingController" method="post">
 <input type="submit" value="Cancel Pending Friend Request Reveived Not Done" />
 </form>
-<form action="AddMessage.jsp" method="post">
+<form action="ListFriendsServlet" method="post">
 <input type="submit" value="Add a New Message" />
 </form>
 <form action="ListMessagesServlet" method="post">

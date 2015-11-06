@@ -21,7 +21,12 @@
 			<tr>
 				<!-- I need to make this a dropdown list -->
 				<td>To</td>
-				<td><input name="userIdTo" /></td>
+				<td>
+ 			<select id="selectedRecord" name="selectedRecord">
+            <c:forEach var="friendshipList" items="${friendshipList}">
+                <option value="${friendshipList.friend.getUserId()}">${friendshipList.friend.getUserName()}</option>
+            </c:forEach>
+        </select></td>
 			</tr>
 			<tr>
 				<td>From</td>

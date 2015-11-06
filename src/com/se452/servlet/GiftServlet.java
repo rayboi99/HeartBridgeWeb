@@ -5,18 +5,17 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.se452.model.*;
-import com.se452.service.*;;
+import com.se452.model.Gift;
+import com.se452.service.GiftService;
 
 /**
  * Servlet implementation class giftServlet
  */
-@WebServlet("/ListGiftServlet")
 public class GiftServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,26 +32,15 @@ public class GiftServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
 		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.print("hello");
         GiftService gs = new GiftService();
-       // gs.addGift("sticker", "passion", null);
-       // gs.addGift("love letter", "letter", null);
-        List<Gift> giftlist = gs.reviewGiftUserReveived(76); 
-    	
-		out.println("<html>");
-		out.println("<body>");
-
-			out.println("</br></br>");
-			out.println("Gift: " + giftlist + "</br>");
-		
-			out.println("</br></br>");	
-		
-		out.println("</body>");
-		out.println("</html>");
-	
-               
+	//	int id = (int) session.getAttribute("userIdKey");
+        List<Gift> giftlistRE = gs.reviewGiftUserReveived(76); 
+        request.setAttribute("giftlistRE", giftlistRE);
+        List<Gift> giftlistSE = gs.reviewGiftUserSend(76);
+        request.setAttribute("giftlistSE", giftlistSE);
         
 	}
 
