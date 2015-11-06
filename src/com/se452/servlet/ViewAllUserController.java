@@ -22,17 +22,14 @@ import com.se452.service.UserServiceDao;
 @WebServlet("/ViewAllUserController")
 public class ViewAllUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager ;
+
 	  
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ViewAllUserController() {
         super();
-        entityManagerFactory = Persistence.createEntityManagerFactory("SE452EclipseLink2");
-		entityManager = entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();
+      
     }
 
 	/**
@@ -41,10 +38,12 @@ public class ViewAllUserController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(true);
 			UserServiceDao usd=new UserServiceDao();
-			//usd.setEntityManager(entityManager);
-			//List<AppUser> list=(List<AppUser>)usd.getAllUser();
-			//session.setAttribute("AllUserList", list);
-			//response.sendRedirect("MakeFriendRequest.jsp");
+		
+			List<AppUser> list=(List<AppUser>)usd.getAllUser();
+			session.setAttribute("AllUserList", list);
+			usd.finalCommit();
+			response.sendRedirect("MakeFriendRequest.jsp");
+			
 			
 		
 	}

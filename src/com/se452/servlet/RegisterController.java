@@ -46,7 +46,7 @@ public class RegisterController extends HttpServlet {
 		String url = "";
 
 		try {
-			if (!us.userNameExists(name)) {
+			if (!us.CheckIfUserNameExist((name))) {
 				us.addUser(name, email, gender, password, age);
 				message ="You are successfully registered. please log in.";
 				url ="/Login.jsp";
@@ -63,6 +63,6 @@ public class RegisterController extends HttpServlet {
 		request.setAttribute("message", message);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-		us.closeConnection();
+		us.finalCommit();
 	}
 }
