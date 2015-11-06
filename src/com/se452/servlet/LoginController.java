@@ -77,6 +77,6 @@ public class LoginController extends HttpServlet {
 		request.setAttribute("message", message);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-		us.finalCommit();
+		us.closeConnection();
 	}
 }
