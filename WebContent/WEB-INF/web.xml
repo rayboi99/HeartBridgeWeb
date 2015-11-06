@@ -26,6 +26,4 @@
     <servlet-name>message</servlet-name>
     <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
-  
-
 </web-app>

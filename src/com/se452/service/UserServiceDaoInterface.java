@@ -17,4 +17,5 @@ public interface UserServiceDaoInterface {
 	void uppdateExistingUserInformation(String userName,String para, String value) throws NoSuchAlgorithmException;
 	//void setEntityManager(EntityManager em);
 	//List<AppUser> getAllUser();
+	List<AppUser> getAllUser();
 }

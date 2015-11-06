@@ -110,7 +110,11 @@ public class UserServiceDao implements UserServiceDaoInterface {
 	 * em.createQuery("select au from AppUser au").getResultList(); return
 	 * result; }
 	 */
-
+	@Override
+	public List<AppUser> getAllUser() {
+		List<AppUser> result = em.createQuery("select au from AppUser au").getResultList();
+		return result;
+	}
 	public void closeConnection() {
 		em.close();
 	}

@@ -28,18 +28,52 @@
         </div>
         </form>
         </div>
-         <div class="carousel-inner" role="listbox">
-     <!-- Left and right controls -->
-     
-      <div class="item active">
-      <img src="images/aucheval.jpg" alt="Chania">
-    </div>
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-</div>
-        
+         <div class="col-sm-10">
+         
+    
+         <table width="800" border="0" cellpadding="5">
+
+<tr>
+
+<td align="center" valign="center">
+<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<br />
+Caption text centered under the image.
+</td>
+
+<td align="center" valign="center">
+<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<br />
+Caption text centered under the image.
+</td>
+<td align="center" valign="center">
+<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<br />
+Caption text centered under the image.
+</td>
+</tr>
+<tr>
+
+<td align="center" valign="center">
+<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<br />
+Caption text centered under the image.
+</td>
+
+<td align="center" valign="center">
+<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<br />
+Caption text centered under the image.
+</td>
+<td align="center" valign="center">
+<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<br />
+Caption text centered under the image.
+</td>
+</tr>
+
+</table>
+         </div>
 <%@ include file="footer.html"%>
 </body>
 </html>
