@@ -44,32 +44,17 @@ public class GetHomePageUserPicturesController extends HttpServlet {
 	
 		HttpSession session=request.getSession(true);
 		int[] idlist=new int[6];
-		List<byte[]> pl=new ArrayList<>();
 		UserServiceDao usd= new UserServiceDao();
 		List<AppUser> userList= usd.getAllUser();
 		for(int i=0;i<6;i++)
 		{
 			int id = userList.get(i).getUserId();
-			ProfileService ps = new ProfileService();
-			byte[] pic = ps.getPicture(id);
 			idlist[i]=id;
-			pl.add(pic);
-			BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream((pl.get(i)))); 
-			ServletContext sc=request.getSession().getServletContext(); 
-			String s=sc.getRealPath("/HomePageImage");
-			File savedFile = new File(s, "Image"+ i);
-			try{
-			ImageIO.write(bufferedImage, "JPEG", savedFile);}
-			catch(Exception e)
-			{
-				System.out.println("Fail");
-			}
-			System.out.print("save");
+			
 			
 		}
 			
 	session.setAttribute("IdList", idlist);
-	session.setAttribute("pictureList", pl);
 	usd.closeConnection();
 
 	}

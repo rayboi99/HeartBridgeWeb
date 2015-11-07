@@ -11,7 +11,7 @@
       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 
-Read more: http://javarevisited.blogspot.com/2014/11/how-to-loop-hashmap-or-hashtable-in-jsp-example.html#ixzz3qktSTDnx
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,6 +26,7 @@ Read more: http://javarevisited.blogspot.com/2014/11/how-to-loop-hashmap-or-hash
 
 </head>
 <body>
+<% int[] idList=(int[])session.getAttribute("IdList");%>
 <%@ include file="header.html"%>
 <div class="row">
 		<div class="col-sm-2"><%@ include file="navBar.html"%></div>
@@ -40,84 +41,104 @@ Read more: http://javarevisited.blogspot.com/2014/11/how-to-loop-hashmap-or-hash
         </div>
         </form>
         </div>
-         <div class="col-sm-10">
+        </div>
+         
          <c:import url="GetHomePageUserPicturesController" />
 <%ServletContext sc=request.getSession().getServletContext(); 
 			String s=sc.getRealPath("/HomePageImage");%>
+<br />
+ <br />
+ <br />
+ <br />
+<div class="col-sm-10" pull-middle">
+   <table width="800" border="0" cellpadding="40" class="table table-striped table-bordered table-condensed">
 
 
-   <table width="800" border="0" cellpadding="5">
-
-<tr>
-<table> 
 
 <td align="center" valign="center">
 <%String path="";%>
 <% path= s+"/Image0";%>
-  <img width="100px" height="100px" src="<%=path%>" 
-  alt="description here" />
+  <img  src="user/image.html?id=<%=idList[0]%>"
+  class="img-rounded" alt="Cinque Terre" width="204" height="136"/>
 <br />
-<br/>
-<form action="ChangeFriendRequestController" method="post">
-<input type="submit" value="User Profile">
+ <br />
+<form action="ViewOtherUserProfileController" method="post">
+<button type="submit" class="btn btn-primary" name="button" value="0">See User Profile</button>
  </form>
+ <br />
+<br/>
 </td>
 
 <td align="center" valign="center">
 
 <% path= s+"/Image1";%>
-  <img width="100px" height="100px" src="<%=path%>" 
-  alt="description here" />
-<br />
+  <img   src="user/image.html?id=<%=idList[1]%>"
+  class="img-rounded" alt="Cinque Terre" width="204" height="136"/>
 <br/>
-<form action="ChangeFriendRequestController" method="post">
-<input type="submit" value="User Profile">
+<br/>
+<form action="ViewOtherUserProfileController" method="post">
+<button type="submit" class="btn btn-primary" name="button" value="1">See User Profile</button>
  </form>
+ <br />
+<br/>
+<br/>
 </td>
 <td align="center" valign="center">
 
-<% path= s+"/Image2";%>
-  <img width="100px" height="100px" src="<%=path%>" 
-  alt="description here" />
+  <img  src="user/image.html?id=<%=idList[2]%>"
+  class="img-rounded" alt="Cinque Terre" width="204" height="136"/>
 <br />
 <br/>
-<form action="ChangeFriendRequestController" method="post">
-<input type="submit" value="User Profile">
+<form action="ViewOtherUserProfileController" method="post">
+<button type="submit" class="btn btn-primary" name="button" value="2">See User Profile</button>
  </form>
+ <br />
+<br/>
+<br/>
 </td>
 </tr>
 <tr>
 
 <td align="center" valign="center">
-<% path= s+"/Image3";%>
-  <img width="100px" height="100px" src="<%=path%>" 
-  alt="description here" />
+
+  <img 
+  src="user/image.html?id=<%=idList[3]%>"
+  class="img-rounded" alt="Cinque Terre" width="204" height="136" />
 <br />
 <br/>
-<form action="ChangeFriendRequestController" method="post">
-<input type="submit" value="User Profile">
+<form action="ViewOtherUserProfileController" method="post">
+<button type="submit" class="btn btn-primary" name="button" value="3">See User Profile</button>
  </form>
+ <br />
+<br/>
+<br/>
 </td>
 
 <td align="center" valign="center">
-<% path= s+"/Image4";%>
-  <img width="100px" height="100px" src="<%=path%>" 
-  alt="description here" />
+
+  <img   src="user/image.html?id=<%=idList[4]%>"
+   class="img-rounded" alt="Cinque Terre" width="204" height="136"/>
 <br />
 <br/>
-<form action="ChangeFriendRequestController" method="post">
-<input type="submit" value="User Profile">
+<form action="ViewOtherUserProfileController" method="post">
+<button type="submit" class="btn btn-primary" name="button" value="4">See User Profile</button>
  </form>
+  <br />
+<br/>
+<br/>
 </td>
 <td align="center" valign="center">
-<% path= s+"/Image5";%>
-  <img width="100px" height="100px" src="<%=path%>" 
-  alt="description here" />
+
+  <img   src="user/image.html?id=<%=idList[5]%>" 
+  class="img-rounded" alt="Cinque Terre" width="204" height="136" />
 <br />
-<br/>
-<form action="ChangeFriendRequestController" method="post">
-<input type="submit" value="User Profile">
+ <br />
+<form action="ViewOtherUserProfileController" method="post">
+<button type="submit" class="btn btn-primary" name="button" value="5">See User Profile</button>
  </form>
+  <br />
+<br/>
+<br/>
 </td>
 </tr>
 
