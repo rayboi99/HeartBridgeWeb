@@ -44,17 +44,20 @@ public class GetHomePageUserPicturesController extends HttpServlet {
 	
 		HttpSession session=request.getSession(true);
 		int[] idlist=new int[6];
+		String[] nameList=new String[6];
 		UserServiceDao usd= new UserServiceDao();
 		List<AppUser> userList= usd.getAllUser();
 		for(int i=0;i<6;i++)
 		{
 			int id = userList.get(i).getUserId();
 			idlist[i]=id;
+			nameList[i]=userList.get(i).getUserName();
 			
 			
 		}
 			
 	session.setAttribute("IdList", idlist);
+	session.setAttribute("nameList", nameList);
 	usd.closeConnection();
 
 	}

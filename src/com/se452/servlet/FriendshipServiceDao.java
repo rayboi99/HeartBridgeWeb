@@ -1,4 +1,4 @@
-package com.se452.service;
+package com.se452.servlet;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class FriendshipServiceDao implements FriendshipServiceDaoInterface {
 
 	@Override
 	public List<Friendship> getFriendShipList(int userId) {
-		List<Friendship> result=entityManager.createQuery("select fs from Friendship fs where fs.user.userId=:uid")
+		List<Friendship> result=entityManager.createQuery("select fs from Friendship fs where fs.user.appUserId=:uid")
 		          .setParameter("uid", userId).getResultList();
 		return result;
 	}

@@ -31,7 +31,10 @@
 						<td><br /> <img src="user/image.html?id=<%=userId%>"
 							class="img-thumbnail" width="304" height="206" alt="profile pic" /><br /></td>
 					</tr>
-
+<tr>
+						<td><br />User Name:</td>
+						<td>${userName}</td>
+					</tr>
 					<tr>
 						<td><br />About Me:</td>
 						<td>${aboutMe}</td>

@@ -53,12 +53,14 @@ public class ViewOtherUserProfileController extends HttpServlet {
 		String aboutMe = au.getProfile().getAboutMe();
 		String hobby = au.getProfile().getHobby();
 		String idealPartner = au.getProfile().getIdealPartner();
+		String userName=au.getUserName();
 		
 		int id = au.getUserId();
 		session.setAttribute("userChooseId", id);
 		session.setAttribute("aboutMe", aboutMe);
 		session.setAttribute("hobby", hobby);
 		session.setAttribute("idealPartner",idealPartner);
+		session.setAttribute("userName", userName);
 		
 		
 		usd.closeConnection();

@@ -1,31 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-      <%@ page import="java.util.List" %>
+         <%@ page import="java.util.ArrayList" %>
     <%@ page import="com.se452.model.*" %>
+    <%@page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View Friendship List</title>
+<title>Friend List</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<%List<Friendship> fsl=(List<Friendship>)session.getAttribute("FriendshipList"); %>
-<% if(fsl!=null){%>
-<form action="HandleFrienshipController" method="post">
- <%for(Friendship fs : fsl) { %>
-<input type="radio" name="frId" value=<%=fs.getFriend().getUserId()%>>
-<tr>Friend Name:<%=fs.getFriend().getUserName()%></tr>
-<tr>Friend Add Time:<%=fs.getFriendshipAddTime()%></tr><BR>
-<input type="Radio" name="action" value="Delete"/>
-<tr>Delete</tr><BR>
-<input type="Radio" name="action" value="GetList"/>
-<tr>Get friend's friend list</tr><BR>
- <%} %>
- <%} %>
- <input type="submit" value="Process Request">
- </form>
- <form action="FunctionList.jsp" >
- <input type="submit" value="Go back to function list">
- </form> 
+ <c:import url="ViewFriendListController" />
+ 
+<% List<Friendship> fsl=(List<Friendship>)session.getAttribute("FriendshipList");%>
+<%@ include file="header.html"%>
+
+<div class="row">
+		<div class="col-sm-2"><%@ include file="navBar.html"%></div>
+		</br>
+</br>
+</br>
+</br>
+</br>
+<div class="col-sm-10" pull-middle">
+   <table width="800" border="0" cellpadding="50" >
+
+<% if(fsl.size()>0){%>
+<%for(int i=0;i<fsl.size();i++) {%>
+
+<tr align="center" valign="center">
+<td>
+<table width="100" border="0" cellpadding="0"><td>
+<img 
+  src="user/image.html?id=<%=fsl.get(i).getFriend().getUserId()%>"
+  class="img-rounded" alt="Cinque Terre" width="50" height="36" />
+  </td></br>
+  <td><h5><%=fsl.get(i).getFriend().getUserName() %></h5></td></table>
+</td>
+<td><form action="CancelFriendshipRequestController" method="post">
+<button type="submit" class="btn btn-primary" name="cancelButton" value="<%=fsl.get(i).getFriend().getUserId() %>">Cancel friendship for good</button>
+ </form></td>
+ <td><form action="ViewMessagesController" method="post">
+<button type="submit" class="btn btn-primary" name="button" value="3">Messages</button>
+ </form></td>
+  <td><form action="ViewGiftController" method="post">
+<button type="submit" class="btn btn-primary" name="button" value="3">Gift</button>
+ </form></td>
+</tr>
+
+
+<%} }else{%>
+<div class="col-sm-6" pull-middle>
+<h4>You have no friends yet.</h4>
+
+<%} %>
+</table>
+</div></div>
+<%@ include file="footer.html"%>
 </body>
 </html>

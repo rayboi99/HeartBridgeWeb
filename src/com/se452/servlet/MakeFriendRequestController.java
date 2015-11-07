@@ -39,6 +39,12 @@ public class MakeFriendRequestController extends HttpServlet {
 		String uis=session.getAttribute("userIdKey").toString();
 		int chooseUser=(int)session.getAttribute("selectedId");
 		int uid=Integer.parseInt(uis);
+		if(uid==chooseUser)
+		{
+			request.setAttribute("FriendRequest", "Can not make the request.");
+			request.getRequestDispatcher("ViewOtherUserProfile.jsp").forward(request, response);
+		}
+		else{
 		//int userId=Integer.parseInt(request.getParameter("chosenUser"));
 		FriendRequestServiceDao frsd=new FriendRequestServiceDao();
 		try{
@@ -48,10 +54,11 @@ public class MakeFriendRequestController extends HttpServlet {
 		request.getRequestDispatcher("ViewOtherUserProfile.jsp").forward(request, response);
 		}
 		catch(Exception e){
-		
+			request.setAttribute("FriendRequest", "You can only try one time to add a user as friend.");
+			request.getRequestDispatcher("ViewOtherUserProfile.jsp").forward(request, response);
 
 		}
-		
+		}
 		
 	}
 

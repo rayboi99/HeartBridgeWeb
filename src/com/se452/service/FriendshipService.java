@@ -38,12 +38,12 @@ public class FriendshipService implements FriendshipServiceInterface{
 	public void cancelFriendship(String userName, String friendName) {
 		
 
-		Query qy = entityManager.createQuery("select fs from Friendship fs where fs.user.app_user_name=:userName"
+		Query qy = entityManager.createQuery("select fs from Friendship fs where fs.user.userName=:userName"
 				+ " and fs.friend.app_user_name=:friendName");
 		qy.setParameter("userName", userName);
 		qy.setParameter("friendName", friendName);
 		Friendship fs1=(Friendship) qy.getResultList().get(0);
-		Query qy2 = entityManager.createQuery("select fs from Friendship fs where fs.user.app_user_name=:userName"
+		Query qy2 = entityManager.createQuery("select fs from Friendship fs where fs.user.userName=:userName"
 				+ " and fs.friend.app_user_name=:friendName");
 		qy2.setParameter("userName", friendName);
 		qy2.setParameter("friendName", userName);

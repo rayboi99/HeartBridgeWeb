@@ -1,4 +1,4 @@
-package com.se452.service;
+package com.se452.servlet;
 
 import java.util.List;
 

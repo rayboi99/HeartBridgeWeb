@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@ page import="java.util.List" %>
         <%@ page import="java.util.ArrayList" %>
     <%@ page import="com.se452.model.*" %>
     <%@page import="java.util.*"%>
-    <%@page import="java.awt.image.BufferedImage"%>
-     <%@page import="javax.imageio.ImageIO"%>
-    <%@page import="java.io.ByteArrayInputStream"%>
-     <%@page import="java.io.File"%>
+
       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  
 
@@ -26,7 +22,8 @@
 
 </head>
 <body>
-<% int[] idList=(int[])session.getAttribute("IdList");%>
+<% int[] idList=(int[])session.getAttribute("IdList");
+String [] nameList = (String[]) session.getAttribute("nameList");%>
 <%@ include file="header.html"%>
 <div class="row">
 		<div class="col-sm-2"><%@ include file="navBar.html"%></div>
@@ -57,12 +54,13 @@
 
 
 <td align="center" valign="center">
-<%String path="";%>
-<% path= s+"/Image0";%>
+
+
   <img  src="user/image.html?id=<%=idList[0]%>"
   class="img-rounded" alt="Cinque Terre" width="204" height="136"/>
 <br />
  <br />
+ <h4>User Name: <%=nameList[0]%></h4>
 <form action="ViewOtherUserProfileController" method="post">
 <button type="submit" class="btn btn-primary" name="button" value="0">See User Profile</button>
  </form>
@@ -72,11 +70,13 @@
 
 <td align="center" valign="center">
 
-<% path= s+"/Image1";%>
+
   <img   src="user/image.html?id=<%=idList[1]%>"
   class="img-rounded" alt="Cinque Terre" width="204" height="136"/>
 <br/>
 <br/>
+
+ <h4>User Name: <%=nameList[1]%></h4>
 <form action="ViewOtherUserProfileController" method="post">
 <button type="submit" class="btn btn-primary" name="button" value="1">See User Profile</button>
  </form>
@@ -90,6 +90,7 @@
   class="img-rounded" alt="Cinque Terre" width="204" height="136"/>
 <br />
 <br/>
+ <h4>User Name: <%=nameList[2]%></h4>
 <form action="ViewOtherUserProfileController" method="post">
 <button type="submit" class="btn btn-primary" name="button" value="2">See User Profile</button>
  </form>
@@ -107,6 +108,7 @@
   class="img-rounded" alt="Cinque Terre" width="204" height="136" />
 <br />
 <br/>
+ <h4>User Name: <%=nameList[3]%></h4>
 <form action="ViewOtherUserProfileController" method="post">
 <button type="submit" class="btn btn-primary" name="button" value="3">See User Profile</button>
  </form>
@@ -121,6 +123,7 @@
    class="img-rounded" alt="Cinque Terre" width="204" height="136"/>
 <br />
 <br/>
+ <h4>User Name: <%=nameList[4]%></h4>
 <form action="ViewOtherUserProfileController" method="post">
 <button type="submit" class="btn btn-primary" name="button" value="4">See User Profile</button>
  </form>
@@ -134,6 +137,7 @@
   class="img-rounded" alt="Cinque Terre" width="204" height="136" />
 <br />
  <br />
+  <h4>User Name: <%=nameList[5]%></h4>
 <form action="ViewOtherUserProfileController" method="post">
 <button type="submit" class="btn btn-primary" name="button" value="5">See User Profile</button>
  </form>
