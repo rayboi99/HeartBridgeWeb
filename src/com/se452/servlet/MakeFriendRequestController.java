@@ -20,17 +20,14 @@ import com.se452.service.FriendRequestServiceDao;
 @WebServlet("/MakeFriendRequestController")
 public class MakeFriendRequestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager ;
+
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public MakeFriendRequestController() {
         super();
-        entityManagerFactory = Persistence.createEntityManagerFactory("SE452EclipseLink2");
-		entityManager = entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();  
+       
     }
 
 	
@@ -40,12 +37,21 @@ public class MakeFriendRequestController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(true);
 		String uis=session.getAttribute("userIdKey").toString();
+		int chooseUser=(int)session.getAttribute("selectedId");
 		int uid=Integer.parseInt(uis);
-		int userId=Integer.parseInt(request.getParameter("chosenUser"));
+		//int userId=Integer.parseInt(request.getParameter("chosenUser"));
 		FriendRequestServiceDao frsd=new FriendRequestServiceDao();
-		frsd.setEntityManager(entityManager);
-		frsd.sendFriendRequest(uid, userId);
-		response.sendRedirect("functionList.jsp");
+		try{
+		frsd.sendFriendRequest(uid, chooseUser);
+		frsd.finalCommit();
+		request.setAttribute("FriendRequest", "Send Request, please waiting for response.");
+		request.getRequestDispatcher("ViewOtherUserProfile.jsp").forward(request, response);
+		}
+		catch(Exception e){
+		
+
+		}
+		
 		
 	}
 

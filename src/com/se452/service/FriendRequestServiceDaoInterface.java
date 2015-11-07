@@ -14,4 +14,6 @@ public interface FriendRequestServiceDaoInterface {
 	void changeFriendReqestStatus(String pkHashcode,Status s);
 	List<FriendRequest> viewFriendRequest(int userId);
 	//void cancelFriendRequest(String userName, String friendName,String timeSent);
+	void finalCommit();
+	List<FriendRequest> viewFriendSentRequest(int userId);
 }

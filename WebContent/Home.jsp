@@ -51,6 +51,7 @@
  <br />
  <br />
 <div class="col-sm-10" pull-middle">
+<h2>New User</h2>
    <table width="800" border="0" cellpadding="40" class="table table-striped table-bordered table-condensed">
 
 

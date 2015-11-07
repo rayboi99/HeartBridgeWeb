@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import com.se452.model.AppUser;
@@ -15,23 +17,34 @@ import com.se452.model.Status;
 public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface{
 
 
+	private EntityManagerFactory entityManagerFactory;
 	private EntityManager entityManager ;
+	
+	public FriendRequestServiceDao ()
+	{
+		 entityManagerFactory = Persistence.createEntityManagerFactory("SE452EclipseLink2");
+		 entityManager = entityManagerFactory.createEntityManager();
+		 entityManager.getTransaction().begin();
+	}
 	@Override
 	public void sendFriendRequest(int userId, int friendId) {
+		
 		AppUser user=entityManager.find(AppUser.class, userId);
 		AppUser friend=entityManager.find(AppUser.class, friendId);
-		FriendRequest fr=new FriendRequest();
-		fr.setAu(user);
-		fr.setFriend(friend);
+		FriendRequest frr=new FriendRequest();
+		frr.setAu(user);
+		frr.setFriend(friend);
 		long time = System.currentTimeMillis();
 		Timestamp ts=new Timestamp(time);
 		String S = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(ts);
-		fr.setRequestSendTime(S);
-		fr.setRequestStatus(Status.PENDING.toString());
-		fr.setRequestUpdateTime(S);
-		entityManager.persist(fr);
-		entityManager.getTransaction().commit();
-		entityManager.getTransaction().begin();
+		frr.setRequestSendTime(S);
+		frr.setRequestStatus(Status.PENDING.toString());
+		frr.setRequestUpdateTime(S);
+		entityManager.persist(frr);
+		
+		
+		       
+		
 	}
 	@Override
 	public void setEntityManager(EntityManager em) {
@@ -41,6 +54,13 @@ public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface
 	@Override
 	public List<FriendRequest> viewFriendRequest(int userId) {
 		List<FriendRequest> result=entityManager.createQuery("select fr from FriendRequest fr where fr.friend.appUserId=:uid")
+		          .setParameter("uid", userId).getResultList();
+		return result;
+		
+	}
+	@Override
+	public List<FriendRequest> viewFriendSentRequest(int userId) {
+		List<FriendRequest> result=entityManager.createQuery("select fr from FriendRequest fr where fr.au.appUserId=:uid")
 		          .setParameter("uid", userId).getResultList();
 		return result;
 		
@@ -84,9 +104,15 @@ public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface
 		}
 	
 		entityManager.persist(fr);
-		entityManager.getTransaction().commit();
+	
 		}
 	}
-	
+	public void finalCommit()
+	{
+		entityManager.getTransaction().commit();
+		entityManager.close();
+		entityManagerFactory.close();
+		
+	}
 	
 }
