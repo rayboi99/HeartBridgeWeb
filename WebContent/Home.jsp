@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ page import="java.util.List" %>
+        <%@ page import="java.util.ArrayList" %>
+    <%@ page import="com.se452.model.*" %>
+    <%@page import="java.util.*"%>
+    <%@page import="java.awt.image.BufferedImage"%>
+     <%@page import="javax.imageio.ImageIO"%>
+    <%@page import="java.io.ByteArrayInputStream"%>
+     <%@page import="java.io.File"%>
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ 
+
+Read more: http://javarevisited.blogspot.com/2014/11/how-to-loop-hashmap-or-hashtable-in-jsp-example.html#ixzz3qktSTDnx
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,48 +41,86 @@
         </form>
         </div>
          <div class="col-sm-10">
-         
-    
-         <table width="800" border="0" cellpadding="5">
+         <c:import url="GetHomePageUserPicturesController" />
+<%ServletContext sc=request.getSession().getServletContext(); 
+			String s=sc.getRealPath("/HomePageImage");%>
+
+
+   <table width="800" border="0" cellpadding="5">
 
 <tr>
+<table> 
 
 <td align="center" valign="center">
-<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<%String path="";%>
+<% path= s+"/Image0";%>
+  <img width="100px" height="100px" src="<%=path%>" 
+  alt="description here" />
 <br />
-Caption text centered under the image.
+<br/>
+<form action="ChangeFriendRequestController" method="post">
+<input type="submit" value="User Profile">
+ </form>
 </td>
 
 <td align="center" valign="center">
-<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+
+<% path= s+"/Image1";%>
+  <img width="100px" height="100px" src="<%=path%>" 
+  alt="description here" />
 <br />
-Caption text centered under the image.
+<br/>
+<form action="ChangeFriendRequestController" method="post">
+<input type="submit" value="User Profile">
+ </form>
 </td>
 <td align="center" valign="center">
-<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+
+<% path= s+"/Image2";%>
+  <img width="100px" height="100px" src="<%=path%>" 
+  alt="description here" />
 <br />
-Caption text centered under the image.
+<br/>
+<form action="ChangeFriendRequestController" method="post">
+<input type="submit" value="User Profile">
+ </form>
 </td>
 </tr>
 <tr>
 
 <td align="center" valign="center">
-<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<% path= s+"/Image3";%>
+  <img width="100px" height="100px" src="<%=path%>" 
+  alt="description here" />
 <br />
-Caption text centered under the image.
+<br/>
+<form action="ChangeFriendRequestController" method="post">
+<input type="submit" value="User Profile">
+ </form>
 </td>
 
 <td align="center" valign="center">
-<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<% path= s+"/Image4";%>
+  <img width="100px" height="100px" src="<%=path%>" 
+  alt="description here" />
 <br />
-Caption text centered under the image.
+<br/>
+<form action="ChangeFriendRequestController" method="post">
+<input type="submit" value="User Profile">
+ </form>
 </td>
 <td align="center" valign="center">
-<img src="http://yoursite.com/images/filename.jpg" alt="description here" />
+<% path= s+"/Image5";%>
+  <img width="100px" height="100px" src="<%=path%>" 
+  alt="description here" />
 <br />
-Caption text centered under the image.
+<br/>
+<form action="ChangeFriendRequestController" method="post">
+<input type="submit" value="User Profile">
+ </form>
 </td>
 </tr>
+
 
 </table>
          </div>

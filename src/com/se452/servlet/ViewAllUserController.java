@@ -1,6 +1,7 @@
 package com.se452.servlet;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -39,8 +40,8 @@ public class ViewAllUserController extends HttpServlet {
 			session.setAttribute("AllUserList", list);
 			usd.closeConnection();
 			
-			
-			
+			 request.getRequestDispatcher("Home.jsp").forward(request, response);
+		
 		
 	}
 	/**
