@@ -7,6 +7,7 @@
 		<class>com.se452.model.Friendship</class>
 
 		<class>com.se452.model.FriendRequest</class>
+			<class>com.se452.model.FriendRequestPK</class>
 
 		<class>com.se452.model.University</class>
 

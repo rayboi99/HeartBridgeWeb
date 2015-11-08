@@ -11,5 +11,6 @@ public interface FriendshipServiceDaoInterface {
 	void cancelFriendship(int userId, int friendId);
 	List<Friendship> getFriendShipList(int userId);
 	void setEntityManager(EntityManager em);
+	boolean checkIfMutualFriend (int userId, int checkId);
 	void finalCommit();
 }

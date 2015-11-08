@@ -78,4 +78,22 @@ public class FriendshipServiceDao implements FriendshipServiceDaoInterface {
 		entityManagerFactory.close();
 		
 	}
+	@Override
+	public boolean checkIfMutualFriend(int userId, int checkId) {
+		List<Friendship> result=entityManager.createQuery("select fs from Friendship fs where fs.user.userId=:uid")
+		          .setParameter("uid", userId).getResultList();
+		int counter=0;
+		boolean ifMutual=false;
+		while(counter<result.size()&&!ifMutual)
+		{
+			int id= result.get(counter).getFriend().getUserId();
+			if(id==checkId)
+			{
+				
+				ifMutual=true;
+			}
+			counter++;
+		}
+		return ifMutual;
+	}
 }

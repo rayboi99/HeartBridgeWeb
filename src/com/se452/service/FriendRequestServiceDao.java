@@ -53,60 +53,57 @@ public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface
 	}
 	@Override
 	public List<FriendRequest> viewFriendReceivedRequest(int userId) {
-		List<FriendRequest> result=entityManager.createQuery("select fr from FriendRequest fr where fr.friend.appUserId=:uid")
+		List<FriendRequest> result=entityManager.createQuery("select fr from FriendRequest fr where fr.friend.userId=:uid")
 		          .setParameter("uid", userId).getResultList();
 		return result;
 		
 	}
 	@Override
 	public List<FriendRequest> viewFriendSentRequest(int userId) {
-		List<FriendRequest> result=entityManager.createQuery("select fr from FriendRequest fr where fr.au.appUserId=:uid")
+		List<FriendRequest> result=entityManager.createQuery("select fr from FriendRequest fr where fr.au.userId=:uid")
 		          .setParameter("uid", userId).getResultList();
 		return result;
 		
 	}
 	@Override
-	public void changeFriendReqestStatus(String pk, Status s) {
+	public void changeFriendReqestStatus(int uid, int fid,  Status s) {
 		
-		List<FriendRequest> result=entityManager.createQuery("select fr from FriendRequest fr ").getResultList();
-		int i=0;
+		Query q=entityManager.createQuery("select fr from FriendRequest fr where fr.au.userId=:uid"
+				+ " and fr.friend.userId=:fid");
+		         q.setParameter("uid", uid);
+		         q.setParameter("fid", fid);
+		        FriendRequest fr= (FriendRequest) q.getResultList().get(0);
+		
 		FriendshipServiceDao fs=new FriendshipServiceDao();
-		boolean found=false;
-		int pkHashCode=Integer.parseInt(pk);
-		while(i<result.size()&&!found)
-		{
-			if(result.get(i).getFriendRequestPK().hashCode()!=pkHashCode){
-				i++;
-			}
-			else if(result.get(i).getFriendRequestPK().hashCode()==pkHashCode)
-					{
-				found=true;
-					}
-		}
-		FriendRequest fr=null;
-		if(found==true)
-		{
-			fr=result.get(i);
-		}
+		String S="";
 		String oldStatus=fr.getRequestStatus();
-		if( !oldStatus.equals("REJECT"))
+		if(s.equals("REJECT"))
 		{
-		if(!oldStatus.equals(s)){
+			fr.setRequestStatus(s.toString());
 			long time = System.currentTimeMillis();
 			Timestamp ts=new Timestamp(time);
-			String S = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(ts);
+			S = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(ts);
 			fr.setRequestStatus(s.toString());
 			fr.setRequestUpdateTime(S);
-			if(s.toString().equals("ACCEPT")){
-			fs.setEntityManager(entityManager);
-				fs.addFriendship(fr.getFriendRequestPK().getAuId(),fr.getFriendRequestPK().getFriendId(),S);
-			}	
 		}
-	
+		else if(s.equals("ACCEPT"))
+		{
+			fr.setRequestStatus(s.toString());
+			long time = System.currentTimeMillis();
+			Timestamp ts=new Timestamp(time);
+			S = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(ts);
+			fr.setRequestStatus(s.toString());
+			fr.setRequestUpdateTime(S);
+			
+		}
+			
+		fs.addFriendship(uid, fid, S);
+		
+		fs.addFriendship(fid, uid, S);
 		entityManager.persist(fr);
 	
 		}
-	}
+	
 	public void finalCommit()
 	{
 		entityManager.getTransaction().commit();
@@ -114,5 +111,5 @@ public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface
 		entityManagerFactory.close();
 		
 	}
-	
+
 }
