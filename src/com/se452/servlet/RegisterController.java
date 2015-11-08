@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.se452.model.AppUser;
+import com.se452.model.Profile;
 import com.se452.service.UserServiceDao;
 
 /**
@@ -48,6 +50,14 @@ public class RegisterController extends HttpServlet {
 		try {
 			if (!us.userNameExists(name)) {
 				us.addUser(name, email, gender, password, age);
+				AppUser user = us.getUser(name);
+				Profile p = new Profile();
+				p.setAboutMe("");
+				p.setHobby("");
+				p.setIdealPartner("");
+				p.setPicture(new byte[0]);
+				user.setProfile(p);
+				
 				message ="You are successfully registered. please log in.";
 				url ="/Login.jsp";
 			} else {
