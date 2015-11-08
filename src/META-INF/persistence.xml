@@ -7,7 +7,6 @@
 		<class>com.se452.model.Friendship</class>
 
 		<class>com.se452.model.FriendRequest</class>
-			<class>com.se452.model.FriendRequestPK</class>
 
 		<class>com.se452.model.University</class>
 
@@ -25,13 +24,14 @@
 
 		<class>com.se452.model.DateInfo</class>
 		<properties>
-         <property name = "javax.persistence.jdbc.url" value = "jdbc:mysql://localhost:3306/se452"/>
-         <property name = "javax.persistence.jdbc.user" value = "root"/>
-         <property name = "javax.persistence.jdbc.password" value="reyboy"/>
-         <property name = "javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-         <property name = "eclipselink.logging.level" value = "FINE"/>
-         <property name = "eclipselink.ddl-generation" value = "create-tables"/>
-	</properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+			<property name="javax.persistence.jdbc.user" value="SE452"/>
+			<property name="javax.persistence.jdbc.password" value="password"/>
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+			 <property name="eclipselink.logging.level" value="FINE"/>
+    	     <property name="eclipselink.ddl-generation" value="create-tables"/>
+	
+		</properties>
 	
 	</persistence-unit>
 </persistence>
