@@ -34,6 +34,8 @@ p.error {
 			message = "";
 		}
 	%>
+	
+	<%@ include file = "header.html" %>
 
 	<p><%=message%></p>
 	<form role="form" action="LoginController" method="post">
@@ -61,6 +63,8 @@ p.error {
 			<div class="col-sm-4"></div>
 		</div>
 	</form>
+	
+	<%@ include file = "footer.html" %>
 
 </body>
 </html>

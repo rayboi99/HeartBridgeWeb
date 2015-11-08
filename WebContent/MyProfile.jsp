@@ -37,7 +37,7 @@
 	<div class="row">
 		<div class="col-sm-4"><%@ include file="navBar.html"%></div>
 		<div class="col-sm-8">
-			<%=message%><br />
+			<h3><b><%=message%></b></h3><br />
 			<form action="UpdateProfileServlet" method="post">
 				<table>
 					<tr>
@@ -65,8 +65,6 @@
 		</div>
 	</div>
 	<%@ include file="footer.html"%>
-
-
 
 </body>
 </html>

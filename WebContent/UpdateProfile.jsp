@@ -15,6 +15,35 @@
 
 </head>
 <body>
+	<%@ page
+		import="com.se452.service.ProfileService, com.se452.model.Profile"%>
+
+	<%
+		int userId = (int) session.getAttribute("userIdKey");
+		String message = (String) session.getAttribute("message");
+		ProfileService ps = new ProfileService();
+		Profile profile = ps.getProfile(userId);
+		String aboutMe = "";
+		String hobby = "";
+		String idealPartner = "";
+		
+		if (profile != null) {
+			aboutMe = profile.getAboutMe();
+			hobby = profile.getAboutMe();
+			idealPartner = profile.getIdealPartner();
+		}
+		
+		ps.closeConnection();
+		
+		if (message == null){
+			message ="";
+		}
+	%>
+
+	<%@include file ="header.html"%> 
+
+	<%=message%>
+
 	<div class="container">
 		<form class="form-horizontal" action="UpdateProfileServlet"
 			method="post">
@@ -29,7 +58,7 @@
 					<label class="col-md-4 control-label" for="aboutMe">About
 						Me :</label>
 					<div class="col-md-4">
-						<textarea class="form-control" id="textarea" name="aboutMe">About me</textarea>
+						<textarea class="form-control" id="textarea" name="aboutMe"><%=aboutMe%></textarea>
 					</div>
 				</div>
 
@@ -37,8 +66,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="hobby">Hobby :</label>
 					<div class="col-md-4">
-						<input id="textinput" name="hobby" type="text" placeholder="host"
-							class="form-control input-md">
+						<textarea class="form-control" id="textarea" name="hobby"><%=hobby%></textarea>
 
 					</div>
 				</div>
@@ -48,7 +76,7 @@
 					<label class="col-md-4 control-label" for="textarea">Ideal
 						Partner :</label>
 					<div class="col-md-4">
-						<textarea class="form-control" id="textarea" name="idealPartner"></textarea>
+						<textarea class="form-control" id="textarea" name="idealPartner"><%=idealPartner%></textarea>
 					</div>
 				</div>
 
@@ -72,7 +100,8 @@
 				</div>
 			</fieldset>
 		</form>
-
 	</div>
+	
+	<%@include file ="footer.html"%> 
 </body>
 </html>

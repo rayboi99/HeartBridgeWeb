@@ -28,6 +28,7 @@
 			}
 		}
 	</script>
+	
 	<form role="form" action="RegisterController" method="post">
 		<div class="row">
 			<div class="col-sm-4">
