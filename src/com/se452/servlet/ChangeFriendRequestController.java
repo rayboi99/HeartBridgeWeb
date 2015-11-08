@@ -1,6 +1,7 @@
 package com.se452.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.se452.model.FriendRequest;
 import com.se452.model.FriendRequestPK;
 import com.se452.model.Status;
 import com.se452.service.FriendRequestServiceDao;
@@ -44,11 +46,19 @@ public class ChangeFriendRequestController extends HttpServlet {
 		int uid=Integer.parseInt(session.getAttribute("userIdKey").toString());
 		FriendRequestServiceDao frsd=new FriendRequestServiceDao();
 		frsd.setEntityManager(entityManager);
-		String pkHashCode=request.getParameter("pkHashCode");
-		String status=request.getParameter("newStatus");
-		frsd.changeFriendReqestStatus(pkHashCode, Status.valueOf(status));
-		//entityManager.getTransaction().commit();
-		 response.sendRedirect("functionList.jsp");
+		String SelectedUserAccept=request.getParameter("accept");
+		String SelectedUserReject=request.getParameter("reject");
+	if(!SelectedUserAccept.isEmpty())
+		frsd.changeFriendReqestStatus(uid,Integer.parseInt(SelectedUserAccept), Status.ACCEPT);
+	else if(!SelectedUserReject.isEmpty())
+		frsd.changeFriendReqestStatus(uid,Integer.parseInt(SelectedUserReject),Status.REJECT);
+	List<FriendRequest> frReceivedList =frsd.viewFriendReceivedRequest(uid);
+		List<FriendRequest> frSentList =frsd.viewFriendReceivedRequest(uid);
+	session.setAttribute("frReceivedList", frReceivedList);
+	session.setAttribute("frSentList", frSentList);
+	frsd.finalCommit();
+	response.sendRedirect("ViewFriendRequest.jsp");
+		 
 	
 		
 		

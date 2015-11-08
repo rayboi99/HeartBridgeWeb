@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.se452.model.*;
 import com.se452.service.*;
-
+import com.se452.service.FriendshipServiceDao;
 
 @WebServlet("/ListFriendsServlet")
 public class ListFriendsServlet extends HttpServlet {
@@ -35,11 +35,22 @@ public class ListFriendsServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		int uid = Integer.parseInt(session.getAttribute("userIdKey").toString());
 		
+		String pageFrom = request.getParameter("pageFrom");
+		
 		FriendshipServiceDao friendService = new FriendshipServiceDao();
 		List<Friendship> friendshipList = friendService.getFriendShipList(uid);
 		
 		request.setAttribute("friendshipList", friendshipList);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/AddMessage.jsp");
+		
+		String pageTo = "";
+		if (pageFrom.equals("ViewMessages"))
+			pageTo = "/AddMessage.jsp";
+		else if (pageFrom.equals("ViewMatchRequestByMM"))
+			pageTo = "/AddMatchRequestAsMM.jsp";
+		else if (pageFrom.equals("ViewMatchRequestByUser"))
+			pageTo = "/AddMatchRequestAsUser.jsp";
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pageTo);
 		dispatcher.forward(request, response);
 	}
 	
