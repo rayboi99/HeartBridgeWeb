@@ -13,6 +13,13 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<style>
+p {
+	color: red;
+}
+</style>
+
+
 </head>
 <body>
 	<script>
@@ -28,9 +35,21 @@
 			}
 		}
 	</script>
-	
+
+	<%
+		String message = (String) request.getAttribute("message");
+
+		if (message == null) {
+			message = "";
+		}
+	%>
+
+
+	<%@ include file="header.html"%>
+	<p><%=message%></p>
 	<form role="form" action="RegisterController" method="post">
 		<div class="row">
+			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
 				<div class="form-group">
 					<label for="userName">User Name:</label> <input type="text"
@@ -41,14 +60,15 @@
 					<label for="pwd">Password:</label> <input type="password"
 						class="form-control" name="password">
 				</div>
-				
+
 				<div class="form-group">
 					<label for="email">Email:</label> <input type="email"
 						class="form-control" name="email">
 				</div>
-				
+
 				<div class="form-group">
-					<label for="gender">Gender:</label> <select class="form-control" name="gender">
+					<label for="gender">Gender:</label> <select class="form-control"
+						name="gender">
 						<option value="gender">Gender</option>
 						<option value="male">Male</option>
 						<option value="female">Female</option>
@@ -66,6 +86,8 @@
 			<div class="col-sm-4"></div>
 		</div>
 	</form>
+
+	<%@ include file="footer.html"%>
 
 </body>
 </html>
