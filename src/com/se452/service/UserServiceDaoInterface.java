@@ -14,6 +14,7 @@ public interface UserServiceDaoInterface {
 	boolean verifyExistingUser(String userName, String userPassword) throws NoSuchAlgorithmException;
 	void deleteUser(String userName);
 	AppUser getUser(String userName);
+	AppUser getUser(int id);
 	void uppdateExistingUserInformation(String userName,String para, String value) throws NoSuchAlgorithmException;
 	//void setEntityManager(EntityManager em);
 	//List<AppUser> getAllUser();

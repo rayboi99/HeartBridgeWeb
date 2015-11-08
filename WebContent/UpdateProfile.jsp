@@ -29,7 +29,7 @@
 		
 		if (profile != null) {
 			aboutMe = profile.getAboutMe();
-			hobby = profile.getAboutMe();
+			hobby = profile.getHobby();
 			idealPartner = profile.getIdealPartner();
 		}
 		

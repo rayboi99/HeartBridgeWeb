@@ -60,7 +60,6 @@ p.error {
 				<button type="submit">Log in</button>
 			</div>
 			<div class="col-sm-4"></div>
-			<div class="col-sm-4"></div>
 		</div>
 	</form>
 

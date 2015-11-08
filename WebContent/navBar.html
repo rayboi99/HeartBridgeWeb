@@ -6,37 +6,41 @@
 </head>
 <body>
 
-<div class = "container" style = "width: auto;margin-top: 20px;">
-		<div class = "col-xs-2" style= "width: auto;">
-			<div class = "navbar">
-				<ul class="nav nav-pills nav-stacked" style = "width: 150px; height:600px;background: aliceblue;">
-   				<li class="active" style="height: 60px;"><a href="Home.jsp">HOME</a></li>
- 				<li style="height: 60px;"><a href="#">PROFILE</a></li>
-   				<li class="dropdown">
-        <a class="dropdown-toggle" role="button" aria-expanded="false"
-        aria-haspopup="true" href="#" data-toggle="dropdown">FRIENDS
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-        <li><a href="ViewFriendListController">My Friend List</a></li>
-        <li><a href="ViewFriendRequestController">Friend Request</a></li></ul>  
-        </li> 
-   				<li style="height: 60px;"><a href="ListMessagesServlet">MESSAGES</a></li>
-   				<li style="height: 60px;"><a href="ListGiftsByUser.jsp">GIFTS</a></li>
-   				<li style="height: 60px;"><a href="#">MATCH REQUESTS</a></li>
-   				<li style="height: 60px;"><a href="#">DATES</a></li>
-   				<li class="dropdown">
-        <a class="dropdown-toggle" role="button" aria-expanded="false"
-        aria-haspopup="true" href="#" data-toggle="dropdown">ACCOUNT
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-        <li><a href="ViewFriendListController">Update Account</a></li>
-        <li><a href="LogoutController">Log Out</a></li>
-        </ul>
-        </li> 
+	<div class="container" style="width: auto; margin-top: 20px;">
+		<div class="col-xs-2" style="width: auto;">
+			<div class="navbar">
+				<ul class="nav nav-pills nav-stacked"
+					style="width: 150px; height: 600px; background: aliceblue;">
+					<li class="active" style="height: 60px;"><a href="Home.jsp">HOME</a></li>
+					<li style="height: 60px;"><a href="MyProfile.jsp">PROFILE</a></li>
+					<li class="dropdown"><a class="dropdown-toggle" role="button"
+						aria-expanded="false" aria-haspopup="true" href="#"
+						data-toggle="dropdown">FRIENDS <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="ViewFriendListController">My Friend List</a></li>
+							<li><a href="ViewFriendRequestController">Friend Request</a></li>
+						</ul></li>
+					<li style="height: 60px;"><a href="ListMessagesServlet">MESSAGES</a></li>
+					<li style="height: 60px;"><a href="ListGiftsByUser.jsp">GIFTS</a></li>
+					<li style="height: 60px;"><a href="#">MATCH REQUESTS</a></li>
+					<li class="dropdown"><a class="dropdown-toggle" role="button"
+						aria-expanded="false" aria-haspopup="true" href="#"
+						data-toggle="dropdown">DATES <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="ViewDatesAsMMServlet">View As MatchMaker </a></li>
+							<li><a href="ViewDatesAsUser">View As User</a></li>
+						</ul></li>
+					<li class="dropdown"><a class="dropdown-toggle" role="button"
+						aria-expanded="false" aria-haspopup="true" href="#"
+						data-toggle="dropdown">ACCOUNT <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="ViewFriendListController">Update Account</a></li>
+							<li><a href="LogoutController">Log Out</a></li>
+						</ul></li>
 				</ul>
 			</div>
 		</div>
-</div>
+	</div>
 
 
 </body>

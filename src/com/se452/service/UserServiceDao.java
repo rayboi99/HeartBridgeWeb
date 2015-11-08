@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import com.se452.model.AppUser;
 import com.se452.model.PasswordEncryption;
@@ -79,6 +80,14 @@ public class UserServiceDao implements UserServiceDaoInterface {
 		em.getTransaction().commit();
 	}
 
+	@Override
+	public AppUser getUser(int id) {
+		Query query = em.createQuery("select u from AppUser u where u.userId =:userId");
+		query.setParameter("userId", id);
+		AppUser user = (AppUser) query.getSingleResult();
+		return user;
+	}
+	
 	@Override
 	public AppUser getUser(String userName) {
 		List result = em.createQuery("select au from AppUser au where au.userName=:userName")

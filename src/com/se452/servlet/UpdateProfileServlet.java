@@ -34,8 +34,8 @@ public class UpdateProfileServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher  dispatcher = getServletContext().getRequestDispatcher("/createDate.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -67,8 +67,20 @@ public class UpdateProfileServlet extends HttpServlet {
 			request.setAttribute("hobby", p.getHobby());
 			request.setAttribute("idealPartner", p.getIdealPartner());
 			
-			url ="/MyProfile.jsp";
 			profile.closeConnection();
+		}
+		
+		if (request.getParameter("cancel") != null) {
+			HttpSession session = request.getSession();
+			int id = (int) session.getAttribute("userIdKey");
+			ProfileService ps = new ProfileService ();
+			Profile p =ps.getProfile(id);
+			
+			request.setAttribute("aboutMe", p.getAboutMe());
+			request.setAttribute("hobby", p.getHobby());
+			request.setAttribute("idealPartner", p.getIdealPartner());
+			
+			ps.closeConnection();
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
