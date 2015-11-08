@@ -57,7 +57,7 @@ public class ViewFriendListController extends HttpServlet {
 		List<Friendship> fsl=fssd.getFriendShipList(uid);
 		fssd.finalCommit();
 		session.setAttribute("FriendshipList", fsl);
-		response.sendRedirect("ViewFriendshipList.jsp");
+		response.sendRedirect("ViewSecondLevelFriendshipList.jsp");
 		
 	}
 

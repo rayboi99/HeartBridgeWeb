@@ -52,7 +52,7 @@ public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface
 		
 	}
 	@Override
-	public List<FriendRequest> viewFriendRequest(int userId) {
+	public List<FriendRequest> viewFriendReceivedRequest(int userId) {
 		List<FriendRequest> result=entityManager.createQuery("select fr from FriendRequest fr where fr.friend.appUserId=:uid")
 		          .setParameter("uid", userId).getResultList();
 		return result;

@@ -45,7 +45,10 @@
   <td><h5><%=fsl.get(i).getFriend().getUserName() %></h5></td></table>
 </td>
 <td><form action="CancelFriendshipRequestController" method="post">
-<button type="submit" class="btn btn-primary" name="cancelButton" value="<%=fsl.get(i).getFriend().getUserId() %>">Cancel friendship for good</button>
+<button type="submit" class="btn btn-primary" name="cancelButton" value="<%=fsl.get(i).getFriend().getUserId() %>">Delete</button>
+ </form></td>
+ <td><form action="ViewFriendListController" method="post">
+<button type="submit" class="btn btn-primary" name="ffflist" value="<%=fsl.get(i).getFriend().getUserId() %>">Your friend's friend list</button>
  </form></td>
  <td><form action="ViewMessagesController" method="post">
 <button type="submit" class="btn btn-primary" name="button" value="3">Messages</button>
