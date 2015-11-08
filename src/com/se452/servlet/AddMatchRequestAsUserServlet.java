@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,12 +56,8 @@ public class AddMatchRequestAsUserServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("MatchRequest has been added successfully!");		
-		out.println("</body>");
-		out.println("</html>");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ViewMatchRequestByUserServlet");
+		dispatcher.forward(request, response);
 		
 	}
 

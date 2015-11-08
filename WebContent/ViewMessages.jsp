@@ -26,7 +26,7 @@
 <%List<Message> msgListSent = (List<Message>)request.getAttribute("messageListSent");%>
 <%List<Message> msgListReceived = (List<Message>)request.getAttribute("messageListReceived");%>
 
-<h1>Messages Sent</h1>
+<b><u>Messages Sent</u></b>
 <%for(Message msg : msgListSent) { %>
 <br><br>
 Date:  <%=msg.getDate_Sent()%><br>
@@ -37,7 +37,7 @@ Body:  <%=msg.getMessage()%><br>
 <br><br>
 <%} %>
  
-<h1>Messages Received</h1>
+<b><u>Messages Received</u></b>
 <%for(Message msg : msgListReceived) { %>
 <br><br>
 Date:  <%=msg.getDate_Sent()%><br>
@@ -49,6 +49,7 @@ Body:  <%=msg.getMessage()%><br>
 <%} %>
  
  <form action="ListFriendsServlet" method="post">
+ <input type="hidden" name="pageFrom" value="ViewMessages">
  <input type="submit" value="Create Message">
  </form>
  </div>

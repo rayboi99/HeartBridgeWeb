@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,7 +48,7 @@ public class AddMessageServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(true);
 
-		String userIdTo = request.getParameter("userIdTo");
+		String userIdTo = request.getParameter("friendId");
 		String userIdFrom = session.getAttribute("userIdKey").toString();
 		String subject = request.getParameter("subject");
 		String messageBody = request.getParameter("body");
@@ -63,12 +64,8 @@ public class AddMessageServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("Message has been added successfully!");		
-		out.println("</body>");
-		out.println("</html>");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListMessagesServlet");
+		dispatcher.forward(request, response);
 	}
 
 }
