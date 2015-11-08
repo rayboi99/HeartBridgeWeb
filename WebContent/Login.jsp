@@ -39,7 +39,7 @@ p.error {
 
 	<p><%=message%></p>
 	<form role="form" action="LoginController" method="post">
-		<div class="row">
+		<div class="row" style = "margin-top:100px">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
 				<div class="form-group">

@@ -2,9 +2,9 @@ package com.se452.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,20 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.se452.model.Gift;
 import com.se452.service.GiftService;
 
 /**
- * Servlet implementation class giftServlet
+ * Servlet implementation class AddGiftServlet
  */
-@WebServlet("/giftServlet")
-public class GiftServlet extends HttpServlet {
+@WebServlet("/AddGiftServlet")
+public class AddGiftServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GiftServlet() {
+    public AddGiftServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,22 +34,7 @@ public class GiftServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		int uid = (int) session.getAttribute("userIdKey");
-//		response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        GiftService gs = new GiftService();
-        List<Gift> giftListSent = gs.reviewGiftUserSend(148);
-        List<Gift> giftListReceived = gs.reviewGiftUserReveived(148);
-       
-       request.setAttribute("giftListSent", giftListSent);
-        request.setAttribute("giftListReceived", giftListReceived);
-       
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListGiftsByUser.jsp");
-		dispatcher.forward(request, response);
-		
-		gs.closeConnection();
-
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -58,7 +42,29 @@ public class GiftServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		HttpSession session = request.getSession(true);
+		int userTo = Integer.parseInt(request.getParameter("to"));
+		int userFrom = (int) (session.getAttribute("userIdKey"));
+		int giftId = Integer.parseInt(request.getParameter("giftId"));
+		GiftService gs = new GiftService();
+		try {
+			gs.sendGift(giftId, userTo, userFrom, new Date());
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<body>");
+      	out.println("Your Gift has been send.");		
+		out.println("</body>");
+		out.println("</html>");
 	}
 
 }
+
