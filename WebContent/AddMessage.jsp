@@ -32,7 +32,6 @@
 	<form action="AddMessageServlet" method="post">
 		<table>
 			<tr>
-				<!-- I need to make this a dropdown list -->
 				<td>To</td>
 				<td>
  			<select id="friendId" name="friendId">

@@ -37,10 +37,20 @@ User1Status: <%=matchRequest.getUser1_Request_Status()%><br>
 User2: <%=matchRequest.getUser2_Id().getUserName()%><br>
 User2Status: <%=matchRequest.getUser2_Request_Status()%><br>
 MatchRequestStatus: <%=matchRequest.getRequest_Status()%><br>
+
+<br>
+<%if (matchRequest.getRequest_Status().equals("ACCEPT")) { %>
+
+<!-- Send to Naga's Create Date Servlet or Controller -->
+<form action=CreateDateController method="post">
+		<button type="submit" class="btn btn-success" name="createDate"
+			value="<%=matchRequest.getUser1_Id()%>">Create Date</button>
+</form>
+<%}%>
+
 <br><br>
 <%} %>
- 
- 
+
  <form action="ListFriendsServlet">
  <input type="hidden" name="pageFrom" value="ViewMatchRequestByMM">
  <input type="submit" value="Create MatchRequest">

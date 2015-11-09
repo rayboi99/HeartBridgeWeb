@@ -74,7 +74,7 @@ public class MatchRequestService {
 	    return matchRequestList;	
 	}
 	
-	public void updateMatchRequestStatus(int match_Maker_Id, int userId1, int userId2, Status user1_Request_Status, Status user2_Request_Status)
+	public void updateMatchRequestStatus(int match_Maker_Id, int userId1, int userId2, String user1_Request_Status, String user2_Request_Status)
 	{
 	    em.getTransaction().begin();
 	    
@@ -86,9 +86,9 @@ public class MatchRequestService {
         MatchRequest matchRequest = em.find(MatchRequest.class, matchRequestId);
 	    
 	    Status request_Status = Status.PENDING;
-	    if (user1_Request_Status == Status.ACCEPT && user2_Request_Status == Status.ACCEPT)
-	    	request_Status = Status.COMPLETE;
-	    else if (user1_Request_Status == Status.REJECT || user2_Request_Status == Status.REJECT)
+	    if (user1_Request_Status.equals(Status.ACCEPT.toString()) && user2_Request_Status.equals(Status.ACCEPT.toString()))
+	    	request_Status = Status.ACCEPT;
+	    else if (user1_Request_Status.equals(Status.REJECT.toString()) || user2_Request_Status.equals(Status.REJECT.toString()))
 	    	request_Status = Status.REJECT;
 	    else
 	    	request_Status = Status.PENDING;

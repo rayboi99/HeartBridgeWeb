@@ -50,7 +50,10 @@
  <td><form action="ViewSecondLevelFriendListController" method="post">
 <button type="submit" class="btn btn-primary" name="ffflist" value="<%=fsl.get(i).getFriend().getUserId() %>">Your friend's friend list</button>
  </form></td>
- <td><form action="ViewMessagesController" method="post">
+ <td><form action="ListMessagesServlet" method="post">
+ 
+ <input type="hidden" name="pageFrom" value="ViewFriendshipList">
+ <input type="hidden" name="friendIdSelected" value=<%=fsl.get(i).getFriend().getUserId()%>>
 <button type="submit" class="btn btn-primary" name="button" value="3">Messages</button>
  </form></td>
   <td><form action="ViewGiftController" method="post">

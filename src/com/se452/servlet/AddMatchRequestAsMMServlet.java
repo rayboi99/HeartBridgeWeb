@@ -43,11 +43,11 @@ public class AddMatchRequestAsMMServlet extends HttpServlet {
 		String user1Id = request.getParameter("User1Id");
 		String user2Id = request.getParameter("User2Id");
 		String RequestType = MatchType.MUU.toString();
-		String RequestStatus = Status.PENDING.toString();
+		String RequestStatusPending = Status.PENDING.toString();
 
 		MatchRequestService msg = new MatchRequestService();
 		try {
-			msg.addMatchRequest(Integer.parseInt(matchMakerId), Integer.parseInt(user1Id), Integer.parseInt(user2Id), new Date(), null, RequestStatus, RequestType, null, null);
+			msg.addMatchRequest(Integer.parseInt(matchMakerId), Integer.parseInt(user1Id), Integer.parseInt(user2Id), new Date(), null, RequestStatusPending, RequestType, RequestStatusPending, RequestStatusPending);
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

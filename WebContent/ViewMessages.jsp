@@ -36,6 +36,9 @@ Subject:  <%=msg.getSubject()%><br>
 Body:  <%=msg.getMessage()%><br>
 <br><br>
 <%} %>
+
+<br><br>
+<br><br>
  
 <b><u>Messages Received</u></b>
 <%for(Message msg : msgListReceived) { %>
@@ -47,6 +50,9 @@ Subject:  <%=msg.getSubject()%><br>
 Body:  <%=msg.getMessage()%><br>
 <br><br>
 <%} %>
+
+<br><br>
+<br><br>
  
  <form action="ListFriendsServlet" method="post">
  <input type="hidden" name="pageFrom" value="ViewMessages">

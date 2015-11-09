@@ -19,6 +19,10 @@
 </head>
 <body>
 
+	<%
+		int userId = (int) session.getAttribute("userIdKey");
+	%>
+
 	<%@ include file="header.html"%>
 
 	<div class="row">
@@ -34,8 +38,44 @@ Date: <%=matchRequest.getRequest_Time()%><br>
 MatchMaker: <%=matchRequest.getMatchMaker_Id().getUserName()%><br>
 User1: <%=matchRequest.getUser1_Id().getUserName()%><br>
 User1Status: <%=matchRequest.getUser1_Request_Status()%><br>
+
+<br>
+<%if (matchRequest.getUser1_Request_Status().equals("PENDING") && matchRequest.getUser1_Id().getUserId()==userId) { %>
+
+<form action=UpdateMatchRequestServlet method="post">
+
+<input type="hidden" name="MatchMakerId" value="<%=matchRequest.getMatchMaker_Id().getUserId()%>">
+<input type="hidden" name="User1Id" value="<%=matchRequest.getUser1_Id().getUserId()%>">
+<input type="hidden" name="User2Id" value="<%=matchRequest.getUser2_Id().getUserId()%>">
+<input type="hidden" name="user2RequestStatus" value="<%=matchRequest.getUser2_Request_Status()%>">
+								
+<button type="submit" class="btn btn-danger" name="user1RequestStatus" value="REJECT">Reject</button>
+<button type="submit" class="btn btn-success" name="user1RequestStatus" value="ACCEPT">Accept</button><br><br>
+</form>
+<%}%>
+
 User2: <%=matchRequest.getUser2_Id().getUserName()%><br>
 User2Status: <%=matchRequest.getUser2_Request_Status()%><br>
+
+<br>
+<%if (matchRequest.getUser2_Request_Status().equals("PENDING") && matchRequest.getUser2_Id().getUserId()==userId) { %>
+
+<form action=UpdateMatchRequestServlet method="post">
+
+<input type="hidden" name="MatchMakerId" value="<%=matchRequest.getMatchMaker_Id().getUserId()%>">
+<input type="hidden" name="User1Id" value="<%=matchRequest.getUser1_Id().getUserId()%>">
+<input type="hidden" name="User2Id" value="<%=matchRequest.getUser2_Id().getUserId()%>">
+<input type="hidden" name="user1RequestStatus" value="<%=matchRequest.getUser1_Request_Status()%>">
+								
+<button type="submit" class="btn btn-danger" name="user2RequestStatus" value="REJECT">Reject</button>
+<button type="submit" class="btn btn-success" name="user2RequestStatus" value="ACCEPT">Accept</button><br><br>								
+										
+<input type="submit" value="" />
+</form>
+<%}%>
+<br>
+
+
 MatchRequestStatus: <%=matchRequest.getRequest_Status()%><br>
 <br><br>
 <%} %>
