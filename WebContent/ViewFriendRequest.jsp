@@ -21,12 +21,7 @@
 <body>
 
 	<%
-		List<FriendRequest> pendingReceived = (List<FriendRequest>) session.getAttribute("pendingReceived");
-		List<FriendRequest> acceptReceived = (List<FriendRequest>) session.getAttribute("acceptReceived");
-		List<FriendRequest> rejectReceived = (List<FriendRequest>) session.getAttribute("rejectReceived");
-		List<FriendRequest> acceptSent = (List<FriendRequest>) session.getAttribute("acceptSent");
-		List<FriendRequest> rejectSent = (List<FriendRequest>) session.getAttribute("rejectSent");
-		List<FriendRequest> pendingSent = (List<FriendRequest>) session.getAttribute("pendingSent");
+	
 		List<FriendRequest> frReceivedList = (List<FriendRequest>) session.getAttribute("frReceivedList");
 		List<FriendRequest> frSentList = (List<FriendRequest>) session.getAttribute("frSentList");
 	%>
@@ -40,58 +35,6 @@
 		<div class="col-sm-10"pull-middle">
 
 			<h5>Friend Request Received</h5>
-			<table width="800" border="0" cellpadding="50"
-				border-collapse="collapse">
-				<tr>
-
-				</tr>
-				<%
-					for (int i = 0; i < frSentList.size(); i++) {
-				%>
-
-				<%
-					if (frSentList.size() > 0) {
-				%>
-
-				<tr align="center" valign="center">
-					<td>
-						<table width="100" border="0" cellpadding="0">
-							<td><img
-								src="user/image.html?id=<%=frSentList.get(i).getAu().getUserId()%>"
-								class="img-rounded" alt="Cinque Terre" width="50" height="36" />
-							</td>
-							</br>
-							<td><h5><%=frSentList.get(i).getAu().getUserName()%></h5></td>
-						</table>
-					</td>
-					<td><h5><%=frSentList.get(i).getRequestStatus()%></h5></td>
-					<%
-						if (frSentList.get(i).getRequestStatus().equals("PENDING")) {
-					%>
-					<td><form action=ChangeFriendRequestController method="post">
-							<button type="submit" class="btn btn-danger" name="accept"
-								value="<%=frReceivedList.get(i).getFriend().getUserId()%>">Reject</button>
-						</form></td>
-					<td><form action="ChangeFriendRequestController" method="post">
-							<button type="submit" class="btn btn-success" name="reject"
-								value="<%=frReceivedList.get(i).getFriend().getUserId()%>">Accept</button>
-						</form></td>
-					<%
-						}
-					%>
-				</tr>
-				<%
-					}
-					}
-				%>
-			</table>
-		</div>
-
-
-
-		<div class="col-sm-10"pull-middle">
-
-			<h5>Friend Request Sent</h5>
 			<table width="800" border="0" cellpadding="50"
 				border-collapse="collapse">
 				<tr>
@@ -120,10 +63,62 @@
 					<%
 						if (frReceivedList.get(i).getRequestStatus().equals("PENDING")) {
 					%>
+					<td><form action=ChangeFriendRequestController method="post">
+							<button type="submit" class="btn btn-danger" name="accept"
+								value="<%=frReceivedList.get(i).getAu().getUserId()%>">Accept</button>
+						</form></td>
+					<td><form action="ChangeFriendRequestController" method="post">
+							<button type="submit" class="btn btn-success" name="reject"
+								value="<%=frReceivedList.get(i).getAu().getUserId()%>">Reject</button>
+						</form></td>
+					<%
+						}
+					%>
+				</tr>
+				<%
+					}
+					}
+				%>
+			</table>
+		</div>
+
+
+
+		<div class="col-sm-10"pull-middle">
+
+			<h5>Friend Request Sent</h5>
+			<table width="800" border="0" cellpadding="50"
+				border-collapse="collapse">
+				<tr>
+
+				</tr>
+				<%
+					for (int i = 0; i < frSentList.size(); i++) {
+				%>
+
+				<%
+					if (frSentList.size() > 0) {
+				%>
+
+				<tr align="center" valign="center">
+					<td>
+						<table width="100" border="0" cellpadding="0">
+							<td><img
+								src="user/image.html?id=<%=frSentList.get(i).getFriend().getUserId()%>"
+								class="img-rounded" alt="Cinque Terre" width="50" height="36" />
+							</td>
+							</br>
+							<td><h5><%=frSentList.get(i).getFriend().getUserName()%></h5></td>
+						</table>
+					</td>
+					<td><h5><%=frSentList.get(i).getRequestStatus()%></h5></td>
+					<%
+						if (frSentList.get(i).getRequestStatus().equals("PENDING")) {
+					%>
 					<td><form action="CancelFriendshipRequestController"
 							method="post">
 							<button type="submit" class="btn btn-danger" name="changeStatus"
-								value="<%=frReceivedList.get(i).getAu().getUserId()%>">Cancel</button>
+								value="<%=frSentList.get(i).getFriend().getUserId()%>">Cancel</button>
 						</form></td>
 
 					<%

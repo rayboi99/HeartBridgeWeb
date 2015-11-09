@@ -76,7 +76,7 @@ public class FriendRequestService implements FriendRequestServiceInterface{
 			if(S.equals("ACCEPT")){
 				FriendshipService fs=new FriendshipService();
 				fs.addFriendship(userId, friendId, S);
-				fs.addFriendship(friendId, userId, S);
+				
 				fs.commitTransaction();
 		}
 		entityManager.persist(fr);

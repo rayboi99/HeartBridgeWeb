@@ -22,6 +22,7 @@
 <% List<Friendship> fsl=(List<Friendship>)session.getAttribute("FriendshipList");
 List<Friendship> mfl=(List<Friendship>)session.getAttribute("MFriendshipList");
 List<Friendship> nmfl=(List<Friendship>)session.getAttribute("NMFriendshipList");
+String error=(String)request.getAttribute("FriendRequest");
 %>
 <%@ include file="header.html"%>
 
@@ -33,6 +34,8 @@ List<Friendship> nmfl=(List<Friendship>)session.getAttribute("NMFriendshipList")
 </br>
 </br>
 <div class="col-sm-10" pull-middle">
+
+
    <table width="600" border="0" cellpadding="50" >
 
 <% if(nmfl.size()>0){%>
@@ -47,8 +50,8 @@ List<Friendship> nmfl=(List<Friendship>)session.getAttribute("NMFriendshipList")
   </td></br>
   <td><h5><%=nmfl.get(i).getFriend().getUserName() %></h5></td></table>
 </td>
-<td><form action="CancelFriendshipRequestController" method="post">
-<button type="submit" class="btn btn-primary" name="AddButton" value="<%=fsl.get(i).getFriend().getUserId() %>">Add Friend</button>
+<td><form action="SendFriendRequestServlet" method="post">
+<button type="submit" class="btn btn-primary" name="selectedId" value="<%=fsl.get(i).getFriend().getUserId() %>">Add Friend</button>
  </form></td>
  
 </tr>
@@ -84,7 +87,9 @@ List<Friendship> nmfl=(List<Friendship>)session.getAttribute("NMFriendshipList")
 
 <%} }%>
 </table>
-</div></div>
+
+</div>
+<div class="col-sm-10" pull-middle" style="color:red">${FriendRequest}</div></div>
 <%@ include file="footer.html"%>
 </body>
 </html>
