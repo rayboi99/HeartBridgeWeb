@@ -37,7 +37,7 @@ public class MakeFriendRequestController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(true);
 		String uis=session.getAttribute("userIdKey").toString();
-		int chooseUser=(int)session.getAttribute("selectedId");
+		int chooseUser=(int) session.getAttribute("selectedId");
 		int uid=Integer.parseInt(uis);
 		if(uid==chooseUser)
 		{

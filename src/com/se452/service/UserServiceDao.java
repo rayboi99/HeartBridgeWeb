@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -12,11 +13,13 @@ import com.se452.model.PasswordEncryption;
 import com.se452.model.Profile;
 
 public class UserServiceDao implements UserServiceDaoInterface {
-
+	private EntityManagerFactory entityManagerFactory;
 	private EntityManager em;
 
 	public UserServiceDao() {
-		em = Persistence.createEntityManagerFactory("SE452EclipseLink2").createEntityManager();
+		entityManagerFactory = Persistence.createEntityManagerFactory("SE452EclipseLink2");
+		 em = entityManagerFactory.createEntityManager();
+		 em.getTransaction().begin();
 	}
 
 	@Override
@@ -28,8 +31,10 @@ public class UserServiceDao implements UserServiceDaoInterface {
 			AppUser user = new AppUser();
 			user = (AppUser) result.get(0);
 			if (user.getUserName().equals(userName))
-				return true;
+				{
+				return true;}
 		}
+		
 		return false;
 	}
 
@@ -46,7 +51,7 @@ public class UserServiceDao implements UserServiceDaoInterface {
 		au.setAge(age);
 		au.setProfile(p);
 		em.persist(au);
-		em.getTransaction().commit();
+		
 	}
 
 	@Override
@@ -62,9 +67,11 @@ public class UserServiceDao implements UserServiceDaoInterface {
 			String passwordEncrypted = pe.getEncryptedPassword();
 			if (passwordEncrypted.equals(passwordDB)) {
 				ifValid = true;
+			
 
 			} else {
 				ifValid = false;
+				
 
 			}
 		}
@@ -77,7 +84,7 @@ public class UserServiceDao implements UserServiceDaoInterface {
 				.setParameter("userName", userName).getResultList();
 		AppUser testUser = (AppUser) result.get(0);
 		em.remove(testUser);
-		em.getTransaction().commit();
+		
 	}
 
 	@Override
@@ -85,6 +92,7 @@ public class UserServiceDao implements UserServiceDaoInterface {
 		Query query = em.createQuery("select u from AppUser u where u.userId =:userId");
 		query.setParameter("userId", id);
 		AppUser user = (AppUser) query.getSingleResult();
+		
 		return user;
 	}
 	
@@ -93,6 +101,7 @@ public class UserServiceDao implements UserServiceDaoInterface {
 		List result = em.createQuery("select au from AppUser au where au.userName=:userName")
 				.setParameter("userName", userName).getResultList();
 		AppUser testUser = (AppUser) result.get(0);
+	
 		return testUser;
 	}
 
@@ -111,7 +120,7 @@ public class UserServiceDao implements UserServiceDaoInterface {
 		} else if (para.toUpperCase().equals("AGE")) {
 			testUser.setAge(Integer.parseInt(value));
 		}
-		em.getTransaction().commit();
+	
 	}
 
 	/*
@@ -124,8 +133,50 @@ public class UserServiceDao implements UserServiceDaoInterface {
 		List<AppUser> result = em.createQuery("select au from AppUser au").getResultList();
 		return result;
 	}
-	public void closeConnection() {
+	
+
+	@Override
+	public void updateAccountNotSpecialItems(int userId, String email, String gender, String age) {
+		Query query = em.createQuery("select u from AppUser u where u.userId =:userId");
+		query.setParameter("userId", userId);
+		AppUser user = (AppUser) query.getSingleResult();
+			user.setEmailAddress(email);
+			user.setGender(gender);
+			user.setAge(Integer.parseInt(age));
+			em.persist(user);
+		
+		
+			
+	}
+
+	@Override
+	public boolean updateAccountPassword(int userId,String oldPass, String newPass) throws NoSuchAlgorithmException {
+		Query query = em.createQuery("select u from AppUser u where u.userId =:userId");
+		query.setParameter("userId", userId);
+		AppUser user = (AppUser) query.getSingleResult();
+		String passWordInDB =user.getPassword();
+		PasswordEncryption pe = new PasswordEncryption();
+		pe.setOriginalPassword(oldPass);
+		pe.passwordEncrypt();
+		String userTypedOldPaaword= pe.getEncryptedPassword();
+		if(userTypedOldPaaword.equals(passWordInDB))
+		{
+			user.setPassword(newPass);
+			em.persist(user);
+		
+			return true;
+		}
+	
+		
+		return false;
+		
+	}
+	public void finalCommit()
+	{
+		em.getTransaction().commit();
 		em.close();
+		entityManagerFactory.close();
+		
 	}
 
 }

@@ -58,7 +58,7 @@ public class GetHomePageUserPicturesController extends HttpServlet {
 			
 	session.setAttribute("IdList", idlist);
 	session.setAttribute("nameList", nameList);
-	usd.closeConnection();
+	usd.finalCommit();
 
 	}
 

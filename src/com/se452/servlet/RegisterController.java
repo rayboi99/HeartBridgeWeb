@@ -73,6 +73,6 @@ public class RegisterController extends HttpServlet {
 		request.setAttribute("message", message);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-		us.closeConnection();
+		us.finalCommit();
 	}
 }

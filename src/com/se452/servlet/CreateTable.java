@@ -44,6 +44,6 @@ public class CreateTable extends HttpServlet {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
-		user.closeConnection();
+		user.finalCommit();
 	}
 }

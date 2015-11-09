@@ -3,46 +3,49 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/javaee-api-7.0.jar">
+	<classpathentry kind="lib" path="C:/HeartBridgeJars/commons-logging-1.2.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/commons-logging-1.2.jar">
+	<classpathentry kind="lib" path="C:/HeartBridgeJars/eclipselink.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/jstl-api-1.2.jar">
+	<classpathentry kind="lib" path="C:/HeartBridgeJars/javaee-api-7.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/taglibs-standard-impl-1.2.5.jar">
+	<classpathentry kind="lib" path="C:/HeartBridgeJars/javax.persistence_2.1.0.v201304241213.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/ojdbc7.jar">
+	<classpathentry kind="lib" path="C:/HeartBridgeJars/jstl-api-1.2.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/mysql-connector-java-5.1.37-bin.jar">
+	<classpathentry kind="lib" path="C:/HeartBridgeJars/ojdbc7.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/javax.persistence_2.1.0.v201304241213.jar">
+	<classpathentry kind="lib" path="C:/HeartBridgeJars/taglibs-standard-impl-1.2.5.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/eclipselink.jar">
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0">
 		<attributes>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>

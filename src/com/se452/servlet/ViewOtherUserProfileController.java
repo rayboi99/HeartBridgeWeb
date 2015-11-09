@@ -63,7 +63,7 @@ public class ViewOtherUserProfileController extends HttpServlet {
 		session.setAttribute("userName", userName);
 		
 		
-		usd.closeConnection();
+		usd.finalCommit();
 		
 	
 		response.sendRedirect("ViewOtherUserProfile.jsp");

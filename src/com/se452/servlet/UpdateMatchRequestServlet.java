@@ -6,7 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,14 +44,37 @@ public class UpdateMatchRequestServlet extends HttpServlet {
 		
 		MatchRequestService msg = new MatchRequestService();
 		try {
-			msg.updateMatchRequestStatus(Integer.parseInt(matchMakerId), Integer.parseInt(user1Id), Integer.parseInt(user2Id), user1RequestStatus, user2RequestStatus);
+			// I'm going to default to use ACCEPT for now
+			msg.updateMatchRequestStatus(Integer.parseInt(matchMakerId), Integer.parseInt(user1Id), Integer.parseInt(user2Id), Status.ACCEPT, Status.ACCEPT);
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ViewMatchRequestByUserServlet");
-		dispatcher.forward(request, response);
+		List<MatchRequest> matchRequestList = msg.listMatchRequestsbyMatchMakerId(Integer.parseInt(matchMakerId));
+		
+		
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<body>");
+		out.println("<h1>MatchRequest Info after Update</h1>");
+
+		for (MatchRequest matchRequest : matchRequestList)
+		{
+			out.println("</br></br>");
+			out.println("Date: " + matchRequest.getRequest_Time() + "</br>");
+			out.println("MatchMaker: " + matchRequest.getMatchMaker_Id().getUserName() + "</br>");
+			out.println("User1: " + matchRequest.getUser1_Id().getUserName() + "</br>");
+			out.println("User1Status: " + matchRequest.getUser1_Request_Status() + "</br>");
+			out.println("User2: " + matchRequest.getUser2_Id().getUserName() + "</br>");
+			out.println("User2Status: " + matchRequest.getUser2_Request_Status() + "</br>");
+			out.println("MatchRequestStatus: " + matchRequest.getRequest_Status() + "</br>");
+			out.println("</br></br>");
+		}		
+		
+		out.println("</body>");
+		out.println("</html>");
+		
 	}
 
 	/**

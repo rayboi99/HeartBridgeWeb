@@ -65,7 +65,7 @@ public class ViewDatesAsMMServlet extends HttpServlet {
 		DateInfoService dateService = new DateInfoService();
 		dateService.createDate(mm, user1, user2, new Date(), location, description);
 		
-		userService.closeConnection();
+		userService.finalCommit();
 		dateService.closeConnection();
 	}
 }

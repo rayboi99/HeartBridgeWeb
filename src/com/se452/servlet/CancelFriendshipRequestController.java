@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.se452.model.FriendRequest;
 import com.se452.model.Friendship;
+import com.se452.service.FriendRequestServiceDao;
 import com.se452.service.FriendshipServiceDao;
 
 /**
@@ -34,17 +36,18 @@ public class CancelFriendshipRequestController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 HttpSession session=request.getSession(true);
 		int uid=Integer.parseInt(session.getAttribute("userIdKey").toString());
-		int friendId=Integer.parseInt(request.getParameter("cancelButton"));
-		FriendshipServiceDao fssd=new FriendshipServiceDao();
-		fssd.cancelFriendship(uid, friendId);
-		fssd.finalCommit();
+		int friendId=Integer.parseInt(request.getParameter("changeStatus"));
+		FriendRequestServiceDao fssd=new FriendRequestServiceDao();
+		fssd.cancelFriendRequest(uid, friendId);
+	
+		List<FriendRequest> frReceivedList =fssd.viewFriendReceivedRequest(uid);
+		List<FriendRequest> frSentList =fssd.viewFriendSentRequest(uid);
+	session.setAttribute("frReceivedList", frReceivedList);
+	session.setAttribute("frSentList", frSentList);
+	fssd.finalCommit();
+	response.sendRedirect("ViewFriendRequest.jsp");
+	
 		
-		FriendshipServiceDao fssd2=new FriendshipServiceDao();
-		
-		List<Friendship> fsl=fssd2.getFriendShipList(uid);
-		fssd2.finalCommit();
-		session.setAttribute("FriendshipList", fsl);
-		response.sendRedirect("ViewFriendshipList.jsp");
 		
 	}
 

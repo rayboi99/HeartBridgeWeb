@@ -19,4 +19,6 @@ public interface UserServiceDaoInterface {
 	//void setEntityManager(EntityManager em);
 	//List<AppUser> getAllUser();
 	List<AppUser> getAllUser();
+	boolean updateAccountPassword(int userId,String oldPass, String newPass) throws NoSuchAlgorithmException;
+	void updateAccountNotSpecialItems(int userId,String email, String gender, String age);
 }

@@ -36,7 +36,7 @@ public class ViewFriendRequestController extends HttpServlet {
     			int uid=Integer.parseInt(session.getAttribute("userIdKey").toString());
     			FriendRequestServiceDao frsd=new FriendRequestServiceDao();
     			List<FriendRequest> frReceivedList =frsd.viewFriendReceivedRequest(uid);
-    	 		List<FriendRequest> frSentList =frsd.viewFriendReceivedRequest(uid);
+    	 		List<FriendRequest> frSentList =frsd.viewFriendSentRequest(uid);
     			session.setAttribute("frReceivedList", frReceivedList);
     			session.setAttribute("frSentList", frSentList);
     			frsd.finalCommit();
@@ -53,44 +53,9 @@ HttpSession session=request.getSession(true);
 		int uid=Integer.parseInt(session.getAttribute("userIdKey").toString());
 		FriendRequestServiceDao frsd=new FriendRequestServiceDao();
 		List<FriendRequest> frReceivedList =frsd.viewFriendReceivedRequest(uid);
-		List<FriendRequest> pendingReceived = new ArrayList<>();
-		List<FriendRequest> acceptReceived = new ArrayList<>();
-		List<FriendRequest> rejectReceived = new ArrayList<>();
-		for(int i=0;i<frReceivedList.size();i++)
-		{
-			if(frReceivedList.get(i).getRequestStatus().equals("PENDING")){
-				pendingReceived.add(frReceivedList.get(i));
-			}
-			if(frReceivedList.get(i).getRequestStatus().equals("ACCEPT")){
-				acceptReceived.add(frReceivedList.get(i));
-			}
-			if(frReceivedList.get(i).getRequestStatus().equals("REJECT")){
-				rejectReceived.add(frReceivedList.get(i));
-			}
-		}
-		
- 		List<FriendRequest> frSentList =frsd.viewFriendReceivedRequest(uid);
- 		List<FriendRequest> acceptSent = new ArrayList<>();
-		List<FriendRequest> rejectSent= new ArrayList<>();
-		List<FriendRequest> pendingSent= new ArrayList<>();
-		for(int i=0;i<frSentList.size();i++)
-		{
-			if(frSentList.get(i).getRequestStatus().equals("PENDING")){
-				pendingSent.add(frSentList.get(i));
-			}
-			if(frSentList.get(i).getRequestStatus().equals("ACCEPT")){
-				acceptSent.add(frSentList.get(i));
-			}
-			if(frSentList.get(i).getRequestStatus().equals("REJECT")){
-				rejectSent.add(frSentList.get(i));
-			}
-		}
-		session.setAttribute("pendingReceived", pendingReceived);
-		session.setAttribute("acceptReceived", acceptReceived);
-		session.setAttribute("rejectReceived", rejectReceived);
-		session.setAttribute("acceptSent", acceptSent);
-		session.setAttribute("rejectSent", rejectSent);
-		session.setAttribute("pendingSent", pendingSent);
+ 		List<FriendRequest> frSentList =frsd.viewFriendSentRequest(uid);
+
+	
 		session.setAttribute("frReceivedList", frReceivedList);
 		session.setAttribute("frSentList", frSentList);
 		response.sendRedirect("ViewFriendRequest.jsp");

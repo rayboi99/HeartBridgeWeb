@@ -38,7 +38,7 @@ public class ViewAllUserController extends HttpServlet {
 		
 			List<AppUser> list=(List<AppUser>)usd.getAllUser();
 			session.setAttribute("AllUserList", list);
-			usd.closeConnection();
+			usd.finalCommit();
 			
 			 request.getRequestDispatcher("Home.jsp").forward(request, response);
 		
@@ -53,7 +53,7 @@ public class ViewAllUserController extends HttpServlet {
 		
 			List<AppUser> list=(List<AppUser>)usd.getAllUser();
 			session.setAttribute("AllUserList", list);
-			usd.closeConnection();
+			usd.finalCommit();
 			
 			
 			

@@ -24,16 +24,13 @@ import com.se452.service.FriendRequestServiceDao;
 @WebServlet("/ChangeFriendRequestController")
 public class ChangeFriendRequestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager ;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ChangeFriendRequestController() {
         super();
-        entityManagerFactory = Persistence.createEntityManagerFactory("SE452EclipseLink2");
-		entityManager = entityManagerFactory.createEntityManager();
-		entityManager.getTransaction().begin();
+       
     }
 
 	
@@ -45,15 +42,14 @@ public class ChangeFriendRequestController extends HttpServlet {
 		HttpSession session=request.getSession(true);
 		int uid=Integer.parseInt(session.getAttribute("userIdKey").toString());
 		FriendRequestServiceDao frsd=new FriendRequestServiceDao();
-		frsd.setEntityManager(entityManager);
 		String SelectedUserAccept=request.getParameter("accept");
 		String SelectedUserReject=request.getParameter("reject");
-	if(!SelectedUserAccept.isEmpty())
-		frsd.changeFriendReqestStatus(uid,Integer.parseInt(SelectedUserAccept), Status.ACCEPT);
-	else if(!SelectedUserReject.isEmpty())
-		frsd.changeFriendReqestStatus(uid,Integer.parseInt(SelectedUserReject),Status.REJECT);
+	if(SelectedUserAccept!=null)
+		frsd.changeFriendReqestStatus(Integer.parseInt(SelectedUserAccept),uid, Status.ACCEPT);
+	else if(SelectedUserReject!=null)
+		frsd.changeFriendReqestStatus(Integer.parseInt(SelectedUserReject),uid,Status.REJECT);
 	List<FriendRequest> frReceivedList =frsd.viewFriendReceivedRequest(uid);
-		List<FriendRequest> frSentList =frsd.viewFriendReceivedRequest(uid);
+		List<FriendRequest> frSentList =frsd.viewFriendSentRequest(uid);
 	session.setAttribute("frReceivedList", frReceivedList);
 	session.setAttribute("frSentList", frSentList);
 	frsd.finalCommit();

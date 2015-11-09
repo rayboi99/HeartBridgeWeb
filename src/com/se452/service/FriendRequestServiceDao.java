@@ -77,7 +77,7 @@ public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface
 		FriendshipServiceDao fs=new FriendshipServiceDao();
 		String S="";
 		String oldStatus=fr.getRequestStatus();
-		if(s.equals("REJECT"))
+		if(s.toString().equals("REJECT"))
 		{
 			fr.setRequestStatus(s.toString());
 			long time = System.currentTimeMillis();
@@ -86,7 +86,7 @@ public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface
 			fr.setRequestStatus(s.toString());
 			fr.setRequestUpdateTime(S);
 		}
-		else if(s.equals("ACCEPT"))
+		else if(s.toString().equals("ACCEPT"))
 		{
 			fr.setRequestStatus(s.toString());
 			long time = System.currentTimeMillis();
@@ -94,12 +94,13 @@ public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface
 			S = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(ts);
 			fr.setRequestStatus(s.toString());
 			fr.setRequestUpdateTime(S);
+			fs.addFriendship(uid, fid, S);
+			
+			fs.finalCommit();
 			
 		}
 			
-		fs.addFriendship(uid, fid, S);
 		
-		fs.addFriendship(fid, uid, S);
 		entityManager.persist(fr);
 	
 		}
@@ -109,6 +110,17 @@ public class FriendRequestServiceDao implements FriendRequestServiceDaoInterface
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		entityManagerFactory.close();
+		
+	}
+	@Override
+	public void cancelFriendRequest(int  userId, int friendId) {
+		Query q=entityManager.createQuery("delete  from FriendRequest fr where fr.au.userId=:uid"
+				+ " and fr.friend.userId=:fid");
+		         q.setParameter("uid", userId);
+		         q.setParameter("fid", friendId);
+		         q.executeUpdate();
+		        
+		
 		
 	}
 

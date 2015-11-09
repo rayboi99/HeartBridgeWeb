@@ -53,7 +53,7 @@ public class DateInfoService implements DateInfoServiceInterface{
 		query.setParameter("id", user);
 		
 		List <DateInfo> listOfDates = (List <DateInfo>)query.getResultList();
-		userService.closeConnection();
+		userService.finalCommit();
 		return listOfDates;
 	}
 

@@ -3,7 +3,6 @@ package com.se452.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -44,45 +43,8 @@ public class ListMessagesServlet extends HttpServlet {
 		List<Message> messageListSent = msg.listMessagesSentByUserId(uid);
 		List<Message> messageListReceived = msg.listMessagesReceivedByUserId(uid);
 		
-		String pageFrom = request.getParameter("pageFrom");
-		String friendIdSelected = request.getParameter("friendIdSelected");
-		
-		if (pageFrom != null && friendIdSelected != null)
-		{
-			if (pageFrom.equals("ViewFriendshipList"))
-			{
-				int friendId = Integer.parseInt(friendIdSelected);
-				
-				List<Message> friendmessageListSent = new ArrayList<Message>();
-				List<Message> friendmessageListReceived = new ArrayList<Message>();
-				
-				for (Message msgTemp : messageListSent)
-				{
-					if (msgTemp.getUser_Id_To().getUserId() == friendId)
-					{
-						friendmessageListSent.add(msgTemp);
-					}
-				}
-				
-				for (Message msgTemp : friendmessageListReceived)
-				{
-					if (msgTemp.getUser_Id_From().getUserId() == friendId)
-					{
-						friendmessageListReceived.add(msgTemp);
-					}
-				}
-				
-				request.setAttribute("messageListSent", friendmessageListSent);
-				request.setAttribute("messageListReceived", friendmessageListReceived);			
-			}
-		}
-		else
-		{
-			request.setAttribute("messageListSent", messageListSent);
-			request.setAttribute("messageListReceived", messageListReceived);
-		}
-		
-
+		request.setAttribute("messageListSent", messageListSent);
+		request.setAttribute("messageListReceived", messageListReceived);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ViewMessages.jsp");
 		dispatcher.forward(request, response);
 	}

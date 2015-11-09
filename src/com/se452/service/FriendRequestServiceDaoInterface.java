@@ -12,7 +12,7 @@ public interface FriendRequestServiceDaoInterface {
 	void sendFriendRequest(int userId, int friendId);
 	void setEntityManager(EntityManager em);
 		List<FriendRequest> viewFriendReceivedRequest(int userId);
-	//void cancelFriendRequest(String userName, String friendName,String timeSent);
+	void cancelFriendRequest(int  userId, int friendId);
 	void finalCommit();
 	List<FriendRequest> viewFriendSentRequest(int userId);
 	void changeFriendReqestStatus(int uid, int fid, Status s);
