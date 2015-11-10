@@ -41,7 +41,6 @@ public class UserServiceDao implements UserServiceDaoInterface {
 	@Override
 	public void addUser(String userName, String userEmail, String userGender, String userPassword, int age)
 			throws NoSuchAlgorithmException {
-		em.getTransaction().begin();
 		AppUser au = new AppUser();
 		Profile p = new Profile();
 		au.setUserName(userName);
@@ -176,7 +175,5 @@ public class UserServiceDao implements UserServiceDaoInterface {
 		em.getTransaction().commit();
 		em.close();
 		entityManagerFactory.close();
-		
 	}
-
 }

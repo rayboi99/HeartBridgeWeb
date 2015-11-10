@@ -36,12 +36,12 @@ p.error {
 	%>
 
 	<%@ include file="header.html"%>
-
-	<p><%=message%></p>
+S
 	<form role="form" action="LoginController" method="post">
 		<div class="row" style = "margin-top:100px">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4">
+				<p><%=message%></p>
 				<div class="form-group">
 					<label for="email">User Name:</label> <input type="text"
 						class="form-control" name="user_name">
@@ -62,10 +62,7 @@ p.error {
 			<div class="col-sm-4"></div>
 		</div>
 	</form>
-
 	<%@ include file="footer.html"%>
-
-
 
 </body>
 </html>

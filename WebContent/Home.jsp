@@ -22,6 +22,7 @@
 
 </head>
 <body>
+     <c:import url="GetHomePageUserPicturesController" />
 <% int[] idList=(int[])session.getAttribute("IdList");
 String [] nameList = (String[]) session.getAttribute("nameList");%>
 <%@ include file="header.html"%>
@@ -40,7 +41,7 @@ String [] nameList = (String[]) session.getAttribute("nameList");%>
         </div>
         </div>
          
-         <c:import url="GetHomePageUserPicturesController" />
+    
 <%ServletContext sc=request.getSession().getServletContext(); 
 			String s=sc.getRealPath("/HomePageImage");%>
 <br />

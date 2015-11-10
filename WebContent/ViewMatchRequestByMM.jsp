@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-      <%@ page import="java.util.List" %>
-    <%@ page import="com.se452.model.*" %>
-    
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.se452.model.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,39 +25,50 @@
 		<div class="col-sm-4"><%@ include file="navBar.html"%></div>
 		<div class="col-sm-8">
 
-<%List<MatchRequest> matchRequestList = (List<MatchRequest>)request.getAttribute("matchRequestList"); %>
+			<%
+				List<MatchRequest> matchRequestList = (List<MatchRequest>) request.getAttribute("matchRequestList");
+			%>
 
-<h1>Match Requests By MatchMaker</h1>
-<%for(MatchRequest matchRequest : matchRequestList) { %>
-<br><br>
-Date: <%=matchRequest.getRequest_Time()%><br>
-MatchMaker: <%=matchRequest.getMatchMaker_Id().getUserName()%><br>
-User1: <%=matchRequest.getUser1_Id().getUserName()%><br>
-User1Status: <%=matchRequest.getUser1_Request_Status()%><br>
-User2: <%=matchRequest.getUser2_Id().getUserName()%><br>
-User2Status: <%=matchRequest.getUser2_Request_Status()%><br>
-MatchRequestStatus: <%=matchRequest.getRequest_Status()%><br>
+			<h1>Match Requests By MatchMaker</h1>
+			<%
+				for (MatchRequest matchRequest : matchRequestList) {
+			%>
+			<br> <br> Date:
+			<%=matchRequest.getRequest_Time()%><br> MatchMaker:
+			<%=matchRequest.getMatchMaker_Id().getUserName()%><br> User1:
+			<%=matchRequest.getUser1_Id().getUserName()%><br> User1Status:
+			<%=matchRequest.getUser1_Request_Status()%><br> User2:
+			<%=matchRequest.getUser2_Id().getUserName()%><br> User2Status:
+			<%=matchRequest.getUser2_Request_Status()%><br>
+			MatchRequestStatus:
+			<%=matchRequest.getRequest_Status()%><br> <br>
+			<%
+				if (matchRequest.getRequest_Status().equals("ACCEPT")) {
+			%>
 
-<br>
-<%if (matchRequest.getRequest_Status().equals("ACCEPT")) { %>
+			<!-- Send to Naga's Create Date Servlet or Controller -->
+			<form action=CreateDateController method="post">
+				<button type="submit" class="btn btn-success" name="createDate"
+					value="<%=matchRequest.getUser1_Id()%>">Create Date</button>
+			</form>
 
-<!-- Send to Naga's Create Date Servlet or Controller -->
-<form action=CreateDateController method="post">
-		<button type="submit" class="btn btn-success" name="createDate"
-			value="<%=matchRequest.getUser1_Id()%>">Create Date</button>
-</form>
-<%}%>
 
-<br><br>
-<%} %>
+			<%
+				}
+			%>
 
- <form action="ListFriendsServlet">
- <input type="hidden" name="pageFrom" value="ViewMatchRequestByMM">
- <input type="submit" value="Create MatchRequest">
- </form>
- 
-</div>
- </div>
- 	<%@ include file="footer.html"%>
+			<br> <br>
+			<%
+				}
+			%>
+
+			<form action="ListFriendsServlet">
+				<input type="hidden" name="pageFrom" value="ViewMatchRequestByMM">
+				<input type="submit" value="Create MatchRequest">
+			</form>
+
+		</div>
+	</div>
+	<%@ include file="footer.html"%>
 </body>
 </html>

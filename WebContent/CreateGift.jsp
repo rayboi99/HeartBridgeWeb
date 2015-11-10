@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,9 +22,11 @@
 		}
 	%>
 	<form action = "AddGiftServlet" method = "post">
-	<%@ include file = "header.html" %>
-    <%@ include file = "navBar.html" %>
-		<div class = "col-xs-8" style="color:cornflowerblue;font-weight: bold; margin-left: 20px;">
+		<%@ include file ="header.html" %>>
+		<div class="row">
+		<div class="col-sm-4"><%@ include file="navBar.html"%></div>
+		<div class="col-sm-8">
+		<div  style="color:cornflowerblue;font-weight: bold; margin-left: 20px;">
 			<div class = "table">
 			<h1 > Gift</h1>
 				<table class = "table table-hover" style="font-size: 20px;">
@@ -32,31 +35,64 @@
 							<th>Gift Id</th>
 							<th>Gift Name</th>
 							<th>Gift Description</th>	
+							<th>Gift Picture</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-					       <th> </th>
+					       <td>1</td>
+					       <td>bear</td>
+					       <td>you are so cute </td>
+					       <td>
+					       <img src ="img/teddybear.jpg" width= "100px">
+					       </td>
 						</tr>
 						<tr>
-							
+							<td>2</td>
+							<td>flower</td>
+							<td>you are pretty</td>
+							<td>
+					       <img src ="img/flower.jpg" width= "100px">
+					       </td>
+						</tr>
+						
 					</tbody>
 				</table>
 			
 			</div>
-		    <div class = "col-xs-10" style="color:cornflowerblue;font-weight: bold; margin-left: 20px;font-size: 20px;">
-				  <p>Gift Id</p>
-				  <input type = "text" name = "gifTId"><br><br>
-				  <p>From:</p>
-				  <input type = "text" name = "from"><br><br>
-				  <p> To: </p>
-				  <p><%=userName%></p>
-				  
-				  <input type = "text" name = "to"><br><br>
-	  
-				  <button type="button" class="btn btn-default active" style= "color: white; background-color: cornflowerblue;font-size: 20px; font-weight: bold;">Send</button>
 			</div>
+		    <div style="color:cornflowerblue;font-weight: bold; margin-left: 20px;font-size: 20px; margin-top: 100px">
+		    	<h1> Pick A Gift </h1>
+		    	<table class= "table table-hover">
+		    	  
+		    	  <tr>
+				  <td>Gift Id</td>
+				  <td>
+				  <select id= "giftId" name = "giftId">
+				  <option>1</option>
+				  <option>2</option>
+				  </select>
+				  </td>
+				  <td>From </td>
+				 
+				  <td><%=userName%></td>				 
+				  <td> To: </td>
+				  <td>
+				  <select id="friendId" name="friendId">
+           		  <c:forEach var="friends" items="${friendshipList}">
+                  <option value="${friends.friend.getUserId()}">${friends.friend.getUserName()}</option>
+                  </c:forEach>
+                  </select> 	  
+                  </td>
+                  </tr>	
+				  </table>
+			<input type= "submit" value = "Send">	  
+		 	</div>
+		 
+		                                                                                                                                                                                                                                   
 		 </div>
+		</div>
+		<%@ include file="footer.html"%>
 	</form>>
 </body>
 

@@ -40,11 +40,26 @@ public class GiftServlet extends HttpServlet {
 //		response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         GiftService gs = new GiftService();
-        List<Gift> giftListSent = gs.reviewGiftUserSend(148);
-        List<Gift> giftListReceived = gs.reviewGiftUserReveived(148);
-       
-       request.setAttribute("giftListSent", giftListSent);
-        request.setAttribute("giftListReceived", giftListReceived);
+        List<Gift> giftListSent = gs.reviewGiftUserSend(uid);
+        List<Gift> giftListReceived = gs.reviewGiftUserReveived(uid);
+        
+        String pageFrom = request.getParameter("pageFrom");
+		String friendIdSelected = request.getParameter("friendIdSelected");
+		if(pageFrom != null && friendIdSelected != null){
+			if (pageFrom.equals("ViewFriendshipList")){
+				int friendId = Integer.parseInt(friendIdSelected);
+				 List<Gift> friendGifttSend = gs.reviewGift(friendId, uid);
+				 List<Gift> friendGifttRecevied = gs.reviewGift(uid, friendId);
+				 request.setAttribute("giftListSent", friendGifttSend);
+				 request.setAttribute("giftListReceived", friendGifttRecevied);
+			}
+
+		}
+        
+		else{
+			request.setAttribute("giftListSent", giftListSent);
+			request.setAttribute("giftListReceived", giftListReceived);
+		}
        
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListGiftsByUser.jsp");
 		dispatcher.forward(request, response);

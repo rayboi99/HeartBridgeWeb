@@ -18,30 +18,32 @@ import com.se452.service.FriendshipServiceDao;
 @WebServlet("/ListFriendsServlet")
 public class ListFriendsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListFriendsServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		
+	public ListFriendsServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		HttpSession session = request.getSession(true);
 		int uid = Integer.parseInt(session.getAttribute("userIdKey").toString());
-		
+
 		String pageFrom = request.getParameter("pageFrom");
-		
+
 		FriendshipServiceDao friendService = new FriendshipServiceDao();
 		List<Friendship> friendshipList = friendService.getFriendShipList(uid);
-		
+
 		request.setAttribute("friendshipList", friendshipList);
-		
+
 		String pageTo = "";
 		if (pageFrom.equals("ViewMessages"))
 			pageTo = "/AddMessage.jsp";
@@ -49,12 +51,15 @@ public class ListFriendsServlet extends HttpServlet {
 			pageTo = "/AddMatchRequestAsMM.jsp";
 		else if (pageFrom.equals("ViewMatchRequestByUser"))
 			pageTo = "/AddMatchRequestAsUser.jsp";
-		
+		else if (pageFrom.equals("ViewGifts"))
+			pageTo = "/CreateGift.jsp";
+
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pageTo);
 		dispatcher.forward(request, response);
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

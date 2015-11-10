@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,12 +45,12 @@ public class AddGiftServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		HttpSession session = request.getSession(true);
-		int userTo = Integer.parseInt(request.getParameter("to"));
-		int userFrom = (int) (session.getAttribute("userIdKey"));
-		int giftId = Integer.parseInt(request.getParameter("giftId"));
+	    int userTo = Integer.parseInt(request.getParameter("friendId"));
+		int userFrom = (int) session.getAttribute("userIdKey");
+		int giftId = Integer.parseInt((request.getParameter("giftId")));
 		GiftService gs = new GiftService();
 		try {
-			gs.sendGift(giftId, userTo, userFrom, new Date());
+			gs.sendGift(giftId, userFrom, userTo, new Date());
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,12 +59,8 @@ public class AddGiftServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-      	out.println("Your Gift has been send.");		
-		out.println("</body>");
-		out.println("</html>");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/giftServlet");
+		dispatcher.forward(request, response);
 	}
 
 }

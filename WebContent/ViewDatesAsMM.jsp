@@ -7,12 +7,21 @@
 <title>View Dates as MM</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+#footer {
+	position: absolute;
+	bottom: 0;
+	height: 60px;
+	width: 100%;
+}
+</style>
+
+
 </head>
 <body>
 	<%@page import="java.util.List"%>
@@ -28,43 +37,40 @@
 		<%@include file="navBar.html"%>
 	</div>
 	<div class="col-sm-8">
-		<div class="container">
-			<form action="CreateDateServlet" method="get">
-
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Couple</th>
-							<th>Location</th>
-							<th>Time</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-					<tbody>
-
-						<c:forEach items="${listOfDates}" var="element">
-							<tr>
-								<td>${elemet.User1Id.userName}&${elemet.User2Id.userName}</td>
-								<td>${elemet.location}</td>
-								<td>${elemet.description}</td>
-								<td>${elemet.status}</td>
-							</tr>
-						</c:forEach>
-
-					</tbody>
 
 
-				</table>
 
-				<div class="container">
-					<br /> <input type="submit" class="btn btn-info"
-						name="createDates" value="create dates">
-				</div>
-			</form>
-		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Couple</th>
+					<th>Location</th>
+					<th>Time</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<c:forEach items="${listOfDates}" var="element">
+					<tr>
+						<td>${elemet.User1Id.userName}&${elemet.User2Id.userName}</td>
+						<td>${elemet.location}</td>
+						<td>${elemet.description}</td>
+						<td>${elemet.status}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
+	<form action=CreateDateServlet method="post">
+		<button type="submit" class="btn btn-success" name="createDate">Create Date</button>
+	</form>
+
+	<div id="footer">
+		<%@include file="footer.html"%>
 	</div>
 
 
-	<%@include file="footer.html"%>
 </body>
 </html>

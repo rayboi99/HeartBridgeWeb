@@ -1,28 +1,25 @@
 package com.se452.servlet;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.se452.model.AppUser;
-import com.se452.service.UserServiceDao;
+import com.se452.service.GiftService;
 
 /**
- * Servlet implementation class CreateDateServlet
+ * Servlet implementation class AddGiftPicServlet
  */
-@WebServlet("/CreateDateServlet")
-public class CreateDateServlet extends HttpServlet {
+@WebServlet("/AddGiftPicServlet")
+public class AddGiftPicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateDateServlet() {
+    public AddGiftPicServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,30 +28,25 @@ public class CreateDateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CreateDate.jsp");
-		dispatcher.forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int user1Id = 11;
-		int user2Id = 12;
-		
-		String url ="/CreateDate.jsp";
-		
-			UserServiceDao us = new UserServiceDao();
-			AppUser user1 = us.getUser(user1Id);
-			AppUser user2 = us.getUser(user2Id);
+			int giftId  = Integer.parseInt (request.getParameter("giftId"));
+			String name = request.getParameter("name");
+			String description = request.getParameter("description");
+			String picLoc = request.getParameter("giftImage");
+
+			GiftService gs = new GiftService();
+			gs.addGift(giftId, name, description);
 			
-			request.setAttribute("user1", user1.getUserName());
-			request.setAttribute("user2", user2.getUserName());
+			GiftService gs1 = new GiftService();
+			gs1.insertGiftPic(giftId, picLoc);
+			gs1.closeConnection();
 			
-			us.finalCommit();
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-		dispatcher.forward(request, response);
-		
 	}
 }

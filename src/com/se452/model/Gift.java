@@ -23,11 +23,9 @@ import org.eclipse.persistence.internal.jpa.parsing.TemporalLiteralNode.Temporal
 
 @Entity
 @Table
-@SequenceGenerator(name = "Gift_seq", initialValue = 1, allocationSize = 1)
 public class Gift {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Gift_seq")
 	private int giftId;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "giftId")
