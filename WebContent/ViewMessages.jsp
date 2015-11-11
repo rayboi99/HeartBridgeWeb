@@ -26,49 +26,76 @@
 
 			<%
 				List<Message> msgListSent = (List<Message>) request.getAttribute("messageListSent");
-			%>
-			<%
 				List<Message> msgListReceived = (List<Message>) request.getAttribute("messageListReceived");
 			%>
-
-			<b><u>Messages Sent</u></b>
-			<%
-				for (Message msg : msgListSent) {
-			%>
-			<br>
-			<br> Date:
-			<%=msg.getDate_Sent()%><br> To:
-			<%=msg.getUser_Id_To().getUserName()%><br> From:
-			<%=msg.getUser_Id_From().getUserName()%><br> Subject:
-			<%=msg.getSubject()%><br> Body:
-			<%=msg.getMessage()%><br> <br>
-			<br>
-			<%
-				}
-			%>
-
-			<b><u>Messages Received</u></b>
-			<%
-				for (Message msg : msgListReceived) {
-			%>
-			<br>
-			<br> Date:
-			<%=msg.getDate_Sent()%><br> To:
-			<%=msg.getUser_Id_To().getUserName()%><br> From:
-			<%=msg.getUser_Id_From().getUserName()%><br> Subject:
-			<%=msg.getSubject()%><br> Body:
-			<%=msg.getMessage()%><br> <br>
-			<br>
-			<%
-				}
-			%>
-
+			
+			
+			<div class="col-xs-10"
+				style="color: cornflowerblue; font-weight: bold; margin-left: 20px;">
+				<div class="table">
+					<h1>Messages Sent</h1>
+					<table class="table table-hover" style="font-size: 20px;">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>To</th>
+								<th>From</th>
+								<th>Subject</th>
+								<th>Body</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								for (Message msg : msgListSent) {
+							%>
+							<tr>
+								<td><%=msg.getDate_Sent()%></td>
+								<td><%=msg.getUser_Id_To().getUserName()%></td>
+								<td><%=msg.getUser_Id_From().getUserName()%></td>
+								<td><%=msg.getSubject()%></td>
+								<td><%=msg.getMessage()%></td>
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
+					<h1>Messages Received</h1>
+					<table class="table table-hover" style="font-size: 20px;">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>To</th>
+								<th>From</th>
+								<th>Subject</th>
+								<th>Body</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								for (Message msg : msgListReceived) {
+							%>
+							<tr>
+								<td><%=msg.getDate_Sent()%></td>
+								<td><%=msg.getUser_Id_To().getUserName()%></td>
+								<td><%=msg.getUser_Id_From().getUserName()%></td>
+								<td><%=msg.getSubject()%></td>
+								<td><%=msg.getMessage()%></td>
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
+				</div>
 			<form action="ListFriendsServlet" method="post">
 				<input type="hidden" name="pageFrom" value="ViewMessages"> <input
 					type="submit" value="Create Message">
 			</form>
 		</div>
 	</div>
+	</div>
 	<%@ include file="footer.html"%>
+
 </body>
 </html>

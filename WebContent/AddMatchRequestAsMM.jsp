@@ -28,6 +28,9 @@
 		<div class="row">
 		<div class="col-sm-4"><%@ include file="navBar.html"%></div>
 		<div class="col-sm-8">
+				    <div style="color:cornflowerblue;font-weight: bold; margin-left: 20px;font-size: 20px; margin-top: 100px">
+		    	<h1> Add Match Request As MatchMaker </h1>
+		    	
 	<form action="AddMatchRequestAsMMServlet" method="get">
 		<table>
 			<tr>
@@ -62,6 +65,7 @@
 		<input type="submit" />
 	</form>
 </div>
+ </div>
  </div>
  	<%@ include file="footer.html"%>
 </body>

@@ -35,14 +35,19 @@ public class ListFriendsServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(true);
-		int uid = Integer.parseInt(session.getAttribute("userIdKey").toString());
+        int uid = Integer.parseInt(session.getAttribute("userIdKey").toString());
 
-		String pageFrom = request.getParameter("pageFrom");
+        String pageFrom = request.getParameter("pageFrom");
 
-		FriendshipServiceDao friendService = new FriendshipServiceDao();
-		List<Friendship> friendshipList = friendService.getFriendShipList(uid);
+        FriendshipServiceDao friendService = new FriendshipServiceDao();
+        List<Friendship> friendshipList = friendService.getFriendShipList(uid);
+        request.setAttribute("friendshipList", friendshipList);
 
-		request.setAttribute("friendshipList", friendshipList);
+        if (pageFrom.equals("ViewMatchRequestByUser"))
+        {
+            List<Friendship> matchMakerfriendshipList = friendService.getFriendShipList(friendshipList.get(0).getFriend().getUserId());
+            request.setAttribute("matchMakerfriendshipList", matchMakerfriendshipList);
+        }
 
 		String pageTo = "";
 		if (pageFrom.equals("ViewMessages"))

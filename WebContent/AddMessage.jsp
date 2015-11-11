@@ -24,10 +24,10 @@
 	<div class="row">
 		<div class="col-sm-4"><%@ include file="navBar.html"%></div>
 		<div class="col-sm-8">
-			<b><u>Messages Received</u></b> <br>
-			<br>
+		    <div style="color:cornflowerblue;font-weight: bold; margin-left: 20px;font-size: 20px; margin-top: 100px">
+		    	<h1> Create Message </h1>
 			<form action="AddMessageServlet" method="post">
-				<table>
+				<table class= "table table-hover">
 					<tr>
 						<td>To</td>
 						<td><select id="friendId" name="friendId">
@@ -51,10 +51,11 @@
 
 
 				</table>
-				<input type="hidden" name="pageFrom" value="AddMessage"> <input
-					type="submit" />
+				<input type="hidden" name="pageFrom" value="AddMessage"> 
+				<input type="submit" />
 			</form>
 		</div>
+	</div>
 	</div>
 	<%@ include file="footer.html"%>
 </body>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-      <%@ page import="java.util.List" %>
-    <%@ page import="com.se452.model.*" %>
-    
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.se452.model.*"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,65 +29,109 @@
 		<div class="col-sm-4"><%@ include file="navBar.html"%></div>
 		<div class="col-sm-8">
 
-<%List<MatchRequest> matchRequestList = (List<MatchRequest>)request.getAttribute("matchRequestList"); %>
+			<%
+				List<MatchRequest> matchRequestList = (List<MatchRequest>) request.getAttribute("matchRequestList");
+			%>
 
-<h1>Match Requests By User</h1>
-<%for(MatchRequest matchRequest : matchRequestList) { %>
-<br><br>
-Date: <%=matchRequest.getRequest_Time()%><br>
-MatchMaker: <%=matchRequest.getMatchMaker_Id().getUserName()%><br>
-User1: <%=matchRequest.getUser1_Id().getUserName()%><br>
-User1Status: <%=matchRequest.getUser1_Request_Status()%><br>
+			<div class="col-xs-10"
+				style="color: cornflowerblue; font-weight: bold; margin-left: 20px;">
+				<div class="table">
+					<h1>Match Requests By User</h1>
 
-<br>
-<%if (matchRequest.getUser1_Request_Status().equals("PENDING") && matchRequest.getUser1_Id().getUserId()==userId) { %>
+					<table class="table table-hover" style="font-size: 20px;">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>MatchMaker</th>
+								<th>User1</th>
+								<th>User1Status</th>
+								<th></th>
+								<th>User2</th>
+								<th>User2Status</th>
+								<th></th>
+								<th>MatchRequestStatus</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%
+								for (MatchRequest matchRequest : matchRequestList) {
+							%>
+							<tr>
+								<td><%=matchRequest.getRequest_Time()%></td>
+								<td><%=matchRequest.getMatchMaker_Id().getUserName()%></td>
+								<td><%=matchRequest.getUser1_Id().getUserName()%></td>
+								<td><%=matchRequest.getUser1_Request_Status()%></td>
 
-<form action=UpdateMatchRequestServlet method="post">
+								<td>
+									<%
+										if (matchRequest.getUser1_Request_Status().equals("PENDING")
+													&& matchRequest.getUser1_Id().getUserId() == userId) {
+									%>
 
-<input type="hidden" name="MatchMakerId" value="<%=matchRequest.getMatchMaker_Id().getUserId()%>">
-<input type="hidden" name="User1Id" value="<%=matchRequest.getUser1_Id().getUserId()%>">
-<input type="hidden" name="User2Id" value="<%=matchRequest.getUser2_Id().getUserId()%>">
-<input type="hidden" name="user2RequestStatus" value="<%=matchRequest.getUser2_Request_Status()%>">
-								
-<button type="submit" class="btn btn-danger" name="user1RequestStatus" value="REJECT">Reject</button>
-<button type="submit" class="btn btn-success" name="user1RequestStatus" value="ACCEPT">Accept</button><br><br>
-</form>
-<%}%>
+									<form action=UpdateMatchRequestServlet method="post">
 
-User2: <%=matchRequest.getUser2_Id().getUserName()%><br>
-User2Status: <%=matchRequest.getUser2_Request_Status()%><br>
+										<input type="hidden" name="MatchMakerId"
+											value="<%=matchRequest.getMatchMaker_Id().getUserId()%>">
+										<input type="hidden" name="User1Id"
+											value="<%=matchRequest.getUser1_Id().getUserId()%>">
+										<input type="hidden" name="User2Id"
+											value="<%=matchRequest.getUser2_Id().getUserId()%>">
+										<input type="hidden" name="user2RequestStatus"
+											value="<%=matchRequest.getUser2_Request_Status()%>">
 
-<br>
-<%if (matchRequest.getUser2_Request_Status().equals("PENDING") && matchRequest.getUser2_Id().getUserId()==userId) { %>
+										<button type="submit" class="btn btn-danger"
+											name="user1RequestStatus" value="REJECT">Reject</button>
+										<button type="submit" class="btn btn-success"
+											name="user1RequestStatus" value="ACCEPT">Accept</button>
+									</form> <% } %>
 
-<form action=UpdateMatchRequestServlet method="post">
-
-<input type="hidden" name="MatchMakerId" value="<%=matchRequest.getMatchMaker_Id().getUserId()%>">
-<input type="hidden" name="User1Id" value="<%=matchRequest.getUser1_Id().getUserId()%>">
-<input type="hidden" name="User2Id" value="<%=matchRequest.getUser2_Id().getUserId()%>">
-<input type="hidden" name="user1RequestStatus" value="<%=matchRequest.getUser1_Request_Status()%>">
-								
-<button type="submit" class="btn btn-danger" name="user2RequestStatus" value="REJECT">Reject</button>
-<button type="submit" class="btn btn-success" name="user2RequestStatus" value="ACCEPT">Accept</button><br><br>								
-										
-<input type="submit" value="" />
-</form>
-<%}%>
-<br>
+								</td>
 
 
-MatchRequestStatus: <%=matchRequest.getRequest_Status()%><br>
-<br><br>
-<%} %>
- 
- 
- <form action="ListFriendsServlet">
-<input type="hidden" name="pageFrom" value="ViewMatchRequestByUser">
- <input type="submit" value="Create MatchRequest">
- </form>
- 
-</div>
- </div>
- 	<%@ include file="footer.html"%>
+								<td><%=matchRequest.getUser2_Id().getUserName()%></td>
+								<td><%=matchRequest.getUser2_Request_Status()%></td>
+
+								<td>
+									<%
+										if (matchRequest.getUser2_Request_Status().equals("PENDING")
+													&& matchRequest.getUser2_Id().getUserId() == userId) {
+									%>
+
+									<form action=UpdateMatchRequestServlet method="post">
+
+										<input type="hidden" name="MatchMakerId"
+											value="<%=matchRequest.getMatchMaker_Id().getUserId()%>">
+										<input type="hidden" name="User1Id"
+											value="<%=matchRequest.getUser1_Id().getUserId()%>">
+										<input type="hidden" name="User2Id"
+											value="<%=matchRequest.getUser2_Id().getUserId()%>">
+										<input type="hidden" name="user1RequestStatus"
+											value="<%=matchRequest.getUser1_Request_Status()%>">
+
+										<button type="submit" class="btn btn-danger"
+											name="user2RequestStatus" value="REJECT">Reject</button>
+										<button type="submit" class="btn btn-success"
+											name="user2RequestStatus" value="ACCEPT">Accept</button>
+									</form> <% } %>
+
+								</td>
+								<td><%=matchRequest.getRequest_Status()%></td>
+
+
+							</tr>
+							<%
+								}
+							%>
+						</tbody>
+					</table>
+				</div>
+				<form action="ListFriendsServlet">
+					<input type="hidden" name="pageFrom" value="ViewMatchRequestByUser">
+					<input type="submit" value="Create MatchRequest">
+				</form>
+			</div>
+		</div>
+	</div>
+	<%@ include file="footer.html"%>
 </body>
 </html>

@@ -8,45 +8,49 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="E:/download/MYJARS/eclipselink.jar">
+	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/javaee-api-7.0.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/download/MYJARS/javax.persistence_2.1.0.v201304241213.jar">
+	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/commons-logging-1.2.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/download/MYJARS/javax.servlet_2.4.0.v200806031604.jar">
+	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/jstl-api-1.2.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/download/MYJARS/javax.servlet-api-3.1.0.jar">
+	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/taglibs-standard-impl-1.2.5.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/download/MYJARS/jstl-api-1.2.jar">
+	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/ojdbc7.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/download/MYJARS/jstl-impl-1.2.jar">
+	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/mysql-connector-java-5.1.37-bin.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/download/MYJARS/mysql-connector-java-5.1.36-bin.jar">
+	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/javax.persistence_2.1.0.v201304241213.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/download/MYJARS/ojdbc7.jar">
+	<classpathentry kind="lib" path="/Users/raulreyaso/Desktop/HeartBridgeJars/eclipselink.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 8 [1.8.0_25]">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>

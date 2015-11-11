@@ -36,7 +36,7 @@ p.error {
 	%>
 
 	<%@ include file="header.html"%>
-S
+
 	<form role="form" action="LoginController" method="post">
 		<div class="row" style = "margin-top:100px">
 			<div class="col-sm-4"></div>
